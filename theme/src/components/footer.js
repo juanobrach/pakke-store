@@ -30,7 +30,7 @@ class FooterMenu extends React.Component {
 		}
 
 		return (
-			<div className="column is-3">
+			<div className="column is-2">
 				<div
 					className={
 						'footer-title mobile-padding' +
@@ -65,25 +65,50 @@ const SocialIcons = ({ icons }) => {
 	}
 };
 
-const Contacts = ({ contacts }) => {
-	if (contacts && contacts.length > 0) {
-		const items = contacts.map((item, index) => {
-			const contact = item ? item.text : null;
-			if (contact && contact.indexOf('@') > 0) {
-				return (
-					<li key={index}>
-						<a href={'mailto:' + contact}>{contact}</a>
-					</li>
-				);
-			} else {
-				return <li key={index}>{contact}</li>;
-			}
-		});
-		return <ul className="footer-contacts">{items}</ul>;
-	} else {
-		return null;
-	}
-};
+
+const VendorsLinks = () =>{
+	let vendors = [
+		{
+			imgSrc:"/assets/images/vendors/venders-logo.png",
+			alt: "Venders",
+			href: "#",
+			columSize:"is-one-quarter"
+		},
+		{
+			imgSrc:"/assets/images/vendors/ikniu-logo.png",
+			alt: "Ikniu",
+			href: "#",
+			columSize:"is-2"
+		},
+		{
+			imgSrc:"/assets/images/vendors/anko-logo.png",
+			alt: "Anko",
+			href: "#",
+			columSize:"is-narrow"
+		},
+		{
+			imgSrc:"/assets/images/vendors/etomin-logo.png",
+			alt: "Etomin",
+			href: "#",
+			columSize:"is-one-quarter"
+		}
+	]
+
+	const items = vendors.map( (item, index) => {
+
+		
+		return (
+			<div className={"column " + item.columSize  }>
+				<a href={item.href} >
+					<img src={item.imgSrc} alt={item.alt} />
+				</a>
+			</div>
+		)
+	})
+
+	return <div className="columns">{items}</div>
+
+}
 
 export default class Footer extends React.PureComponent {
 	static propTypes = {
@@ -134,12 +159,14 @@ export default class Footer extends React.PureComponent {
 			<section className="section-footer">
 				<hr />
 				<div className="payments-methods">
-					<ul className="container">
-					{	paymentMethods.map( paymentMethod  => {
-							return <li><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </li>
-						})
-					}
-					</ul>
+					<div className="container">
+						<div className="level">
+						{	paymentMethods.map( paymentMethod  => {
+								return <div className="level-item has-text-centered"><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </div>
+							})
+						}
+						</div>
+					</div>
 				</div>
 				<div className="customer-help-contact footer">
 					<div className="container">
@@ -148,7 +175,9 @@ export default class Footer extends React.PureComponent {
 								<div className="column is-three-fifths is-offset-1">
 									<div className="level-item has-text-centered">
 										<div>
-											<p className="title">24/7</p>
+											<p>
+												<strong>24/7</strong>
+											</p>
 											<p>
 											Despreocúpate, si tienes dudas, no puedes generar una compra, problemas en un pedido
 											ó simplemente quieres hablar con nosotros, estamos siempre para atenderte.
@@ -214,16 +243,16 @@ export default class Footer extends React.PureComponent {
 					<div className="container">
 						<div className="content">
 							<div className="columns is-gapless">
-								<div className="column is-5">
+								<div className="column is-4">
 									<div className="mobile-padding">
 										<div className="footer-logo">
 											<img src='/assets/images/logo-pakke-bco.png' alt="Pakke" />
 										</div>
 										<p>
-											<small>{themeSettings.footer_about}</small>
+											<small>Conoce las soluciones que tenemos para ti</small>
 										</p>
-										<Contacts contacts={themeSettings.footer_contacts} />
-										<SocialIcons icons={themeSettings.footer_social} />
+										<VendorsLinks />
+										<p style={{fontSize:"13px"}}>Av. Constituyentes 908, Lomas Altas C.P. 11950 CDMX</p>
 									</div>
 								</div>
 								<div className="column is-1 is-hidden-mobile" />
@@ -235,6 +264,22 @@ export default class Footer extends React.PureComponent {
 									title={themeSettings.footer_menu_2_title}
 									items={themeSettings.footer_menu_2_items}
 								/>
+								<FooterMenu
+									title={themeSettings.footer_menu_2_title}
+									items={themeSettings.footer_menu_2_items}
+								/>
+								<FooterMenu
+									title={themeSettings.footer_menu_2_title}
+									items={themeSettings.footer_menu_2_items}
+								/>
+							</div>
+						</div>
+						<hr />
+						<div className="level">
+							<div className="level-item has-text-centered">
+								<p>
+									© { new Date().getFullYear() } Venders. Todos los derechos reservados
+								</p>
 							</div>
 						</div>
 					</div>

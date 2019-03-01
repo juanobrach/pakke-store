@@ -31,13 +31,13 @@ const HomeSlider = ({ images }) => {
 
 		return (
 			<section className="section" style={{ padding: 0 }}>
-				<div className="container">
+				<div>
 					<div className="home-slider">
 						<ImageGallery
 							items={items}
 							lazyLoad
 							showThumbnails={false}
-							slideInterval={2000}
+							slideInterval={1500}
 							showNav={themeSettings.home_gallery_shownav === true}
 							showBullets={images.length > 1}
 							showPlayButton={false}

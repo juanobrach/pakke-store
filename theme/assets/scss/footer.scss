@@ -11,8 +11,12 @@ footer,
 footer a,
 footer > .footer-title{
   color:$white;
+  font-size:13px;
 }
 
+.customer-help-contact > p > strong {
+  font-size:22px;
+}
 
 .section-footer {
   padding-top: 0;
@@ -25,22 +29,18 @@ footer > .footer-title{
 
 .payments-methods{
   background-color: $gray-light;
-  min-height: 50px;
-  ul{
-    display:flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 27px 0;
-    align-items: center;
+  .container .level{
+    min-height: 100px;
   }
 }
 
+
+
 .section-footer hr {
-  background-color: #c8c8c8;
-  border: none;
+  border: 1px solid #fff;
   display: block;
   height: 1px;
-  margin: 0 -1.5rem 3rem -1.5rem;
+  opacity: 0.3;
 }
 
 .footer-logo img {
@@ -50,7 +50,7 @@ footer > .footer-title{
 }
 
 .footer-title {
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -90,6 +90,12 @@ ul.footer-contacts {
 
 
 @media screen and (max-width: 769px) {
+
+  .payments-methods{
+    ul li img{
+      width:25%;
+    }
+  }
   .footer-title {
     padding: 0 3.0rem 0 0;
     margin: 0;
