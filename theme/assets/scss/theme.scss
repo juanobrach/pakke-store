@@ -15,10 +15,14 @@ $breadcrumb-item-separator-color: #7a7a7a;
 
 $error-alert-text: #e5443e;
 
+$widescreen: 1185px;
+
 @import "~bulma";
 @import "~rc-slider/assets/index.css";
 $ig-blue: #636363 !default;
 @import "~react-image-gallery/styles/scss/image-gallery-no-icon.scss";
+
+
 
 .image-gallery-bullets .image-gallery-bullets-container {
   background-color: rgba(0,0,0,0.2);
@@ -118,6 +122,7 @@ MOBILE
   }
 }
 
+@import "palette.scss";
 @import "homeSlider.scss";
 @import "checkout.scss";
 @import "cart.scss";

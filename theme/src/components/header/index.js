@@ -169,7 +169,7 @@ export default class Header extends React.Component {
 							</div>
 
 							<div className="column is-4 has-text-centered column-logo">
-								<Logo src={settings.logo} onClick={this.closeAll} alt="logo" />
+								<Logo src="/assets/images/logo-pakke-color.png" onClick={this.closeAll} alt="logo" />
 							</div>
 
 							<div className="column is-4 has-text-right header-block-right">

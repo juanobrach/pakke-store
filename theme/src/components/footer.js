@@ -96,18 +96,128 @@ export default class Footer extends React.PureComponent {
 			themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
 				? '/assets/images/' + themeSettings.footer_logo_url
 				: settings.logo;
-
+		const paymentMethods = [
+			{
+				img:'/assets/images/payment/meses_sin_interes.png',
+				alt: '3, 6, 9 Y 12 meses sin interes en todas las tarjetas'
+			},
+			{
+				img:'/assets/images/payment/mastercard.png',
+				alt: 'Mastercard'
+			},
+			{
+				img:'/assets/images/payment/visa.png',
+				alt: 'Visa'
+			},
+			{
+				img:'/assets/images/payment/american_express.png',
+				alt: 'American Express'
+			},
+			{
+				img:'/assets/images/payment/spei.png',
+				alt: 'SPEI'
+			},
+			{
+				img:'/assets/images/payment/oxxo.png',
+				alt: 'OXXO'
+			},
+			{
+				img:'/assets/images/payment/BBVA_bancomer.png',
+				alt: 'BBVA Bancomer'
+			},
+			{
+				img:'/assets/images/payment/paypal.png',
+				alt: 'Paypal'
+			}
+		]
 		return (
-			<section className="section section-footer">
+			<section className="section-footer">
 				<hr />
-				<footer>
+				<div className="payments-methods">
+					<ul className="container">
+					{	paymentMethods.map( paymentMethod  => {
+							return <li><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </li>
+						})
+					}
+					</ul>
+				</div>
+				<div className="customer-help-contact footer">
+					<div className="container">
+						<div className="content">
+							<div className="columns is-centered">
+								<div className="column is-three-fifths is-offset-1">
+									<div className="level-item has-text-centered">
+										<div>
+											<p className="title">24/7</p>
+											<p>
+											Despreocúpate, si tienes dudas, no puedes generar una compra, problemas en un pedido
+											ó simplemente quieres hablar con nosotros, estamos siempre para atenderte.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="block" style={{height:'40px'}}></div>
+							<div className="columns level">
+								<div className="column level-item has-text-centered">
+									<div className="block">
+										<img src="/assets/images/icons/phone-70-70.png"/>
+									</div>
+									<p>
+										Llámanos desde todo México al:
+										<br />
+										<strong>01 (55) 2629 9848</strong>
+										<br />
+										De lunes a viernes de 9 a 19 hrs.	
+									</p>
+								</div>
+								<div className="column level-item has-text-centered">
+									<div className="block">
+										<img src="/assets/images/icons/email-71-51.png"/>
+									</div>
+									<p>
+										<strong>soporte@pakke.mx</strong>
+										<br/>
+										Escríbenos para brindarte la
+										ayuda que necesitas.
+									</p>
+								</div>
+								<div className="column level-item has-text-centered">
+									<div className="block">
+										<img src="/assets/images/icons/chat-83-70.png"/>
+									</div>
+									<p>
+									<strong>Chatea con nosotros</strong>
+									<br/>
+									Hacemos todo lo posible por
+									solucionarte tus dudas en el
+									momento.
+									</p>
+								</div>
+								<div className="column level-item has-text-centered">
+									<div className="block">
+										<img src="/assets/images/icons/question-71-71.png"/>
+									</div>
+									<p>
+									<strong>¿Tienes dudas?</strong>
+									<br/>
+									En nuestro Centro de ayuda,
+									podrás encontrar la respuesta a
+									todos tus problemas.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer className="footer-bg footer">
 					<div className="container">
 						<div className="content">
 							<div className="columns is-gapless">
 								<div className="column is-5">
 									<div className="mobile-padding">
 										<div className="footer-logo">
-											<img src={footerLogoUrl} alt="logo" />
+											<img src='/assets/images/logo-pakke-bco.png' alt="Pakke" />
 										</div>
 										<p>
 											<small>{themeSettings.footer_about}</small>

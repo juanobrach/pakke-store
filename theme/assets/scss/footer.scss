@@ -7,12 +7,32 @@
   list-style: none;
 }
 
-footer a {
-  color: #636363;
+footer,
+footer a,
+footer > .footer-title{
+  color:$white;
 }
+
 
 .section-footer {
   padding-top: 0;
+}
+
+.footer-bg{
+  background-image:url('/assets/images/pakke-footer-bg.png');
+  background-size:cover;
+}
+
+.payments-methods{
+  background-color: $gray-light;
+  min-height: 50px;
+  ul{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 27px 0;
+    align-items: center;
+  }
 }
 
 .section-footer hr {
@@ -30,7 +50,6 @@ footer a {
 }
 
 .footer-title {
-  color: #333;
   font-weight: 500;
   margin-bottom: 10px;
 }
