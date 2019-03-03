@@ -1,0 +1,32 @@
+.customer-menu {
+	font-size: 13px;
+	position:relative;
+    .menu-item{
+	    margin: 0;
+	    color: $purple;
+	    font-size: 13px;
+	    font-weight: bold;    
+    }
+    span.arrow-down-icon{
+        margin-left: 1.9em;
+    }
+
+    .menu{
+    	position:absolute;
+    	background: white;
+    	width: 330px;
+    	padding:30px;
+    	left: -100%;
+      display:none;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.16);
+    }
+
+    &.is-active{
+      .menu{
+        display:block;
+      }
+      span.arrow-down-icon{
+       transform: rotate( 180deg );
+      }
+    }
+}

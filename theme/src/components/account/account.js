@@ -217,6 +217,7 @@ class Account extends React.Component {
 
 	handleLogout() {
 		Lscache.flush();
+		this.props.logOut();
 	}
 
 	handleContactsEdit = () => {

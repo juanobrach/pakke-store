@@ -311,6 +311,10 @@ export const loginUser = (data, callback) => async (dispatch, getState) => {
 	}
 };
 
+export const logOutUser = (data, callback) => async (dispatch, getState) => {
+	dispatch(handleAccountProperties());
+};
+
 export const loggedinUserTimeUp = (data, callback) => async (dispatch, getState) => {
 	const customerProps = {
 		token: '',

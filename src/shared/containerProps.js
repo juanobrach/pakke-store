@@ -12,6 +12,7 @@ import {
 	customerData,
 	checkout,
 	loginUser,
+	logOutUser,
 	loggedinUserTimeUp,
 	changecustomerProperties,
 	registerUser,
@@ -50,6 +51,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		loginUser: (data, callback) => {
 			dispatch(loginUser(data, callback));
+		},
+		logOutUser:( data, callback ) =>{
+			dispatch( logOutUser(data, callback));
 		},
 		loggedinUserTimeUp: (data, callback) => {
 			dispatch(loggedinUserTimeUp(data, callback));

@@ -4,9 +4,10 @@ import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import Cart from './cart';
 import CartIndicator from './cartIndicator';
-import LoginHeader from './login';
+import CustomerMenu from './CustomerMenu'; 
 import SearchBox from './searchBox';
 import HeadMenu from './headMenu';
+
 
 const Logo = ({ src, onClick, alt }) => (
 	<NavLink className="logo-image" to="/" onClick={onClick}>
@@ -43,6 +44,12 @@ export default class Header extends React.Component {
 			cartIsActive: false,
 		};
 	}
+
+	handlecustomerProperties = () => {
+    	this.props.customerData({
+			token: Lscache.get('auth_data')
+		});
+	};
 
 	componentWillReceiveProps(nextProps) {
 		if (
@@ -141,7 +148,8 @@ export default class Header extends React.Component {
 			currentPage,
 			location,
 			productFilter,
-			cartlayerBtnInitialized
+			cartlayerBtnInitialized,
+			customerProperties
 		} = this.props.state;
 
 		const classToggle = this.state.mobileMenuIsActive
@@ -149,7 +157,6 @@ export default class Header extends React.Component {
 			: 'navbar-burger is-hidden-tablet';
 		const showBackButton =
 			currentPage.type === 'product' && location.hasHistory;
-
 		return (
 			<Fragment>
 				<header
@@ -205,6 +212,7 @@ export default class Header extends React.Component {
 							<div className="column is-3">
 								<div className="level is-hidden-mobile">
 									<div className="leve-item" style={{ marginLeft: '5px' }}>
+									 <CustomerMenu  customerProperties={customerProperties} />
 									</div>
 									<div className="level-right">
 										<CartIndicator
