@@ -9,14 +9,13 @@ header {
   z-index: 1003;
   background-color: $header_bg;
   padding-top: 1.5rem;
-  border-bottom: $header_border;
-}
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.17)
+  }
 
 .logo-image img {
   max-height: 80px;
   max-width: 100%;
   margin: 0 auto;
-  display: block;
 }
 
 .icon-search {
@@ -26,22 +25,25 @@ header {
 .cart-button {
   position: relative;
   display: inline-flex;
+  align-items: flex-end;
   cursor: pointer;
-  margin: 0 1.5rem 0 1.5rem;
+  span{
+    font-weight: 700;
+    margin-left: 8px;
+    font-size: 13px;
+  }
 }
 
 .cart-count {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  height: 1.25rem;
-  width: 1.25rem;
-  background-color: #ff3860;
-  color: #fff;
+  top: -12px;
+  left: 4px;
+  height: 20px;
+  width: 8px;
+  color: $purple;
   line-height: 1.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 100%;
+  font-size: 12px;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -93,25 +95,46 @@ header {
 DESKTOP
 */
 .primary-nav {
-  text-align: center;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0;
 }
 .primary-nav li {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  text-transform: uppercase;
-  font-size: 14px;
+  padding-left: 0;
+  text-transform: capitalize;
+  font-size: 13px;
+  font-family: sans-serif;
+}
+
+.primary-nav ul li .cat-parent a{
+  color: $link-gray;
+  position:relative;
+}
+
+
+
+.arrow-down-icon{
+  background-image: url('/assets/images/icons/arrow-down.png');
+  width:8px;
+  height:4px;
+  display:inline-block;
+  margin-left: .4em;
+  margin-bottom: 1px;
+}
+
+.primary-nav .nav-level-0 li.has-items{
+  position:relative;
 }
 .primary-nav .nav-level-1 {
   text-align: left;
   display: none;
   position: absolute;
-  width: 100%;
+  min-width: 200px;
   background-color: #f5f5f5;
   z-index: 1003;
-  left: 0;
+  left: -50%;
   margin-top: 0.5rem;
-  padding: 30px 20px;
+  padding: 30px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.175);
 }
 .primary-nav li.is-active {
@@ -119,10 +142,11 @@ DESKTOP
 }
 .primary-nav li.is-active .nav-level-1 {
   display: flex;
+  flex-flow: column wrap;
 }
 
 .primary-nav .nav-level-1 li.column {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .primary-nav .nav-level-2 {
@@ -246,15 +270,14 @@ body.search-active .mobile-nav {
 .search-box {
   background-color: #f5f5f5;
   transition: all 200ms ease-in-out;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-right: 25px;
   position: relative;
   display: flex;
   align-items: center;
   border-radius: 4px;
   width: 100%;
   box-shadow: none;
+  border: 1px solid #e5e5e5;
+  height: 35px;
 }
 
 .search-box.has-focus {
@@ -264,16 +287,16 @@ body.search-active .mobile-nav {
 .search-icon-search, .search-icon-clear {
   cursor: pointer;
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 
 .search-icon-search {
-  left: 8px;
+  right: 30px;
 }
 
 .search-icon-clear {
-  right: 8px;
+  right: 30px;
 }
 
 .search-input {
@@ -282,6 +305,26 @@ body.search-active .mobile-nav {
   outline: none;
   height: 3rem;
   width: 100%;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+  padding-left:1em;
+  opacity: 0.3;
+  font-size: 15px;
+}
+
+
+.login-button{
+  position:relative;
+}
+
+.login-button > div {
+  position: absolute;
+  background: white;
+  top: 19px;
+  padding: 20%;
+  width: 300px;
+  left: -50%;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.16);
 }
 
 @media screen and (max-width: 769px) {
@@ -293,6 +336,7 @@ body.search-active .mobile-nav {
     left: 4%;
     margin: 0.5rem auto;
     height: 0;
+    border:none;
   }
 
   .search-box.search-active {

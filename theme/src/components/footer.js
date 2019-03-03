@@ -98,7 +98,7 @@ const VendorsLinks = () =>{
 
 		
 		return (
-			<div className={"column " + item.columSize  }>
+			<div className={"column " + item.columSize  } key={index}>
 				<a href={item.href} >
 					<img src={item.imgSrc} alt={item.alt} />
 				</a>
@@ -161,8 +161,8 @@ export default class Footer extends React.PureComponent {
 				<div className="payments-methods">
 					<div className="container">
 						<div className="level">
-						{	paymentMethods.map( paymentMethod  => {
-								return <div className="level-item has-text-centered"><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </div>
+						{	paymentMethods.map( (paymentMethod, index ) => {
+								return <div className="level-item has-text-centered" key={index}><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </div>
 							})
 						}
 						</div>

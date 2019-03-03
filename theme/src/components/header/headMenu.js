@@ -53,7 +53,7 @@ class HeadMenuItem extends React.Component {
 				onMouseLeave={this.onMouseLeaveHandler}
 				onMouseUp={this.onMouseLeaveHandler}
 				className={
-					(level === 2 ? 'column is-3' : '') +
+					(level === 2 ? 'column is-11' : '') +
 					(this.state.isActive ? ' is-active' : '') +
 					(hasItems ? ' has-items' : '')
 				}
@@ -66,17 +66,19 @@ class HeadMenuItem extends React.Component {
 						onClick={onClick}
 					>
 						{category.name}
+						{ hasItems && ( <span className="arrow-down-icon"></span>) }
 					</NavLink>
 					{hasItems && isMobile && <span onClick={this.isActiveToggle} />}
 				</div>
 				{hasItems && (
 					<ul
 						className={
-							(level === 1 ? 'columns is-gapless is-multiline' : '') +
+							(level === 1 ? 'columns is-multiline' : '') +
 							' nav-level-' +
 							level
 						}
 					>
+						<strong style={{ marginBottom: '20px' }}>{category.name}</strong>
 						{items}
 					</ul>
 				)}

@@ -45,12 +45,28 @@ export default class SearchBox extends React.Component {
 	};
 
 	render() {
-		const { hasFocus } = this.state;
+		const { hasFocus, value } = this.state;
 		const placeholderText =
 			themeSettings.search_placeholder &&
 			themeSettings.search_placeholder.length > 0
 				? themeSettings.search_placeholder
 				: text.searchPlaceholder;
+		let searchIcon;
+		if( value == ''){
+			searchIcon = <img
+							className="search-icon-search"
+							src="/assets/images/icons/search-icon.png"
+							alt={text.search}
+							title={text.search}
+							onClick={this.handleSearch}
+						/>;
+		}else{
+			searchIcon = <img
+							className="search-icon-clear"
+							src="/assets/images/close.svg"
+							onClick={this.handleClear}
+						/>
+		}
 
 		return (
 			<div
@@ -61,7 +77,7 @@ export default class SearchBox extends React.Component {
 				<input
 					className="search-input"
 					type="text"
-					placeholder={placeholderText}
+					placeholder='Buscar productos'
 					value={this.state.value}
 					onChange={this.handleChange}
 					onKeyPress={this.handleKeyPress}
@@ -69,21 +85,7 @@ export default class SearchBox extends React.Component {
 					onFocus={this.handleFocus}
 					onBlur={this.handleBlur}
 				/>
-				<img
-					className="search-icon-search"
-					src="/assets/images/search.svg"
-					alt={text.search}
-					title={text.search}
-					onClick={this.handleSearch}
-				/>
-				{this.state.value &&
-					this.state.value !== '' && (
-						<img
-							className="search-icon-clear"
-							src="/assets/images/close.svg"
-							onClick={this.handleClear}
-						/>
-					)}
+				{ searchIcon }
 			</div>
 		);
 	}

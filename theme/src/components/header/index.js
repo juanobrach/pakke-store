@@ -4,7 +4,7 @@ import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import Cart from './cart';
 import CartIndicator from './cartIndicator';
-import Login from './login';
+import LoginHeader from './login';
 import SearchBox from './searchBox';
 import HeadMenu from './headMenu';
 
@@ -28,7 +28,6 @@ const BackButton = ({ onClick }) => (
 		onClick={onClick}
 	>
 		<img
-			className="icon"
 			src="/assets/images/arrow_back.svg"
 			style={{ width: 18 }}
 		/>
@@ -41,7 +40,7 @@ export default class Header extends React.Component {
 		this.state = {
 			mobileMenuIsActive: false,
 			mobileSearchIsActive: false,
-			cartIsActive: false
+			cartIsActive: false,
 		};
 	}
 
@@ -158,7 +157,7 @@ export default class Header extends React.Component {
 				>
 					<div className="container">
 						<div className="columns is-gapless is-mobile header-container">
-							<div className="column is-4 column-burger">
+							<div className="column is-4 column-burger is-hidden-tablet">
 								{!showBackButton && (
 									<BurgerButton
 										onClick={this.menuToggle}
@@ -168,11 +167,11 @@ export default class Header extends React.Component {
 								{showBackButton && <BackButton onClick={this.handleGoBack} />}
 							</div>
 
-							<div className="column is-4 has-text-centered column-logo">
+							<div className="column is-3 column-logo">
 								<Logo src="/assets/images/logo-pakke-color.png" onClick={this.closeAll} alt="logo" />
 							</div>
 
-							<div className="column is-4 has-text-right header-block-right">
+							<div className="column is-5 has-text-right header-block-right">
 								<span
 									className="icon icon-search is-hidden-tablet"
 									onClick={this.searchToggle}
@@ -191,35 +190,43 @@ export default class Header extends React.Component {
 										this.state.mobileSearchIsActive ? 'search-active' : ''
 									}
 								/>
-								<Login
-									onClick={this.handleLogin}
-								/>
-								<CartIndicator
-									cart={cart}
-									onClick={this.cartToggle}
-									cartIsActive={this.state.cartIsActive}
-									cartlayerBtnInitialized={cartlayerBtnInitialized}
-								/>
-								<div
-									className={this.state.cartIsActive ? 'mini-cart-open' : ''}
-								>
-									<Cart
-										cart={cart}
-										deleteCartItem={this.props.deleteCartItem}
-										settings={settings}
-										cartToggle={this.cartToggle}
-										cartlayerBtnInitialized={cartlayerBtnInitialized}
+							</div>
+						</div>
+						<div className="columns" style={{alignItems:'flex-end', justifyContent:'space-between'}}>
+							<div className="column is-7">
+								<div className="primary-nav is-hidden-mobile" style={{lineHeight:' 3px'}}>
+									<HeadMenu
+										categories={categories}
+										location={location}
+										isMobile={false}
 									/>
 								</div>
 							</div>
-						</div>
-
-						<div className="primary-nav is-hidden-mobile">
-							<HeadMenu
-								categories={categories}
-								location={location}
-								isMobile={false}
-							/>
+							<div className="column is-3">
+								<div className="level is-hidden-mobile">
+									<div className="leve-item" style={{ marginLeft: '5px' }}>
+									</div>
+									<div className="level-right">
+										<CartIndicator
+											cart={cart}
+											onClick={this.cartToggle}
+											cartIsActive={this.state.cartIsActive}
+											cartlayerBtnInitialized={cartlayerBtnInitialized}
+										/>
+										<div
+											className={this.state.cartIsActive ? 'mini-cart-open' : ''}
+										>
+											<Cart
+												cart={cart}
+												deleteCartItem={this.props.deleteCartItem}
+												settings={settings}
+												cartToggle={this.cartToggle}
+												cartlayerBtnInitialized={cartlayerBtnInitialized}
+											/>
+										</div>
+									</div>
+								</div>									
+							</div>
 						</div>
 					</div>
 				</header>

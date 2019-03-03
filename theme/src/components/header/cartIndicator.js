@@ -23,13 +23,15 @@ const CartIcon = ({ cartIsActive }) => {
 		);
 	}
 	return (
-		<img
-			src="/assets/images/shopping-bag.svg"
-			className="icon"
-			alt={text.cart}
-			title={text.cart}
-			style={{ minWidth: 24 }}
-		/>
+		<React.Fragment>
+			<img
+				src="/assets/images/icons/cart-icon.png"
+				alt={text.cart}
+				title={text.cart}
+				style={{ minWidth: 29, minHeight: 21 }}
+			/>
+			<span>Carrito</span>
+		</React.Fragment>
 	);
 };
 
@@ -37,7 +39,7 @@ export default class CartIndicator extends React.PureComponent {
 	render() {
 		const { cart, onClick, cartIsActive } = this.props;
 		return (
-			<span className="cart-button" onClick={onClick}>
+			<span className="cart-button leve-item" onClick={onClick}>
 				<CartIcon cartIsActive={cartIsActive} />
 				<CartCount cart={cart} />
 			</span>
