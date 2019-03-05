@@ -39,7 +39,7 @@ export default class ProductFilter extends React.Component {
 		} = this.props.state;
 
 		return (
-			<div>
+			<React.Fragment>
 				<div className="is-hidden-tablet">
 					<button className="button is-fullwidth" onClick={this.sidebarToggle}>
 						{text.filterProducts}
@@ -56,7 +56,7 @@ export default class ProductFilter extends React.Component {
 					/>
 					<div className={sidebarIsActive ? 'modal-content' : ''}>
 						<div className={sidebarIsActive ? 'box sidebar' : ''}>
-							<div className="is-hidden-tablet" style={{ marginBottom: 30 }}>
+							<div className="" style={{ marginBottom: 30 }}>
 								<Sort
 									defaultSort={settings.default_product_sorting}
 									currentSort={productFilter.sort}
@@ -88,7 +88,7 @@ export default class ProductFilter extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

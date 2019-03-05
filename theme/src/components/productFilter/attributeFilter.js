@@ -41,14 +41,15 @@ class AttributeValue extends React.Component {
 		const classDisabled = isDisabled ? 'attribute-disabled' : '';
 
 		return (
-			<label className={classChecked + ' ' + classDisabled}>
+			<label className={'checkbox-container ' +  classChecked + ' ' + classDisabled}>
 				<input
 					type="checkbox"
 					disabled={isDisabled}
 					onChange={this.onChange}
 					checked={this.state.checked}
 				/>
-				{valueName}
+				{valueName}  <span style={{color: '#cec9c9'}}>({count})</span>
+				<span className="checkmark"></span>
 			</label>
 		);
 	}
@@ -72,7 +73,7 @@ const AttributeSet = ({
 	));
 
 	return (
-		<div className="attribute">
+		<div>
 			<div className="attribute-title">{attribute.name}</div>
 			{values}
 		</div>

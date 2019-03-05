@@ -33,9 +33,9 @@ const getFilterPriceSummary = (productFilter, settings) => {
 	return priceSummary;
 };
 
-const CategoryHero = ({ categoryDetails, categories }) => (
+const CategoryHero = ({ categoryDetails, categories, products }) => (
 	<section className="hero is-light">
-		<div className="hero-body">
+		<div className="hero-body" style={{paddingBottom:'15px'}}>
 			<div className="container">
 				{themeSettings.show_category_breadcrumbs && (
 					<CategoryBreadcrumbs
@@ -44,10 +44,7 @@ const CategoryHero = ({ categoryDetails, categories }) => (
 					/>
 				)}
 				<h1 className="category-title">{categoryDetails.name}</h1>
-				<div
-					className="category-description is-hidden-mobile content"
-					dangerouslySetInnerHTML={{ __html: categoryDetails.description }}
-				/>
+				<p className="products-found">Se encuentran { products.length } { ( products.length > 1 ? 'productos' : 'producto') }</p>
 			</div>
 		</div>
 	</section>
@@ -55,7 +52,8 @@ const CategoryHero = ({ categoryDetails, categories }) => (
 
 CategoryHero.propTypes = {
 	categoryDetails: PropTypes.shape({}).isRequired,
-	categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+	categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+	products: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 const CategoryContainer = props => {
@@ -76,7 +74,6 @@ const CategoryContainer = props => {
 			loadingMoreProducts
 		}
 	} = props;
-
 	const filterAttributesSummary = getFilterAttributesSummary(productFilter);
 	const filterPriceSummary = getFilterPriceSummary(productFilter, settings);
 
@@ -103,7 +100,7 @@ const CategoryContainer = props => {
 				jsonld={jsonld}
 			/>
 
-			<CategoryHero categoryDetails={categoryDetails} categories={categories} />
+			<CategoryHero categoryDetails={categoryDetails} categories={categories} products={products}/>
 
 			<section className="section section-category">
 				<div className="container">
@@ -113,18 +110,7 @@ const CategoryContainer = props => {
 								<ProductFilter {...props} />
 							</div>
 						)}
-
-						<div className="column">
-							<div className="columns is-hidden-mobile">
-								<div className="column" />
-								<div className="column is-5">
-									<Sort
-										defaultSort={settings.default_product_sorting}
-										currentSort={productFilter.sort}
-										setSort={setSort}
-									/>
-								</div>
-							</div>
+						<div className="column category">
 							<ProductList
 								products={products}
 								addCartItem={addCartItem}

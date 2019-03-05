@@ -34,5 +34,8 @@
 	width: 17px;
 	height: 15px;
 	display:inline-block;	
-	
+}
+
+.breadcrumb li+li:before{
+	content:">"
 }
