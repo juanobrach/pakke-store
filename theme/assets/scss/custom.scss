@@ -13,3 +13,26 @@
 .error-alert-text {
     color: $error-alert-text;
 }
+
+.envelope-icon{
+	background-image: url('/assets/images/icons/user-icon.png');	
+	width: 16px;
+	height: 20px;
+	margin-right:10px;
+}
+
+.add-to-cart-icon{
+	background-image: url('/assets/images/icons/add-to-cart.png');	
+	width: 17px;
+	height: 12px;
+	margin-right:6px;
+	display:inline-block;	
+}
+
+.favourite-heart-icon{
+	background-image: url('/assets/images/icons/heart.svg');	
+	width: 17px;
+	height: 15px;
+	display:inline-block;	
+	
+}

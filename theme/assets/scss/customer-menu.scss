@@ -1,32 +1,116 @@
 .customer-menu {
 	font-size: 13px;
 	position:relative;
-    .menu-item{
-	    margin: 0;
-	    color: $purple;
-	    font-size: 13px;
-	    font-weight: bold;    
+  cursor:pointer;
+  .menu-item{
+    margin: 0;
+    color: $purple;
+    font-size: 13px;
+    font-weight: bold;    
+  }
+  span.arrow-down-icon{
+      margin-left: 1.9em;
+  }
+
+  .menu{
+  	position:absolute;
+  	background: white;
+  	width: 330px;
+  	padding:30px;
+  	left: -100%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.16);
+    display:none;
+     ul.loged-customer-menu{
+        li{
+          margin-bottom: 1em;
+        }
+      }
+
+      .logout-btn{
+        font-size: 14px;
+        border: none;
+        background: none;
+        text-decoration: underline;
+        color: gray;
+      }
+  }
+
+  &.is-active{
+    .menu{
+      display:block;
     }
     span.arrow-down-icon{
-        margin-left: 1.9em;
+     transform: rotate( 180deg );
     }
+  }
 
-    .menu{
-    	position:absolute;
-    	background: white;
-    	width: 330px;
-    	padding:30px;
-    	left: -100%;
-      display:none;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.16);
-    }
+  .login-container{
+    width:auto;
 
-    &.is-active{
-      .menu{
-        display:block;
+    .login-form{
+      width: 100%;
+      
+      .login-section h2{
+        text-align:left;
+        font-size:18px;
+        color:$black-light;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        margin-bottom:20px;
       }
-      span.arrow-down-icon{
-       transform: rotate( 180deg );
+
+      .login-section .login-link-wrap{
+        text-align: left;
+        a{
+          color: $red-cake;
+          font-size: 14px;
+          text-decoration:underline;
+        }
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover, 
+      input:-webkit-autofill:focus
+      input:-webkit-autofill{
+          background-color:transparent !important;
+          border:none;
+          border-bottom: 1px solid #4d4d4d;
+          opacity: 0.3;
+      }
+
+      #customer.password,
+      #customer.email{
+        border: none;
+        border-bottom: 1px solid #4d4d4d;
+      }
+      .account-button{
+          padding:0;
+          text-transform:none;
+          border:none;
+      }
+
+      .account-button{
+        color: rgba(51, 51, 51, 0.5);
+        font-size: 14px;
+        text-decoration:underline;
+        margin-top: 15px;
+      }
+
+      .login-button-wrap{
+        margin-top:0;
+        text-align: left;
+      }
+
+      button[type=submit]{
+        color:white;
+        border-radius: 12px;
+        background-color: #ff5959;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration:none;
       }
     }
+  }
 }

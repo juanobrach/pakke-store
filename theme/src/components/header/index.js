@@ -4,7 +4,7 @@ import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import Cart from './cart';
 import CartIndicator from './cartIndicator';
-import CustomerMenu from './CustomerMenu'; 
+import CustomerMenu from './CustomerMenu/index.js'; 
 import SearchBox from './searchBox';
 import HeadMenu from './headMenu';
 
@@ -110,21 +110,6 @@ export default class Header extends React.Component {
 		document.body.classList.add('noscroll');
 	};
 
-	handleLogin = () => {
-		Lscache.flushExpired();
-		if (Lscache.get('auth_data') === null) {
-			this.props.loggedinUserTimeUp({
-				authenticated: false
-			});
-			this.props.setLocation('/login');
-		} else {
-			this.props.customerData({
-				token: Lscache.get('auth_data')
-			});
-			this.props.setLocation('/customer-account');
-		}
-	}
-
 	handleSearch = search => {
 		if (this.props.state.currentPage.path === '/search') {
 			this.props.setSearch(search);
@@ -212,7 +197,12 @@ export default class Header extends React.Component {
 							<div className="column is-3">
 								<div className="level is-hidden-mobile">
 									<div className="leve-item" style={{ marginLeft: '5px' }}>
-									 <CustomerMenu  customerProperties={customerProperties} />
+									 <CustomerMenu  
+									 	customerProperties={customerProperties}  
+									 	state={ settings } 
+									 	{...this.props}
+
+									 	/>
 									</div>
 									<div className="level-right">
 										<CartIndicator

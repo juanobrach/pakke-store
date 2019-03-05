@@ -4,18 +4,21 @@ import { themeSettings, text } from '../../lib/settings';
 import ItemTags from './itemTags';
 import ItemImage from './itemImage';
 import ItemPrice from './itemPrice';
+import ItemActions from './itemActions';
+
+
 
 const Item = ({
 	product,
 	addCartItem,
 	settings,
-	columnCountOnMobile = 2,
-	columnCountOnTablet = 3,
-	columnCountOnDesktop = 4,
-	columnCountOnWidescreen = 4,
-	columnCountOnFullhd = 4
+	columnCountOnMobile = 1,
+	columnCountOnTablet = 1,
+	columnCountOnDesktop = 1,
+	columnCountOnWidescreen = 2,
+	columnCountOnFullhd = 1
 }) => {
-	const columnCount = 12;
+	const columnCount = 5;
 
 	const columnSizeOnMobile = columnCount / columnCountOnMobile;
 	const columnSizeOnTablet = columnCount / columnCountOnTablet;
@@ -36,7 +39,7 @@ const Item = ({
 
 	return (
 		<div
-			className={`column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
+			className={`product-item-column column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
 				product.stock_status
 			}`}
 		>
@@ -54,6 +57,7 @@ const Item = ({
 					<ItemPrice product={product} settings={settings} />
 				</div>
 			</NavLink>
+			<ItemActions addCartItem={addCartItem} product={product} />
 		</div>
 	);
 };
