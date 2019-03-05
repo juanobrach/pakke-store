@@ -13,10 +13,10 @@ const Sort = ({ defaultSort, currentSort, setSort }) => (
 					<span className="select is-fullwidth">
 						<select
 							onChange={e => {
-								setSort(e.target.value);
+								setSort(e.target.value)
 							}}
 							value={currentSort}
-							style={padding:'0'}
+							style={{padding:'0'}}
 						>
 							<option value="name">{text.sortAlphabet}</option>
 							<option value={defaultSort}>{text.sortFavorite}</option>
