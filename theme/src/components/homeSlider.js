@@ -32,7 +32,7 @@ const HomeSlider = ({ images }) => {
 		return (
 			<section className="section" style={{ padding: 0 }}>
 				<div>
-					<div className="home-slider">
+					<div className="home-slider is-hidden-mobile">
 						<ImageGallery
 							items={items}
 							lazyLoad

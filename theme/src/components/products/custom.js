@@ -44,7 +44,7 @@ export default class CustomProducts extends React.Component {
 		price_from: null,
 		price_to: null,
 		on_sale: null,
-		isCentered: true,
+		isCentered: false,
 		className: 'columns is-multiline is-mobile products',
 		columnCountOnMobile: 2,
 		columnCountOnTablet: 3,

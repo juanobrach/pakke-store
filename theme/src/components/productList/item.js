@@ -12,11 +12,11 @@ const Item = ({
 	product,
 	addCartItem,
 	settings,
-	columnCountOnMobile = 1,
-	columnCountOnTablet = 1,
-	columnCountOnDesktop = 1,
-	columnCountOnWidescreen = 2,
-	columnCountOnFullhd = 1
+	columnCountOnMobile = 1
+	columnCountOnTablet = 2,
+	columnCountOnDesktop = 5,
+	columnCountOnWidescreen = 5,
+	columnCountOnFullhd = 2
 }) => {
 	const columnCount = 5;
 
@@ -42,22 +42,24 @@ const Item = ({
 			className={`product-item-column column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
 				product.stock_status
 			}`}
-		>
-			<NavLink to={product.path}>
-				<figure className="image" style={{ height: imageHeight }}>
-					<ItemTags tags={product.tags} />
-					<ItemImage
-						images={product.images}
-						productName={product.name}
-						height={placeholderHeight}
-					/>
-				</figure>
-				<div className="content product-caption">
-					<div className="product-name">{product.name}</div>
-					<ItemPrice product={product} settings={settings} />
-				</div>
-			</NavLink>
-			<ItemActions addCartItem={addCartItem} product={product} />
+		>	
+			<article style={{ backgroundColor:"#fff", borderRadius:'10px', padding:'10px'}}>
+				<NavLink to={product.path}>
+					<figure className="image" style={{ height: imageHeight }}>
+						<ItemTags tags={product.tags} />
+						<ItemImage
+							images={product.images}
+							productName={product.name}
+							height={placeholderHeight}
+						/>
+					</figure>
+					<div className="content product-caption">
+						<div className="product-name">{product.name}</div>
+						<ItemPrice product={product} settings={settings} />
+					</div>
+				</NavLink>
+				<ItemActions addCartItem={addCartItem} product={product} />
+			</article>
 		</div>
 	);
 };

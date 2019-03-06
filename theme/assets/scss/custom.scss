@@ -1,3 +1,7 @@
+hmtl,body{
+	background-color:$background-gray;
+}
+
 .continue-shopping-button {
     // still empty
 }
@@ -38,4 +42,11 @@
 
 .breadcrumb li+li:before{
 	content:">"
+}
+
+
+@media screen and (max-width: 768px) {
+	.column-logo{
+		text-align:center;
+	}	
 }

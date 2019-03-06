@@ -56,9 +56,9 @@ const IndexContainer = props => {
 					</section>
 				)}
 
-			<section className="section">
+			<section className="section" style={{paddingTop:'40px'}}>
 				<div className="container">
-					<section >
+					<section style={{paddingTop:'30px'}} >
 						<div className="title is-4">
 						 	Categorías
 						</div>
@@ -85,7 +85,31 @@ const IndexContainer = props => {
 						<CustomProducts
 							sku={themeSettings.home_products_sku}
 							sort={themeSettings.home_products_sort}
-							limit={themeSettings.home_products_limit}
+							limit="5"
+							settings={settings}
+							addCartItem={addCartItem}
+						/>
+					</section>
+					<section style={{ marginTop:'25px'}}>
+						<div className="title is-4">
+							Paquete de cajas
+						</div>
+						<CustomProducts
+							sku={themeSettings.home_products_sku}
+							sort={themeSettings.home_products_sort}
+							limit="2"
+							settings={settings}
+							addCartItem={addCartItem}
+						/>
+					</section>
+					<section style={{ marginTop:'25px'}}>
+						<div className="title is-4">
+							Te puede interesar
+						</div>
+						<CustomProducts
+							sku={themeSettings.home_products_sku}
+							sort={themeSettings.home_products_sort}
+							limit="5"
 							settings={settings}
 							addCartItem={addCartItem}
 						/>

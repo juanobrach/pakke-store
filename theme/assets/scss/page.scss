@@ -30,6 +30,15 @@
   text-decoration: underline;
 }
 
+.categories-links .column{
+  background: $white;
+  margin-left:2px;
+
+}
+
+.categories-links .column:first-child{
+  margin-left:0;
+}
 
 .categories-links .column a h3 {
     color: $subtitle-gray;
