@@ -130,7 +130,7 @@ DESKTOP
   display: none;
   position: absolute;
   min-width: 200px;
-  background-color: #f5f5f5;
+  background-color: $white;
   z-index: 1003;
   left: -50%;
   margin-top: 0.5rem;
@@ -138,7 +138,7 @@ DESKTOP
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.175);
 }
 .primary-nav li.is-active {
-  background-color: #f5f5f5;
+  background-color: $white;
 }
 .primary-nav li.is-active .nav-level-1 {
   display: flex;
