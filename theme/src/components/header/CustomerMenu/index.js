@@ -34,14 +34,16 @@ export default class CustomerMenu extends React.PureComponent {
 		this.props.logOutUser();
 	}
 
+
 	render() {
 		const { customerProperties } = this.props;
-
-		let isLogged = this.props.customerProperties != null && this.props.customerProperties.authenticated ? true : false;
+		let isLogged = customerProperties.authenticated ? true : false;
 		let customerName = "Registrate";
 		if( isLogged ){
 			customerName = customerProperties.customer_settings.full_name
 		}
+
+
 		return (
 			<div onMouseEnter={this.onMouseEnterHandler}
 				 onMouseLeave={this.onMouseLeaveHandler}
