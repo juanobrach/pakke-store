@@ -1,7 +1,7 @@
 .mini-cart {
   position: absolute;
   width: 460px;
-  top: calc(100%);
+  top: 19px;
   right: calc(-100%);
   background: #fff;
   z-index: 99;
@@ -16,6 +16,9 @@
   max-height: 590px;
 }
 
+.mini-cart-open{
+  position:relative;
+}
 .mini-cart-open .mini-cart {
   right: 0;
 }
