@@ -37,7 +37,7 @@ export default class CustomerMenu extends React.PureComponent {
 
 	render() {
 		const { customerProperties } = this.props;
-		let isLogged = customerProperties.authenticated ? true : false;
+		let isLogged = customerProperties != null && customerProperties.authenticated ? true : false;
 		let customerName = "Registrate";
 		if( isLogged ){
 			customerName = customerProperties.customer_settings.full_name
