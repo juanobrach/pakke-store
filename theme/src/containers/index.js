@@ -25,6 +25,13 @@ const IndexContainer = props => {
 			description: '',
 			path: '/assets/images/slider/slider_1.png',
 			button: ''
+		},
+		{
+			image: '/assets/images/slider/slider_1.png',
+			title: '',
+			description: '',
+			path: '/assets/images/slider/slider_1.png',
+			button: ''
 		}
 
 	]; 
@@ -62,17 +69,17 @@ const IndexContainer = props => {
 						<div className="title is-4">
 						 	Categorías
 						</div>
-						<div className="columns has-text-centered categories-links">
+						<div className="columns has-text-centered is-variable is-1 categories-links">
 						 {
 						 	categories.map( (category, key )=>{
 						 		if( category.parent_id != null ) return false;
 						 		return <div className="column" key={key}>
-						 			<a href={ category.path } >
-							 			<div>
-							 				<img src="/assets/images/icons/category-icon.png" />
-							 			</div>
-							 			<h3>{ category.name }</h3>
-						 			</a>
+						 			<div>
+							 			<a href={ category.path } className="block" >
+								 				<img src="/assets/images/icons/category-icon.png" />
+								 				<h3>{ category.name }</h3>
+							 			</a>
+						 			</div>
 						 		</div>
 						 	})
 						 }

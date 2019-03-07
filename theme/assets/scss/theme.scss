@@ -21,6 +21,11 @@ $error-alert-text: #e5443e;
 $widescreen: 1185px;
 
 @import "~bulma";
+.container{
+  max-width: 1170px;
+  width: 1170px;
+}
+
 @import "~rc-slider/assets/index.css";
 $ig-blue: #636363 !default;
 @import "~react-image-gallery/styles/scss/image-gallery-no-icon.scss";

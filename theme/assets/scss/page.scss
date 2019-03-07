@@ -30,10 +30,14 @@
   text-decoration: underline;
 }
 
-.categories-links .column{
-  background: $white;
-  margin-left:2px;
-
+.categories-links .column > div {
+     width: 100%;
+    background: #fff;
+    height: 140px;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .categories-links .column:first-child{
@@ -44,4 +48,10 @@
     color: $subtitle-gray;
     font-size: 13px;
     font-weight: 600
+}
+
+.title,.title.is-4{
+  font-size: 22px;
+  color: $title-gray;
+  font-weight: 600;
 }

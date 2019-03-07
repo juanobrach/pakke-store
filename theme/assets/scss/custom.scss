@@ -50,3 +50,33 @@ hmtl,body{
 		text-align:center;
 	}	
 }
+
+.rc-slider-handle{
+	border-color: $red-cake;
+}
+.rc-slider-track{
+	background-color: $red-cake;
+}
+
+
+// Slider custom
+.image-gallery-bullets .image-gallery-bullets-container {
+	background-color:transparent;
+	display:block;
+	padding:0;
+}
+
+.image-gallery-bullets .image-gallery-bullet{
+	background-color: $white;
+	opacity: 0.2;
+	border:1px;
+	transition:all 1s;
+}
+
+.image-gallery-bullets .image-gallery-bullet.active{
+	opacity:.7;
+	height: 14px;
+	width: 14px;
+	transition:all 1s;
+}
+
