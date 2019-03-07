@@ -36,8 +36,12 @@ export default class CustomerMenu extends React.PureComponent {
 
 	render() {
 		const { customerProperties } = this.props;
-		let customerName = ( customerProperties ? customerProperties.customer_settings.full_name : "Registrate"  )
-		let loginProps = this.props.state;
+
+		let isLogged = this.props.customerProperties != null && this.props.customerProperties.authenticated ? true : false;
+		let customerName = "Registrate";
+		if( isLogged ){
+			customerName = customerProperties.customer_settings.full_name
+		}
 		return (
 			<div onMouseEnter={this.onMouseEnterHandler}
 				 onMouseLeave={this.onMouseLeaveHandler}
@@ -49,7 +53,7 @@ export default class CustomerMenu extends React.PureComponent {
 				</p>
 				<div className="menu" >
 					{ 	
-						customerProperties
+						isLogged
 						? <div> 
 							<ul className="loged-customer-menu">
 								<li>

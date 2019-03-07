@@ -82,7 +82,6 @@ export default class AccountForm extends React.Component {
 					initialValues={initialValues}
 					cartlayerBtnInitialized={cartlayerBtnInitialized}
 					onSubmit={this.handleFormSubmit}
-					logOut={this.props.logOut}
 				/>
 			);
 		}

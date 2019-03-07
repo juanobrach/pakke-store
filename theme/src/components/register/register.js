@@ -166,7 +166,7 @@ class Register extends React.Component {
 						{registerProperties.status ? <p className={successAlertText}>{text.registry_doi_success}</p> : ''}
 						{registerProperties.isCustomerSaved ? <p className={successAlertText}>{text.registry_completed}</p> : ''}
 						{!registerProperties.isRightToken && registerProperties.isRightToken !== null ? <p className={errorAlertText}>{text.registry_wrong_token}</p> : ''}
-						{!registerProperties.isCustomerSaved && (
+						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
 								name="first_name"
@@ -180,7 +180,7 @@ class Register extends React.Component {
 							/>
 						)}
 
-						{!registerProperties.isCustomerSaved && (
+						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
 								name="last_name"
@@ -194,7 +194,7 @@ class Register extends React.Component {
 							/>
 						)}
 
-						{!registerProperties.isCustomerSaved && (
+						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
 								name="email"
@@ -208,7 +208,7 @@ class Register extends React.Component {
 							/>
 						)}
 
-						{!registerProperties.isCustomerSaved && (
+						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
 								name="password"
@@ -223,7 +223,7 @@ class Register extends React.Component {
 							/>
 						)}
 
-						{!registerProperties.isCustomerSaved && (
+						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
 								name="password_verify"
@@ -238,7 +238,7 @@ class Register extends React.Component {
 						)}
 
 						<div className="login-button-wrap">
-							{!registerProperties.isCustomerSaved && <button
+							{ registerProperties.status || !registerProperties.isCustomerSaved && <button
 								type="submit"
 								className={registerButtonClassName}
 								disabled={registerProperties !== undefined && registerProperties.status}

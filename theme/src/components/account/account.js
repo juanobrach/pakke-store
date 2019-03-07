@@ -214,10 +214,6 @@ class Account extends React.Component {
 		this.setState({ profileSection: 2 });
 	}
 
-	handleLogout() {
-		Lscache.flush();
-		this.props.logOut();
-	}
 
 	handleContactsEdit = () => {
 		this.setState({ profileEdit: true });
@@ -381,9 +377,6 @@ class Account extends React.Component {
 							</li>
 							<li className={this.state.profileSection === 2 ? isActive : ''} onClick={this.handleOrderHistory}>
 								{text.orders}
-							</li>
-							<li>
-								<Link to="/" style={{textDecoration:'none'}} key={'logout'} onClick={this.handleLogout}>{text.logout}</Link>
 							</li>
 						</ul>
 					</div>
