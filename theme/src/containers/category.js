@@ -119,6 +119,10 @@ const CategoryContainer = props => {
 								hasMore={productsHasMore}
 								loadingProducts={loadingProducts}
 								loadingMoreProducts={loadingMoreProducts}
+								columnCountOnDesktop="4"
+								columnCountOnWidescreen="4"
+								columnCountOnFullhd="4"
+								columnCount="12"
 							/>
 						</div>
 					</div>

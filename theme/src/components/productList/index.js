@@ -17,7 +17,8 @@ const ProductList = ({
 	columnCountOnTablet,
 	columnCountOnDesktop,
 	columnCountOnWidescreen,
-	columnCountOnFullhd
+	columnCountOnFullhd,
+	columnCount
 }) => {
 	const items = products
 		? products.map(product => (
@@ -31,6 +32,7 @@ const ProductList = ({
 					columnCountOnDesktop={columnCountOnDesktop}
 					columnCountOnWidescreen={columnCountOnWidescreen}
 					columnCountOnFullhd={columnCountOnFullhd}
+					columnCount={columnCount}
 				/>
 		  ))
 		: null;

@@ -30,9 +30,7 @@ const Sort = ({ defaultSort, currentSort, setSort }) => (
 						</select>
 					</span>
 				</div>
-				<div className="level-item">
-					grid
-				</div>
+				<div className="level-item"></div>
 			</div>
 		</div>
 	</div>

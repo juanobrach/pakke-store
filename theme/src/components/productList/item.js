@@ -14,17 +14,20 @@ const Item = ({
 	settings,
 	columnCountOnMobile = 1,
 	columnCountOnTablet = 2,
-	columnCountOnDesktop = 5,
-	columnCountOnWidescreen = 5,
-	columnCountOnFullhd = 2
+	columnCountOnDesktop = columnCountOnDesktop ||  5,
+	columnCountOnWidescreen = columnCountOnWidescreen || 5,
+	columnCountOnFullhd = columnCountOnFullhd || 2,
+	columnCount
 }) => {
-	const columnCount = 5;
+	console.log( "columnCountOnDesktop", columnCountOnDesktop )
+	const _columnCount = columnCount || 5;
+	console.log( columnCount )
 
-	const columnSizeOnMobile = columnCount / columnCountOnMobile;
-	const columnSizeOnTablet = columnCount / columnCountOnTablet;
-	const columnSizeOnDesktop = columnCount / columnCountOnDesktop;
-	const columnSizeOnWidescreen = columnCount / columnCountOnWidescreen;
-	const columnSizeOnFullhd = columnCount / columnCountOnFullhd;
+	const columnSizeOnMobile = _columnCount / columnCountOnMobile;
+	const columnSizeOnTablet = _columnCount / columnCountOnTablet;
+	const columnSizeOnDesktop = _columnCount / columnCountOnDesktop;
+	const columnSizeOnWidescreen = _columnCount / columnCountOnWidescreen;
+	const columnSizeOnFullhd = _columnCount / columnCountOnFullhd;
 
 	const imageHeight =
 		themeSettings.list_image_max_height &&
