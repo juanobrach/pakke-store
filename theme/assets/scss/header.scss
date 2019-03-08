@@ -103,7 +103,6 @@ DESKTOP
   padding-left: 0;
   text-transform: capitalize;
   font-size: 13px;
-  font-family: sans-serif;
 }
 
 .primary-nav ul li .cat-parent a{
@@ -136,6 +135,13 @@ DESKTOP
   margin-top: 0.5rem;
   padding: 30px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.175);
+  li {
+    padding:0;
+    line-height: 30px;
+  }
+  strong{
+    font-family:'open_sansbold';
+  }
 }
 .primary-nav li.is-active {
   background-color: $white;
@@ -145,9 +151,6 @@ DESKTOP
   flex-flow: column wrap;
 }
 
-.primary-nav .nav-level-1 li.column {
-  margin-bottom: 10px;
-}
 
 .primary-nav .nav-level-2 {
   margin: 6px 0;

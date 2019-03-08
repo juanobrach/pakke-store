@@ -154,7 +154,7 @@ class Login extends React.Component {
 						{ this.props.customerProperties !== undefined && this.props.customerProperties.loggedin_failed ? <p className={errorAlertText}>{text.login_failed}</p> : '' }
 						{!this.isFieldHidden('email') && (
 							<Field
-								className={inputClassName}
+								className={inputClassName + ' email'}
 								name="email"
 								id="customer.email"
 								component={InputField}
@@ -167,7 +167,7 @@ class Login extends React.Component {
 
 						{!this.isFieldHidden('password') && (
 							<Field
-								className={inputClassName}
+								className={inputClassName + ' padlock'}
 								name="password"
 								id="customer.password"
 								component={InputField}

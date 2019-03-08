@@ -14,7 +14,16 @@ const ItemActions = ({addCartItem, product})=> {
 	return (
 		<div className="item-actions level">
 			<div className="level-left">
-			<p onClick={handlerAddToCart}><span className="add-to-cart-icon"></span> Agregar al carrito</p>
+				<div className="level">
+					<div className="level-left">
+						<span className="add-to-cart-icon"></span> 
+					</div>
+					<div className="level-right">
+						<p onClick={handlerAddToCart} style={{ opacity:'.6'}}>
+							Agregar al carrito
+						</p>
+					</div>
+				</div>
 			</div>
 			<div className="level-right favourite-heart-icon"></div>
 		</div>

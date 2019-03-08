@@ -43,6 +43,9 @@ export default class Header extends React.Component {
 			mobileSearchIsActive: false,
 			cartIsActive: false,
 		};
+		this.props.customerData({
+			token: Lscache.get('auth_data')
+		});
 	}
 
 	handlecustomerProperties = () => {

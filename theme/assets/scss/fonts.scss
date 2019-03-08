@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'open_sansregular';
+        src: url('../fonts/opensans_regular/OpenSans-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sanssemibold';
+        src: url('../fonts/opensans_semibold/OpenSans-Semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+        src: url('../fonts/opensans_bold/OpenSans-Bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html,body{
+	font-family:'open_sansregular' !important;
+}
+h1,h2,h3,h4,h5,h6,h7{
+	font-family:'open_sanssemibold';
+}
+
+.title{
+	font-family:'open_sanssemibold';
+	color:#4d4d4d
+}

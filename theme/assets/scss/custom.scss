@@ -27,8 +27,9 @@ hmtl,body{
 
 .add-to-cart-icon{
 	background-image: url('/assets/images/icons/add-to-cart.png');	
+	background-repeat:no-repeat;
 	width: 17px;
-	height: 12px;
+	height: 16px;
 	margin-right:6px;
 	display:inline-block;	
 }

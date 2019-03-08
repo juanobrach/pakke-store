@@ -13,6 +13,7 @@ export default class CustomerMenu extends React.PureComponent {
 			isActive: false
 		};
 		this.handleLogOut = this.handleLogOut.bind(this)
+
 	}
 
 
@@ -34,10 +35,9 @@ export default class CustomerMenu extends React.PureComponent {
 		this.props.logOutUser();
 	}
 
-
 	render() {
 		const { customerProperties } = this.props;
-		let isLogged = customerProperties != null && customerProperties.authenticated ? true : false;
+		let isLogged = this.props.customerProperties !== undefined && Lscache.get('auth_data') !== null ? true : false;
 		let customerName = "Registrate";
 		if( isLogged ){
 			customerName = customerProperties.customer_settings.full_name

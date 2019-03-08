@@ -85,7 +85,7 @@ const IndexContainer = props => {
 						 }
 						</div>
 					</section>
-					<section style={{ marginTop:'25px'}}>
+					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">
 							Productos destacados
 						</div>
@@ -97,7 +97,7 @@ const IndexContainer = props => {
 							addCartItem={addCartItem}
 						/>
 					</section>
-					<section style={{ marginTop:'25px'}}>
+					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">
 							Paquete de cajas
 						</div>
@@ -109,7 +109,7 @@ const IndexContainer = props => {
 							addCartItem={addCartItem}
 						/>
 					</section>
-					<section style={{ marginTop:'25px'}}>
+					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">
 							Te puede interesar
 						</div>

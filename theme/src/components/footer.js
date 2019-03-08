@@ -176,9 +176,9 @@ export default class Footer extends React.PureComponent {
 									<div className="level-item has-text-centered">
 										<div>
 											<p>
-												<strong>24/7</strong>
+												<strong style={{fontFamily:'open_sansbold', color:'#4d4d4d',fontSize:'22px'}}>24 / 7</strong>
 											</p>
-											<p>
+											<p style={{color:'#4d4d4d'}}>
 											Despreocúpate, si tienes dudas, no puedes generar una compra, problemas en un pedido
 											ó simplemente quieres hablar con nosotros, estamos siempre para atenderte.
 											</p>
@@ -187,9 +187,9 @@ export default class Footer extends React.PureComponent {
 								</div>
 							</div>
 							<div className="block" style={{height:'40px'}}></div>
-							<div className="columns level">
+							<div className="columns level customer-help-contact-with-icons">
 								<div className="column level-item has-text-centered">
-									<div className="block">
+									<div className="block help-icon">
 										<img src="/assets/images/icons/phone-70-70.png"/>
 									</div>
 									<p>
@@ -201,7 +201,7 @@ export default class Footer extends React.PureComponent {
 									</p>
 								</div>
 								<div className="column level-item has-text-centered">
-									<div className="block">
+									<div className="block help-icon">
 										<img src="/assets/images/icons/email-71-51.png"/>
 									</div>
 									<p>
@@ -212,7 +212,7 @@ export default class Footer extends React.PureComponent {
 									</p>
 								</div>
 								<div className="column level-item has-text-centered">
-									<div className="block">
+									<div className="block help-icon">
 										<img src="/assets/images/icons/chat-83-70.png"/>
 									</div>
 									<p>
@@ -224,7 +224,7 @@ export default class Footer extends React.PureComponent {
 									</p>
 								</div>
 								<div className="column level-item has-text-centered">
-									<div className="block">
+									<div className="block help-icon">
 										<img src="/assets/images/icons/question-71-71.png"/>
 									</div>
 									<p>
