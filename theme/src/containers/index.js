@@ -101,13 +101,32 @@ const IndexContainer = props => {
 						<div className="title is-4">
 							Paquete de cajas
 						</div>
-						<CustomProducts
-							sku={themeSettings.home_products_sku}
-							sort={themeSettings.home_products_sort}
-							limit="2"
-							settings={settings}
-							addCartItem={addCartItem}
-						/>
+						<div className="columns">
+							<div className="column boxes-pack">
+								<div className="columns">
+									<div className="column is-offset-6">
+									 	<p>
+									 	Paquetes de 500 
+									 	cajas de cartón 
+									 	sin membrete
+									 	</p>
+									 	<button className="button-view-more">Ver más</button>
+									</div>
+								</div>
+							</div>
+							<div className="column boxes-pack">
+								<div className="columns">
+									<div className="column is-offset-6">
+									 	<p>
+									 	Paquetes de 500 
+									 	cajas de cartón 
+									 	sin membrete
+									 	</p>
+									 	<button className="button-view-more">Ver más</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
 					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">

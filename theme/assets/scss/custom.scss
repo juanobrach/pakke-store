@@ -18,6 +18,33 @@ hmtl,body{
     color: $error-alert-text;
 }
 
+.boxes-pack{
+	background-image: url(/assets/images/pack_of_box.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height:254px;
+	.columns .column{
+		padding:2em;
+		p{
+			font-size: 22px;
+			line-height: 36px;
+			color: #4d4d4d;
+			margin-bottom:27px;
+		}
+	}
+}
+
+.button-view-more{
+	background: #ff5959;
+	border: none;
+	border-radius: 12px;
+	height: 40px;
+	width: 150px;
+	color: white;
+	font-size: 20px;
+	font-family: "open_sanssemibold";
+}
+
 .envelope-icon{
 	background-image: url('/assets/images/icons/user-icon.png');	
 	width: 16px;
