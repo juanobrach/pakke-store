@@ -19,13 +19,9 @@ $breadcrumb-item-separator-color: #7a7a7a;
 
 $error-alert-text: #e5443e;
 
-$widescreen: 1185px;
-
+$gap:99px;
 @import "~bulma";
-.container{
-  max-width: 1170px;
-  width: 1170px;
-}
+
 
 @import "~rc-slider/assets/index.css";
 $ig-blue: #636363 !default;

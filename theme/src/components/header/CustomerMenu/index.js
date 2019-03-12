@@ -19,7 +19,7 @@ export default class CustomerMenu extends React.PureComponent {
 
 	onMouseEnterHandler = () => {
 		this.setState({
-			isActive: true
+			isActive: !this.state.isActive
 		});
 	};
 
@@ -45,11 +45,10 @@ export default class CustomerMenu extends React.PureComponent {
 
 
 		return (
-			<div onMouseEnter={this.onMouseEnterHandler}
-				 onMouseLeave={this.onMouseLeaveHandler}
+			<div 
 				 className={ (this.state.isActive ? ' is-active' : '') +  " customer-menu"}>
 				 <p>Hola {customerName}</p>
-				 <p className="menu-item">
+				 <p className="menu-item" onClick={this.onMouseEnterHandler}>
 					Mi cuenta
 					<span className="arrow-down-icon"></span>
 				</p>

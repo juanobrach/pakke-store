@@ -23,11 +23,13 @@ const ReadOnlyField = ({ name, value }) => {
 
 const InputField = field => (
 	<div className={field.className}>
-		<label htmlFor={field.id}>
-			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
-		</label>
+		{ field.label && 
+				<label htmlFor={field.id}>
+					{field.label}
+					{field.meta.touched &&
+						field.meta.error && <span className="error">{field.meta.error}</span>}
+				</label>
+			}
 		<input
 			{...field.input}
 			placeholder={field.placeholder}
@@ -172,9 +174,9 @@ class Login extends React.Component {
 								id="customer.password"
 								component={InputField}
 								type="password"
-								label="Contraseña"
+								label=""
 								validate={this.getFieldValidators('password')}
-								placeholder={this.getFieldPlaceholder('password')}
+								placeholder='Contraseña'
 							/>
 						)}
 						<div className="login-link-wrap">

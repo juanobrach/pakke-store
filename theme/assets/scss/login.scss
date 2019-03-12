@@ -10,10 +10,17 @@
 .login-container input[type="password"],
 .login-container textarea {
     width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 3px;
+    border: 0px;
+    border-bottom:1px solid #4d4d4d1c;
+    border-radius: 0;
     padding: 0;
     padding-left:28px;
+}
+
+.login-container input[type="password"]::placeholder{
+    opacity:.5;
+    color:#4d4d4d;
+    font-family:'open_sansregular'
 }
 
 .login-input-field.email:after{
@@ -43,7 +50,6 @@
 .login-container input[type="password"]:focus,
 .login-container textarea:focus {
     outline: none;
-    border: 1px solid #a1a1a1;
 }
 
 .login-container input[type="text"].invalid,
@@ -93,7 +99,6 @@
 
 .login-link-wrap {
     text-align: right;
-    margin-top: 15px;
 }
 
 .login-button-style {
@@ -115,8 +120,11 @@
 }
 
 .login-input-field {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     position:relative;
+    &.padlock{
+        margin-bottom: 10px;
+    }
 }
 
 .login-title {

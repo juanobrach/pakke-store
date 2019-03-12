@@ -50,8 +50,8 @@ const IndexContainer = props => {
 
 			{pageDetails.content &&
 				pageDetails.content.length > 10 && (
-					<section className="section">
-						<div className="container">
+					<section>
+						<div className="container is-fluid">
 							<div className="content">
 								<div
 									dangerouslySetInnerHTML={{
@@ -63,8 +63,8 @@ const IndexContainer = props => {
 					</section>
 				)}
 
-			<section className="section" style={{paddingTop:'40px'}}>
-				<div className="container">
+			<section style={{paddingTop:'40px'}}>
+				<div className="container is-fluid">
 					<section style={{paddingTop:'30px'}} >
 						<div className="title is-4">
 						 	Categorías

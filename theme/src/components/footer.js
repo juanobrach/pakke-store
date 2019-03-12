@@ -159,7 +159,7 @@ export default class Footer extends React.PureComponent {
 			<section className="section-footer">
 				<hr />
 				<div className="payments-methods">
-					<div className="container">
+					<div className="container is-fluid">
 						<div className="level">
 						{	paymentMethods.map( (paymentMethod, index ) => {
 								return <div className="level-item has-text-centered" key={index}><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </div>
@@ -169,7 +169,7 @@ export default class Footer extends React.PureComponent {
 					</div>
 				</div>
 				<div className="customer-help-contact footer">
-					<div className="container">
+					<div className="container is-fluid">
 						<div className="content">
 							<div className="columns is-centered">
 								<div className="column is-three-fifths is-offset-1">
@@ -239,8 +239,8 @@ export default class Footer extends React.PureComponent {
 						</div>
 					</div>
 				</div>
-				<footer className="footer-bg footer">
-					<div className="container">
+				<footer className="footer-bg">
+					<div className="container is-fluid">
 						<div className="content">
 							<div className="columns is-gapless">
 								<div className="column is-4">
@@ -255,7 +255,6 @@ export default class Footer extends React.PureComponent {
 										<p style={{fontSize:"13px"}}>Av. Constituyentes 908, Lomas Altas C.P. 11950 CDMX</p>
 									</div>
 								</div>
-								<div className="column is-1 is-hidden-mobile" />
 								<FooterMenu
 									title={themeSettings.footer_menu_1_title}
 									items={themeSettings.footer_menu_1_items}

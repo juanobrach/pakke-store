@@ -150,7 +150,7 @@ export default class Header extends React.Component {
 				<header
 					className={this.state.mobileSearchIsActive ? 'search-active' : ''}
 				>
-					<div className="container">
+					<div className="container is-fluid">
 						<div className="columns is-gapless is-mobile header-container">
 							<div className="column is-4 column-burger is-hidden-tablet">
 								{!showBackButton && (
@@ -187,8 +187,8 @@ export default class Header extends React.Component {
 								/>
 							</div>
 						</div>
-						<div className="columns" style={{alignItems:'flex-end', justifyContent:'space-between'}}>
-							<div className="column is-7">
+						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'1.6vw'}}>
+							<div className="column is-8">
 								<div className="primary-nav is-hidden-mobile" style={{lineHeight:' 3px'}}>
 									<HeadMenu
 										categories={categories}

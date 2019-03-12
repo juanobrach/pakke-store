@@ -30,7 +30,7 @@ const HomeSlider = ({ images }) => {
 		}));
 
 		return (
-			<section className="section container" style={{ padding: 0 }}>
+			<section className="section" style={{ padding: 0 }}>
 				<div>
 					<div className="home-slider is-hidden-mobile">
 						<ImageGallery

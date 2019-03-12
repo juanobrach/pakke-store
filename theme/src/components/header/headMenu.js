@@ -66,7 +66,6 @@ class HeadMenuItem extends React.Component {
 						onClick={onClick}
 					>
 						{category.name}
-						{ hasItems && ( <span className="arrow-down-icon"></span>) }
 					</NavLink>
 					{hasItems && isMobile && <span onClick={this.isActiveToggle} />}
 				</div>
