@@ -187,7 +187,7 @@ export default class Header extends React.Component {
 								/>
 							</div>
 						</div>
-						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'1.6vw'}}>
+						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'.9vw'}}>
 							<div className="column is-8">
 								<div className="primary-nav is-hidden-mobile" style={{lineHeight:' 3px'}}>
 									<HeadMenu

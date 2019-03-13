@@ -115,8 +115,8 @@ export default class ProductDetails extends React.Component {
 		if (product) {
 			return (
 				<Fragment>
-					<section className="section section-product">
-						<div className="container">
+					<section className="section-product">
+						<div className="container is-fluid">
 							<div className="columns">
 								<div className="column is-7">
 									{themeSettings.show_product_breadcrumbs && (
@@ -128,13 +128,13 @@ export default class ProductDetails extends React.Component {
 									<div className="content">
 										<Tags tags={product.tags} />
 										<h1 className="title is-4 product-name">{product.name}</h1>
+										<p className="product-sku">SKU: {product.sku}</p>
 										<Price
 											product={product}
 											variant={selectedVariant}
 											isAllOptionsSelected={isAllOptionsSelected}
 											settings={settings}
 										/>
-
 										{themeSettings.show_discount_countdown &&
 											product.on_sale === true && (
 												<DiscountCountdown product={product} />
@@ -144,26 +144,29 @@ export default class ProductDetails extends React.Component {
 											options={product.options}
 											onChange={this.onOptionChange}
 										/>
-										<Quantity
-											maxQuantity={maxQuantity}
-											onChange={this.setQuantity}
-										/>
-										<div className="button-addtocart">
-											<AddToCartButton
-												product={product}
-												variant={selectedVariant}
-												addCartItem={this.addToCart}
-												isAllOptionsSelected={isAllOptionsSelected}
+
+										<section className="is-inline-flex" style={{ alignItems: "center"}}>
+											<Quantity
+												maxQuantity={maxQuantity}
+												onChange={this.setQuantity}
 											/>
-										</div>
+											<div className="button-addtocart">
+												<AddToCartButton
+													product={product}
+													variant={selectedVariant}
+													addCartItem={this.addToCart}
+													isAllOptionsSelected={isAllOptionsSelected}
+												/>
+											</div>
+										</section>
 									</div>
 								</div>
 							</div>
 						</div>
 					</section>
 
-					<section className="section section-product-description">
-						<div className="container">
+					<section className="section-product-description">
+						<div className="container is-fluid">
 							<div className="content">
 								<div className="columns">
 									<div className="column is-7">

@@ -26,71 +26,51 @@ const AddToCartButton = ({
 		themeSettings.button_addtocart_text &&
 		themeSettings.button_addtocart_text.length > 0
 			? themeSettings.button_addtocart_text
-			: text.addToCart;
+			: 'Comprar';
 
+	
+	let buttonClass = "is-success";
+	let	isDisabled = false;
+	let messageText = "";
 	if (product.stock_status === 'discontinued') {
-		return (
-			<button
-				className="button is-dark is-fullwidth"
-				style={buttonStyle}
-				disabled
-			>
-				{text.discontinued}
-			</button>
-		);
+		isDisabled  = true;
+		buttonClass = "is-dark";
+		messageText = text.discontinued;
 	} else if (product.variable && variant && variant.stock_quantity > 0) {
-		return (
-			<button
-				className="button is-success is-fullwidth"
-				style={buttonStyle}
-				onClick={addCartItem}
-			>
-				{addToCartText}
-			</button>
-		);
+		isDisabled  = false;
+		buttonClass = "is-success";
+		messageText = "";
 	} else if (product.variable && !isAllOptionsSelected) {
-		return (
-			<button
-				className="button is-success is-fullwidth"
-				style={buttonStyle}
-				disabled
-			>
-				{text.optionsRequired}
-			</button>
-		);
+		isDisabled  = true;
+		buttonClass = "is-success";
+		messageText = text.optionsRequired;
 	} else if (product.variable && !product.stock_backorder) {
-		return (
-			<button
-				className="button is-success is-fullwidth"
-				style={buttonStyle}
-				disabled
-			>
-				{text.outOfStock}
-			</button>
-		);
+		isDisabled  = true;
+		buttonClass = "is-success";
+		messageText = text.outOfStock;
 	} else if (product.stock_status === 'available') {
-		return (
-			<button
-				className="button is-success is-fullwidth"
-				style={buttonStyle}
-				onClick={addCartItem}
-			>
-				{addToCartText}
-			</button>
-		);
+		isDisabled  = false;
+		buttonClass = "is-success";
+		messageText = "";
 	} else if (product.stock_status === 'out_of_stock') {
-		return (
-			<button
-				className="button is-success is-fullwidth"
-				style={buttonStyle}
-				disabled
-			>
-				{text.outOfStock}
-			</button>
-		);
-	} else {
-		return null;
+		isDisabled  = true;
+		buttonClass = "is-success";
+		messageText = text.outOfStock;
 	}
+
+	return (
+		<React.Fragment>
+		<button
+			className="button is-success is-fullwidth"
+			style={buttonStyle}
+			onClick={addCartItem}
+			disabled={ ( isDisabled  ? 'disabled' : '')  }
+		>
+			<span className="shoping-cart-icon"></span>				
+			{addToCartText}
+		</button>
+		</React.Fragment>
+	);
 };
 
 export default AddToCartButton;

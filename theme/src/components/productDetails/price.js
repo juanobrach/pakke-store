@@ -55,7 +55,7 @@ const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
 	} else {
 		return (
 			<div className="product-price" style={priceStyle}>
-				<FormattedCurrency settings={settings} number={price} />
+				<p>Precio: <span ><FormattedCurrency settings={settings} number={price} /> </span></p>
 			</div>
 		);
 	}
