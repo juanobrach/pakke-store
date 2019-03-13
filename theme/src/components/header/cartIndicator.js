@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 
 const CartCount = ({ cart }) => {
+	let itemsCount = 0;
 	if (cart && cart.items && cart.items.length > 0) {
-		const itemsCount = cart.items.reduce((a, b) => a + b.quantity, 0);
-		return <span className="cart-count">{itemsCount}</span>;
+		itemsCount = cart.items.reduce((a, b) => a + b.quantity, 0);
 	}
-	return null;
+	return <span className="cart-count">{itemsCount}</span>;
 };
 
 const CartIcon = ({ cartIsActive }) => {

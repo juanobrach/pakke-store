@@ -15,6 +15,8 @@
     border-radius: 0;
     padding: 0;
     padding-left:28px;
+    font-family:'open_sansbold';
+    color: $gray;
 }
 
 .login-container input[type="password"]::placeholder{
