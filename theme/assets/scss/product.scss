@@ -1,6 +1,17 @@
 .section-product-description {
-  background-color: #f5f5f5;
-  padding: 3rem 1.5rem;
+  background-color: $gray-light;
+  padding: 2vw 0;
+
+  h3{
+    font-size: 18px;
+    font-family:"open_sansbold";
+    color:$gray;
+  }
+}
+
+.section-product{
+  padding-top:1.5vw;
+  padding-bottom: 4.5vw;
 }
 
 .product-attribute {
@@ -17,7 +28,7 @@
 .attribute-value {}
 
 .section-product h1.product-name {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5vw;
 }
 
 .section-product .product-price {
@@ -43,13 +54,17 @@
 }
 
 .section-product .product-option {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1vw;
+}
+
+.add-to-cart-section{
+  margin-top:1.5vw;
 }
 
 .product-sku{
   font-size:15px;
   font-family: 'open_sansregular';
-  color: $gray-light;
+  color: $gray-light-dark;
   text-transform: uppercase;
 }
 
@@ -79,6 +94,9 @@
   }
 }
 
+.image-gallery-thumbnail.active{
+  border: 3px solid $gray-super-light;
+}
 
 .discount-countdown {
   max-width: 300px;

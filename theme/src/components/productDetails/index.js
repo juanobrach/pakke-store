@@ -40,7 +40,7 @@ export default class ProductDetails extends React.Component {
 		this.checkSelectedOptions = this.checkSelectedOptions.bind(this);
 	}
 
-	onOptionChange(optionId, valueId) {
+	onOptionChange(optionId, valueId ) {
 		let { selectedOptions } = this.state;
 
 		if (valueId === '') {
@@ -102,7 +102,7 @@ export default class ProductDetails extends React.Component {
 
 	render() {
 		const { product, settings, categories } = this.props;
-		const { selectedVariant, isAllOptionsSelected } = this.state;
+		const { selectedVariant, isAllOptionsSelected, selectedOptions } = this.state;
 		const maxQuantity =
 			product.stock_status === 'discontinued'
 				? 0
@@ -118,10 +118,14 @@ export default class ProductDetails extends React.Component {
 					<section className="section-product">
 						<div className="container is-fluid">
 							<div className="columns">
+								<div className="column">
+								{themeSettings.show_product_breadcrumbs && (
+									<Breadcrumbs product={product} categories={categories} />
+								)}
+								</div>
+							</div>
+							<div className="columns">
 								<div className="column is-7">
-									{themeSettings.show_product_breadcrumbs && (
-										<Breadcrumbs product={product} categories={categories} />
-									)}
 									<Gallery images={product.images} />
 								</div>
 								<div className="column is-5">
@@ -143,9 +147,10 @@ export default class ProductDetails extends React.Component {
 										<Options
 											options={product.options}
 											onChange={this.onOptionChange}
+											selectedOptions={selectedOptions}
 										/>
 
-										<section className="is-inline-flex" style={{ alignItems: "center"}}>
+										<section className="is-inline-flex add-to-cart-section" style={{ alignItems: "center"}}>
 											<Quantity
 												maxQuantity={maxQuantity}
 												onChange={this.setQuantity}
@@ -170,6 +175,7 @@ export default class ProductDetails extends React.Component {
 							<div className="content">
 								<div className="columns">
 									<div className="column is-7">
+										<h3>Descripción del producto</h3>
 										<Description description={product.description} />
 									</div>
 									<div className="column is-5">
@@ -180,21 +186,7 @@ export default class ProductDetails extends React.Component {
 						</div>
 					</section>
 
-					<RelatedProducts
-						settings={settings}
-						addCartItem={this.addToCart}
-						ids={product.related_product_ids}
-						limit={10}
-					/>
 
-					{themeSettings.show_viewed_products && (
-						<ViewedProducts
-							settings={settings}
-							addCartItem={this.addToCart}
-							product={product}
-							limit={themeSettings.limit_viewed_products || 4}
-						/>
-					)}
 
 					{themeSettings.disqus_shortname &&
 						themeSettings.disqus_shortname !== '' && (
