@@ -1,6 +1,7 @@
 .radio-box{
 	display:flex;
 	justify-content: space-between;
+	flex-flow: row wrap;
 	div{
 		height: 39px;
 		line-height: 39px;
@@ -8,7 +9,7 @@
 			border:1px solid $gray-super-light;
 			cursor:pointer;
 			height:39px;
-			font-size:15px;
+			font-size:1.1vw;
 			padding: 10px 14px;
 		}
 		&.checked label{
@@ -19,3 +20,14 @@
 		}
 	}	
 }
+
+@media screen and (max-width: 1024px){
+	.radio-box{
+		justify-content: initial;
+		div{
+			margin-right: 1vw;
+		    margin-bottom: 1vw;
+		}
+	}
+}
+

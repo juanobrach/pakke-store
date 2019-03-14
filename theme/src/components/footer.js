@@ -18,7 +18,7 @@ class FooterMenu extends React.Component {
 	};
 
 	render() {
-		const { title, items } = this.props;
+		const { title, items, paddingLeft } = this.props;
 		let ulItems = null;
 
 		if (items && items.length > 0) {
@@ -30,7 +30,7 @@ class FooterMenu extends React.Component {
 		}
 
 		return (
-			<div className="column is-2">
+			<div className="column is-2" style={{ paddingLeft }}>
 				<div
 					className={
 						'footer-title mobile-padding' +
@@ -155,6 +155,122 @@ export default class Footer extends React.PureComponent {
 				alt: 'Paypal'
 			}
 		]
+
+
+		const footerMenu = {
+			catalogo:{
+				paddingLeft: '30px',
+				title:'Catálogo',
+				items:[
+					{
+						url: "#",
+						text: "Cajas de cartón"
+					},
+					{
+						url: "#",
+						text: "Film de paletizar"
+					},
+					{
+						url: "#",
+						text: "Papel kraft"
+					},
+					{
+						url: "#",
+						text: "Cinta de embalaje"
+					},
+					{
+						url: "#",
+						text: "Bolsas y sobres"
+					},
+					{
+						url: "#",
+						text: "Etiquetas adhesivas"
+					},
+					{
+						url: "#",
+						text: "Cutter y tijeras"
+					}
+				]
+			},
+			nosotros:{
+				paddingLeft: '40px',
+				title:'Nosotros',
+				items:[
+					{
+						url: "#",
+						text: "¿Que es Pakke?"
+					},
+					{
+						url: "#",
+						text: "Nuestro blog"
+					},
+					{
+						url: "#",
+						text: "Twitter"
+					},
+					{
+						url: "#",
+						text: "Facebook"
+					},
+					{
+						url: "#",
+						text: "Instagram"
+					},
+					{
+						url: "#",
+						text: "Youtube"
+					}
+				]
+			},
+			ayuda:{
+				paddingLeft: '25px',
+				title:'Ayuda',
+				items:[
+					{
+						url: "#",
+						text: "Términos y condiciones"
+					},
+					{
+						url: "#",
+						text: "Políticas de privacidad"
+					},
+					{
+						url: "#",
+						text: "Centro de ayuda"
+					},
+					{
+						url: "#",
+						text: "Uso de cookies"
+					}
+				]
+			},
+			cuenta:{
+				paddingLeft: '60px',
+				title:'Mi cuenta',
+				items:[
+					{
+						url: "/login",
+						text: "Ingresa"
+					},
+					{
+						url: "/register",
+						text: "Regístrate"
+					},
+					{
+						url: "/customer-account",
+						text: "Mis pedidos"
+					},
+					{
+						url: "/customer-account",
+						text: "Mis direcciones"
+					},
+					{
+						url: "/customer-account",
+						text: "Mi información"
+					}
+				]
+			}
+		}
 		return (
 			<section className="section-footer">
 				<hr />
@@ -242,7 +358,7 @@ export default class Footer extends React.PureComponent {
 				<footer className="footer-bg">
 					<div className="container is-fluid">
 						<div className="content">
-							<div className="columns is-gapless">
+							<div className="columns">
 								<div className="column is-4">
 									<div className="mobile-padding">
 										<div className="footer-logo">
@@ -255,21 +371,27 @@ export default class Footer extends React.PureComponent {
 										<p style={{fontSize:"13px"}}>Av. Constituyentes 908, Lomas Altas C.P. 11950 CDMX</p>
 									</div>
 								</div>
+
 								<FooterMenu
-									title={themeSettings.footer_menu_1_title}
-									items={themeSettings.footer_menu_1_items}
+									title={footerMenu.catalogo.title}
+									items={footerMenu.catalogo.items}
+									paddingLeft={footerMenu.catalogo.paddingLeft}
 								/>
 								<FooterMenu
-									title={themeSettings.footer_menu_2_title}
-									items={themeSettings.footer_menu_2_items}
+									title={footerMenu.nosotros.title}
+									items={footerMenu.nosotros.items}
+									paddingLeft={footerMenu.nosotros.paddingLeft}
 								/>
 								<FooterMenu
-									title={themeSettings.footer_menu_2_title}
-									items={themeSettings.footer_menu_2_items}
+									title={footerMenu.ayuda.title}
+									items={footerMenu.ayuda.items}
+									paddingLeft={footerMenu.ayuda.paddingLeft}
+
 								/>
 								<FooterMenu
-									title={themeSettings.footer_menu_2_title}
-									items={themeSettings.footer_menu_2_items}
+									title={footerMenu.cuenta.title}
+									items={footerMenu.cuenta.items}
+									paddingLeft={footerMenu.cuenta.paddingLeft}
 								/>
 							</div>
 						</div>

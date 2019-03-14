@@ -5,6 +5,7 @@
 
 .content ul.footer-menu li {
   list-style: none;
+  margin-bottom:14px;
 }
 
 .customer-help-contact-with-icons p{
@@ -36,6 +37,8 @@ footer small{
 .footer-bg{
   background-image:url('/assets/images/pakke-footer-bg.png');
   background-size:cover;
+  padding-top: 45px;
+  padding-bottom: 30px;
 }
 
 .payments-methods{
@@ -166,6 +169,7 @@ ul.footer-contacts {
 
   .section-footer .columns .column {
     border-bottom: 1px solid #c8c8c8;
+    padding-left:0 !important;
   }
 
   .mobile-padding {
