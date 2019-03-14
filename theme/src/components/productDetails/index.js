@@ -14,8 +14,6 @@ import Price from './price';
 import Quantity from './quantity';
 import RelatedProducts from './relatedProducts';
 import Tags from './tags';
-import { SocialIcon } from 'react-social-icons';
-
 
 const Description = ({ description }) => (
 	<div
@@ -124,13 +122,6 @@ export default class ProductDetails extends React.Component {
 								{themeSettings.show_product_breadcrumbs && (
 									<Breadcrumbs product={product} categories={categories} />
 								)}
-								</div>
-								<div className="column">
-									<ul>
-										<li>
-											<SocialIcon network="pinterest" style={{ height: 20, width: 20, borderRadius:'20px'}} /> 
-										</li>
-									</ul>
 								</div>
 							</div>
 							<div className="columns">
