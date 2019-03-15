@@ -63,13 +63,13 @@ const IndexContainer = props => {
 					</section>
 				)}
 
-			<section style={{paddingTop:'40px'}}>
+			<section className="section" style={{paddingTop:'40px'}}>
 				<div className="container is-fluid">
 					<section style={{paddingTop:'30px'}} >
 						<div className="title is-4">
 						 	Categorías
 						</div>
-						<div className="columns has-text-centered is-variable is-1 categories-links">
+						<div className="columns has-text-centered  categories-links">
 						 {
 						 	categories.map( (category, key )=>{
 						 		if( category.parent_id != null ) return false;
@@ -95,13 +95,14 @@ const IndexContainer = props => {
 							limit="5"
 							settings={settings}
 							addCartItem={addCartItem}
+							columnCount={12}
 						/>
 					</section>
 					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">
 							Paquete de cajas
 						</div>
-						<div className="columns">
+						<div className="columns is-gapless">
 							<div className="column boxes-pack">
 								<div className="columns">
 									<div className="column is-offset-6">
@@ -138,6 +139,7 @@ const IndexContainer = props => {
 							limit="5"
 							settings={settings}
 							addCartItem={addCartItem}
+							columnCount={12}
 						/>
 					</section>
 				</div>

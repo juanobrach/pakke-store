@@ -46,7 +46,7 @@ export default class CustomProducts extends React.Component {
 		on_sale: null,
 		isCentered: false,
 		className: 'columns is-multiline is-mobile products',
-		columnCountOnMobile: 2,
+		columnCountOnMobile: 1,
 		columnCountOnTablet: 3,
 		columnCountOnDesktop: 4,
 		columnCountOnWidescreen: 4,
@@ -126,7 +126,8 @@ export default class CustomProducts extends React.Component {
 			columnCountOnTablet,
 			columnCountOnDesktop,
 			columnCountOnWidescreen,
-			columnCountOnFullhd
+			columnCountOnFullhd,
+			columnCount
 		} = this.props;
 
 		const { products } = this.state;
@@ -145,6 +146,7 @@ export default class CustomProducts extends React.Component {
 				columnCountOnFullhd={columnCountOnFullhd}
 				isCentered={isCentered}
 				className={className}
+				columnCount={columnCount}
 			/>
 		);
 	}

@@ -2,6 +2,12 @@ hmtl,body{
 	background-color:$background-gray;
 }
 
+@media screen and (min-width: 1024px) {
+  .section {
+   	padding:0;
+  }
+}
+
 .continue-shopping-button {
     // still empty
 }
