@@ -358,7 +358,7 @@ export default class Footer extends React.PureComponent {
 				<footer className="footer-bg">
 					<div className="container is-fluid">
 						<div className="content">
-							<div className="columns">
+							<div className="columns is-gapless">
 								<div className="column is-4">
 									<div className="mobile-padding">
 										<div className="footer-logo">
