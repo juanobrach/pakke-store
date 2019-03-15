@@ -36,7 +36,7 @@ export default class CustomerMenu extends React.PureComponent {
 	}
 
 	render() {
-		const { customerProperties } = this.props;
+		const { customerProperties, isMobile } = this.props;
 		let isLogged = this.props.customerProperties !== undefined && Lscache.get('auth_data') !== null ? true : false;
 		let customerName = "Registrate";
 		if( isLogged ){
@@ -45,41 +45,64 @@ export default class CustomerMenu extends React.PureComponent {
 
 
 		return (
-			<div 
-				 className={ (this.state.isActive ? ' is-active' : '') +  " customer-menu"}>
-				 <p>Hola {customerName}</p>
-				 <p className="menu-item" onClick={this.onMouseEnterHandler}>
-					Mi cuenta
-					<span className="arrow-down-icon"></span>
-				</p>
-				<div className="menu" >
-					{ 	
-						isLogged
-						? <div> 
-							<ul className="loged-customer-menu">
-								<li>
-									<Link to="/customer-account">
-									Mis pedidos
-									</Link>
-								</li>
-								<li>
-									<Link to="/customer-account">
-									Mi información general
-									</Link>
-								</li>
-								<li>
-									<Link to="/customer-account">
-									Libreta de direcciones
-									</Link>
-								</li>
-							</ul>
-							<hr />
-							<button  className="logout-btn" onClick={ this.handleLogOut } >Cerrar sesión</button>
-						</div>
-						: <Login {...this.props}/>
-					}
+				!isMobile ? 
+				<div className={ (this.state.isActive ? ' is-active' : '') +  " customer-menu"}>
+					<p>Hola {customerName}</p>
+				 	<p className="menu-item" onClick={this.onMouseEnterHandler}>
+						Mi cuenta
+						<span className="arrow-down-icon"></span>
+					</p>
+					<div className="menu" >
+						{ 	
+							isLogged
+							? <div> 
+								<ul className="loged-customer-menu">
+									<li>
+										<Link to="/customer-account">
+										Mis pedidos
+										</Link>
+									</li>
+									<li>
+										<Link to="/customer-account">
+										Mi información general
+										</Link>
+									</li>
+									<li>
+										<Link to="/customer-account">
+										Libreta de direcciones
+										</Link>
+									</li>
+								</ul>
+								<hr />
+								<button  className="logout-btn" onClick={ this.handleLogOut } >Cerrar sesión</button>
+							</div>
+							: <Login {...this.props}/>
+						}
+					</div>
+				</div> : <div className="mobile-customer-menu">
+					<p>Hola {customerName}</p>
+					<div> 
+						<ul className="loged-customer-menu">
+							<li>
+								<Link to="/customer-account">
+									Cuenta
+								</Link>
+							</li>
+							<li>
+								<Link to="/customer-account">
+									Pedidos
+								</Link>
+							</li>
+							<li>
+								<Link to="/customer-account">
+									Direcciones
+								</Link>
+							</li>
+						</ul>
+						<hr />
+						<button  className="logout-btn" onClick={ this.handleLogOut } >Cerrar sesión</button>
+					</div>
 				</div>
-			</div>
 		);
 	}
 }

@@ -246,6 +246,12 @@ export default class Header extends React.Component {
 						(this.state.mobileMenuIsActive ? ' mobile-nav-open' : '')
 					}
 				>
+					<CustomerMenu  
+						customerProperties={customerProperties}  
+						state={ settings }
+						isMobile={true} 
+						{...this.props}
+					/>	
 					<HeadMenu
 						isMobile={true}
 						categories={categories}
