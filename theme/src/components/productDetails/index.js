@@ -14,6 +14,7 @@ import Price from './price';
 import Quantity from './quantity';
 import RelatedProducts from './relatedProducts';
 import Tags from './tags';
+import ShareButtons from '../shareButtons';
 
 const Description = ({ description }) => (
 	<div
@@ -94,7 +95,6 @@ export default class ProductDetails extends React.Component {
 	checkSelectedOptions() {
 		const { selectedOptions } = this.state;
 		const { product } = this.props;
-
 		const allOptionsSelected =
 			Object.keys(selectedOptions).length === product.options.length;
 		this.setState({ isAllOptionsSelected: allOptionsSelected });
@@ -111,7 +111,8 @@ export default class ProductDetails extends React.Component {
 					: selectedVariant
 						? selectedVariant.stock_quantity
 						: product.stock_quantity;
-
+		const shareUrl = `${settings.domain}${product.path}`;
+		console.log(product)
 		if (product) {
 			return (
 				<Fragment>
@@ -122,6 +123,9 @@ export default class ProductDetails extends React.Component {
 								{themeSettings.show_product_breadcrumbs && (
 									<Breadcrumbs product={product} categories={categories} />
 								)}
+								</div>
+								<div className="column">
+									<ShareButtons shareUrl={shareUrl} pageDescription={product.meta_description} />
 								</div>
 							</div>
 							<div className="columns">

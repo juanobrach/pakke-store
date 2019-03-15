@@ -19,9 +19,7 @@ const Item = ({
 	columnCountOnFullhd = columnCountOnFullhd || 2,
 	columnCount
 }) => {
-	console.log( "columnCountOnDesktop", columnCountOnDesktop )
 	const _columnCount = columnCount || 5;
-	console.log( columnCount )
 
 	const columnSizeOnMobile = _columnCount / columnCountOnMobile;
 	const columnSizeOnTablet = _columnCount / columnCountOnTablet;

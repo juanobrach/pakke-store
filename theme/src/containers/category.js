@@ -6,6 +6,8 @@ import ProductList from '../components/productList';
 import ProductFilter from '../components/productFilter';
 import Sort from '../components/sort';
 import CategoryBreadcrumbs from '../components/categoryBreadcrumbs';
+import ShareButtons from '../components/shareButtons';
+
 import * as helper from '../lib/helper';
 
 const getFilterAttributesSummary = productFilter => {
@@ -37,12 +39,19 @@ const CategoryHero = ({ categoryDetails, categories, products }) => (
 	<section className="hero is-light">
 		<div className="hero-body" style={{paddingBottom:'15px'}}>
 			<div className="container">
-				{themeSettings.show_category_breadcrumbs && (
-					<CategoryBreadcrumbs
-						currentCategory={categoryDetails}
-						categories={categories}
-					/>
-				)}
+				<div className="columns">
+					<div className="column">
+						{themeSettings.show_category_breadcrumbs && (
+							<CategoryBreadcrumbs
+								currentCategory={categoryDetails}
+								categories={categories}
+							/>
+						)}
+					</div>
+					<div className="column">
+						<ShareButtons shareUrl={categoryDetails.url} pageDescription={categoryDetails.name} />
+					</div>
+				</div>
 				<h1 className="category-title">{categoryDetails.name}</h1>
 				<p className="products-found">Se encuentran { products.length } { ( products.length > 1 ? 'productos' : 'producto') }</p>
 			</div>
@@ -123,6 +132,7 @@ const CategoryContainer = props => {
 								columnCountOnWidescreen="4"
 								columnCountOnFullhd="4"
 								columnCount="12"
+								columnCountOnMobile="1"
 							/>
 						</div>
 					</div>
