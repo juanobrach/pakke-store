@@ -235,7 +235,7 @@ class CheckoutStepContacts extends React.Component {
 							value={initialValues.email}
 						/>
 					)}
-					{this.isFieldHidden('mobile') && (
+					{!this.isFieldHidden('mobile') && (
 						<ReadOnlyField
 							name={text.mobile}
 							value={initialValues.mobile}
@@ -421,7 +421,7 @@ class CheckoutStepContacts extends React.Component {
 							/>
 						)}
 
-						{this.isFieldHidden('mobile') && (
+						{!this.isFieldHidden('mobile') && (
 							<Field
 								className={inputClassName}
 								name="mobile"
@@ -463,8 +463,6 @@ class CheckoutStepContacts extends React.Component {
 								placeholder={this.getFieldPlaceholder('password_verify')}
 							/>
 						)}
-
-						<h2>{text.shippingTo}</h2>
 
 						{!this.isFieldHidden('address1') && (
 							<Field
