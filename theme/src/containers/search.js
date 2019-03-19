@@ -38,6 +38,12 @@ const SearchContainer = props => {
 						settings={settings}
 						loadMoreProducts={loadMoreProducts}
 						hasMore={productsHasMore}
+						columnCount={12}
+						columnCountOnMobile={1}
+						columnCountOnTablet={3}
+						columnCountOnDesktop={4}
+						columnCountOnWidescreen={4}
+						columnCountOnFullhd={4}
 					/>
 				</div>
 			</section>
