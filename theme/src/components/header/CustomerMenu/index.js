@@ -46,9 +46,9 @@ export default class CustomerMenu extends React.PureComponent {
 
 		return (
 				!isMobile ? 
-				<div className={ (this.state.isActive ? ' is-active' : '') +  " customer-menu"}>
+				<div onPointerLeave={ this.onMouseLeaveHandler} onMouseEnter={this.onMouseEnterHandler} className={ (this.state.isActive ? ' is-active' : '') +  " customer-menu"}>
 					<p>Hola {customerName}</p>
-				 	<p className="menu-item" onClick={this.onMouseEnterHandler}>
+				 	<p className="menu-item">
 						Mi cuenta
 						<span className="arrow-down-icon"></span>
 					</p>

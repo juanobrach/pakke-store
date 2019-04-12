@@ -1,0 +1,39 @@
+.shipping-step{
+	padding: 25px 30px 39px 30px;
+	h3{
+		font-size:18px;
+		color: $title-gray;
+		margin-bottom:23px;
+	}
+}
+
+.boxAddress{
+	line-height:23px;
+	font-size:13px;
+	font-family:'open_sansregular';
+	> div {
+		min-height: 130px;
+	}
+	> button{
+		margin-top:20px;
+		font-size:15px;
+		border: none;
+		color: white;
+		padding:5px 20px;
+		font-family:"open_sanssemibold";
+		border-radius: 12px;
+		background-color: $red-cake;
+		cursor:pointer;
+	}
+}
+
+
+.address-checkout-field > input{
+  color: $gray-light-dark;
+  border:none;
+  border-bottom: 1px solid $gray-light-dark;
+  font-size: 15px;
+  min-height:15px;
+  height:15px;
+  width:90%;
+}

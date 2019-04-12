@@ -161,11 +161,13 @@ class Register extends React.Component {
 						<h2 className={titleClassName}>
 							{text.register_title}
 						</h2>
-
-						{!registerProperties.status && !registerProperties.isCustomerSaved && registerProperties.isCustomerSaved !== null && registerProperties.isRightToken ? <p className={errorAlertText}>{text.registry_failed}</p> : ''}
+						{ registerProperties.errorConnection  ? <p className={errorAlertText}>{text.registry_bad_connection}</p> : ''}
+						
+						{!registerProperties.status && !registerProperties.isCustomerSaved && registerProperties.isCustomerSaved !== null && registerProperties.isRightToken && registerProperties.errorConnection === false ? <p className={errorAlertText}>{text.registry_failed}</p> : ''}
 						{registerProperties.status ? <p className={successAlertText}>{text.registry_doi_success}</p> : ''}
 						{registerProperties.isCustomerSaved ? <p className={successAlertText}>{text.registry_completed}</p> : ''}
-						{!registerProperties.isRightToken && registerProperties.isRightToken !== null ? <p className={errorAlertText}>{text.registry_wrong_token}</p> : ''}
+						{ !registerProperties.isRightToken && registerProperties.isRightToken !== null ? <p className={errorAlertText}>{text.registry_wrong_token}</p> : ''}
+
 						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}

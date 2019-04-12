@@ -173,7 +173,61 @@ export default class CheckoutForm extends React.Component {
 
 			return (
 				<div className="checkout-form">
-					
+					<CheckoutStepContacts
+						isReadOnly={step > 1}
+						title={text.customerDetails}
+						inputClassName={checkoutInputClass}
+						buttonClassName={checkoutButtonClass}
+						editButtonClassName={checkoutEditButtonClass}
+						initialValues={cart}
+						settings={settings}
+						customerProperties={customerProperties}
+						paymentMethods={paymentMethods}
+						shippingMethod={shippingMethod}
+						shippingMethods={shippingMethods}
+						loadingShippingMethods={loadingShippingMethods}
+						loadingPaymentMethods={loadingPaymentMethods}
+						checkoutFields={checkoutFields}
+						onEdit={this.handleContactsEdit}
+						onSubmit={this.handleContactsSubmit}
+						saveShippingLocation={this.handleLocationSave}
+						saveShippingMethod={this.handleShippingMethodSave}
+						savePaymentMethod={this.handlePaymentMethodSave}
+						cartlayerBtnInitialized={cartlayerBtnInitialized}
+					/>
+
+					<CheckoutStepShipping
+						show={step >= 2}
+						isReadOnly={step > 2}
+						title={text.shipping}
+						inputClassName={checkoutInputClass}
+						buttonClassName={checkoutButtonClass}
+						editButtonClassName={checkoutEditButtonClass}
+						initialValues={cart}
+						settings={settings}
+						processingCheckout={processingCheckout}
+						shippingMethod={shippingMethod}
+						paymentMethod={paymentMethod}
+						checkoutFields={checkoutFields}
+						showPaymentForm={showPaymentForm}
+						onSave={this.handleShippingSave}
+						onEdit={this.handleShippingEdit}
+						onSubmit={this.handleShippingSubmit}
+					/>
+
+					{showPaymentForm && (
+						<CheckoutStepPayment
+							show={step === 3}
+							title={text.payment}
+							inputClassName={checkoutInputClass}
+							buttonClassName={checkoutButtonClass}
+							cart={cart}
+							settings={settings}
+							processingCheckout={processingCheckout}
+							handleSuccessPayment={this.handleSuccessPayment}
+							onCreateToken={this.handleCheckoutWithToken}
+						/>
+					)}
 				</div>
 			);
 		} else {

@@ -33,6 +33,7 @@ export default class LoginForm extends React.Component {
 			cartlayerBtnInitialized,
 		} = this.props.state;
 
+		console.log( this.props.state.customerProperties )
 		if (this.props.state.customerProperties !== undefined) {
 			if (this.props.state.customerProperties.authenticated) {
 				const expiryMilliseconds = 1000;  //time units is seconds
