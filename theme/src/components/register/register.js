@@ -112,11 +112,8 @@ class Register extends React.Component {
 			return field.label;
 		} else {
 			switch (fieldName) {
-				case 'first_name':
-					return text.first_name;
-					break;
-				case 'last_name':
-					return text.last_name;
+				case 'full_name':
+					return text.full_name;
 					break;
 				case 'email':
 					return text.email;
@@ -171,14 +168,14 @@ class Register extends React.Component {
 						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
-								name="first_name"
-								id="customer.first_name"
+								name="full_name"
+								id="customer.full_name"
 								component={InputField}
 								type="text"
 								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
-								label={this.getFieldLabel('first_name')}
-								validate={this.getFieldValidators('first_name')}
-								placeholder={this.getFieldPlaceholder('first_name')}
+								label={this.getFieldLabel('full_name')}
+								validate={this.getFieldValidators('full_name')}
+								placeholder={this.getFieldPlaceholder('full_name')}
 							/>
 						)}
 

@@ -148,9 +148,6 @@ class Login extends React.Component {
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className={loginForm}>
 					<div className="login-section">
-						<h2 className={titleClassName}>
-							{text.login_title}
-						</h2>
 						{ this.props.customerProperties !== undefined && this.props.customerProperties.loggedin_failed ? <p className={errorAlertText}>{text.login_failed}</p> : '' }
 						{!this.isFieldHidden('email') && (
 							<Field
@@ -159,9 +156,9 @@ class Login extends React.Component {
 								id="customer.email"
 								component={InputField}
 								type="email"
-								label={this.getFieldLabel('email')}
+								label="Tu correo electrónico"
 								validate={this.getFieldValidators('email')}
-								placeholder={this.getFieldPlaceholder('email')}
+								placeholder=""
 							/>
 						)}
 
@@ -172,34 +169,34 @@ class Login extends React.Component {
 								id="customer.password"
 								component={InputField}
 								type="password"
-								label={this.getFieldLabel('password')}
+								label=""
 								validate={this.getFieldValidators('password')}
-								placeholder={this.getFieldPlaceholder('password')}
+								placeholder="Tu contraseña"
 							/>
 						)}
-						<div className="login-link-wrap">
-							<Link to="/forgot-password">{text.forgot_password}</Link>
-						</div>
+
+					<label className='checkbox-container'>
+						<input
+							type="checkbox"
+							name="remember"
+						/>
+						<p>
+						  Recordarme
+						</p>
+						<span className="checkmark"></span>
+					</label>
 						<div className="login-button-wrap">
 							<button
 								type="submit"
 								className={loginButtonClass}
 							>
-								{text.login}
+								Entrar
 							</button>
 						</div>
+						<div className="login-link-wrap forgot-password has-text-centered">
+							<Link to="/forgot-password">No recuerdo mi contraseña</Link>
+						</div>
 						
-						<NavLink className="logo-image" to="/register">
-							<div className="login-button-wrap">
-								<button
-									type="button"
-									className={loginButtonClass}
-									onClick={this.switchRegister}
-								>
-									{text.register}
-								</button>
-							</div>
-						</NavLink>
 					</div>
 				</form>
 			</div>

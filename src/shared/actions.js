@@ -145,6 +145,11 @@ export const updateCartItemQuantiry = (item_id, quantity) => async (
 	dispatch(fetchShippingMethods());
 };
 
+export const updateCustomerAddress = ( customerId, addressId, data ) => async ( dispatch, getState ) => {
+	const response = await api.customers.updateAddress( customerId, addressId, data );
+	dispatch(handleUpdateCustomerAddress);
+}
+
 const requestUpdateCartItemQuantiry = () => ({
 	type: t.CART_ITEM_UPDATE_REQUEST
 });
@@ -230,10 +235,12 @@ const receiveCheckout = order => ({ type: t.CHECKOUT_RECEIVE, order });
 
 const handleRegisterProperties = data => ({ type: t.REGISTER_PROPERTIES, data });
 const handleAccountProperties = data => ({ type: t.ACCOUNT_RECEIVE, data });
+const handleUpdateCustomerAddress = data => ({ type: t.CUSTOMER_UPDATE_ADDRESS, data })
 const handleCartLayerInitialized = data => ({ type: t.CART_LAYER_INITIALIZED, data });
 const handleForgotPassword = data => ({ type: t.FORGOT_PASSWORD_PROPERTIES, data });
 const handleResetPassword = data => ({ type: t.RESET_PASSWORD_PROPERTIES, data });
  
+
 export const receiveSitemap = currentPage => ({
 	type: t.SITEMAP_RECEIVE,
 	currentPage
@@ -337,19 +344,19 @@ export const changecustomerProperties = (data, callback) => async (dispatch, get
 	dispatch(handleAccountProperties());
 };
 
+
+
 export const cartLayerInitialized = (data, callback) => async (dispatch, getState) => {
 	dispatch(handleCartLayerInitialized(data.cartlayerBtnInitialized));
 }
 
 export const resetPassword = (data, callback) => async (dispatch, getState) => {
 	const response = await api.ajax.resetPassword.retrieve(data);
-	console.log(response.json);
 	dispatch(handleResetPassword(response.json));
 }
 
 export const forgotPassword = (data, callback) => async (dispatch, getState) => {
 	const response = await api.ajax.forgotPassword.retrieve(data);
-	console.log(response);
 	dispatch(handleForgotPassword(response.json));
 }
 

@@ -1,3 +1,70 @@
+.login-register-page{
+    background:white;
+    box-shadow: 0 0 15px #00000029;
+    .checkbox-container{
+        font-size:13px;
+        color: $gray-light-dark;
+        font-size:'open_sansregular';
+        margin-bottom: 35px;
+    }
+
+    .payments-methods{
+        position: absolute;
+        bottom: 11px;
+        width:100%;
+        img{
+           width: 60%;
+        }
+    }
+    .account-button{
+        width:100%;
+        background:#ff5959;
+        color:white;
+        font-family:'open_sanssemibold';
+        font-size:20px;
+        height:50px;
+        border-radius:12px;
+        text-transform: capitalize;
+        margin-bottom:50px;
+    }
+
+    ul.login-register-selector{
+        list-style-type:none;
+        margin:0;
+        margin-bottom: 45px;
+        padding:0;
+        display:flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        li{
+            margin:0;
+            font-size:20px;
+            font-family:'open_sansregular';
+            color: $gray-super-light;
+            padding:0  50px 5px 50px;
+            cursor:pointer;
+            &.is-active{
+                font-family:'open_sansbold';
+                color:$red-cake;
+                border-bottom:2px solid $red-cake;
+            }
+        }
+    }
+
+    .login-container input[type=email], .login-container input[type=password], .login-container input[type=text], .login-container textarea{
+        padding: 0 0 0 15px;
+        margin-bottom: 35px;
+    }
+}
+
+.background-pakke{
+    background-image:url('/assets/images/pakke-login-bk.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+        height: 100%;
+    min-height: 750px;
+}
+
 .login-container {
     display: flex;
     align-items: baseline;
@@ -17,6 +84,7 @@
     padding-left:28px;
     font-family:'open_sansbold';
     color: $gray;
+    font-size:15px;
 }
 
 .login-container input[type="password"]::placeholder{
@@ -33,7 +101,7 @@
     background-repeat:no-repeat;
     position: absolute;
     left: 0;
-    bottom: 5px;
+    bottom: 10px;
 }
 
 .login-input-field.padlock:after{
@@ -63,9 +131,9 @@
 }
 
 .login-container label {
-    font-size: 9pt;
-    font-weight: normal;
-    color: #747679;
+    font-size: 13px;
+    font-family:'open_sansregular';
+    color: $link-gray;
     display: block;
     opacity:.5;
 }
@@ -86,12 +154,13 @@
 }
 
 .login-form-with-guest {
-     margin: 0;   
+     margin: auto;
 }
 
 .login-section-guest {
     width: 300px;
-    padding-left: 100px
+    padding-top:100px;
+	  margin-right:100px;
 }
 
 .login-button-wrap {
@@ -101,6 +170,12 @@
 
 .login-link-wrap {
     text-align: right;
+    &.forgot-password{
+        a{
+            text-decoration: underline;
+            color: $link-gray;
+        }
+    }
 }
 
 .login-button-style {
@@ -166,4 +241,19 @@
 
 .login-icon {
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 769px) {
+	.login-container {
+		align-items: baseline;
+		margin: auto;
+		width: auto;
+		display: table;
+	}
+
+	.login-section-guest {
+		padding-top:15px;
+		margin-right:0px;
+	}
 }

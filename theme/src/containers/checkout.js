@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MetaTags from '../components/metaTags';
 import OrderSummary from '../components/orderSummary';
-import CheckoutForm from '../components/checkoutForm';
+import CheckoutForm from '../components/__checkoutForm';
 import StepCheckout from '../components/StepCheckout';
 
 
@@ -11,7 +11,6 @@ const CheckoutContainer = props => {
 		state: { pageDetails }
 	} = props;
 
-	console.log( props );
 	return (
 		<Fragment>
 			<MetaTags

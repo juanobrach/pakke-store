@@ -100,7 +100,6 @@ const renderPage = (req, res, store, themeText, placeholders) => {
 	const state = store.getState();
 	const head = getHead();
 	const placeholder = getPlaceholder(placeholders);
-
 	const html = indexHtml
 		.replace('{placeholder_head_start}', placeholder.head_start)
 		.replace('{placeholder_head_end}', placeholder.head_end)

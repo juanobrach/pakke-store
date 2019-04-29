@@ -232,14 +232,39 @@
   padding-left: 10px;
 }
 
-.checkout-success-details {}
+.checkout-success-details {
+  margin-top: 60px;
+}
 
-.checkout-success-title {
+h1.checkout-success-title {
   text-align: center;
+  font-family:'open_sansbold';
+  font-size:26px;
+  color:$success !important;
+  margin-bottom: 60px;
+}
+
+.checkout-success-order-detail{
+  p{
+    color: $title-gray;
+    font-size: 16px;
+    font-family:'open_sansregular';
+    span{
+      font-family: 'open_sansbold';
+      font-size: 18px;
+    }
+  }
+}
+
+.redirect-message{
+  text-align:center;
+  color: $gray-light-dark;
+  font-size: 16px;
+  font-family:'open_sansitalic';
 }
 
 .checkout-success-title img {
-  width: 60px;
+  width: 90px;
   padding-bottom: 20px;
 }
 

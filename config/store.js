@@ -4,7 +4,7 @@ module.exports = {
 	language: process.env.LANGUAGE || 'es',
 
 	// used by Store (server side)
-	apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3001/api/v1',
+	apiBaseUrl: 'http://localhost:3001/api/v1',
 
 	// used by Store (server side)
 	ajaxBaseUrl: process.env.AJAX_BASE_URL || 'http://localhost:3001/ajax',

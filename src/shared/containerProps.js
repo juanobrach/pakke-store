@@ -15,6 +15,7 @@ import {
 	logOutUser,
 	loggedinUserTimeUp,
 	changecustomerProperties,
+	updateCustomerAddress,
 	registerUser,
 	cartLayerInitialized,
 	forgotPassword,
@@ -60,6 +61,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		changecustomerProperties: (data, callback) => {
 			dispatch(changecustomerProperties(data, callback));
+		},
+		updateCustomerAddress: ( customerId, addressId, data ) => {
+			dispatch( updateCustomerAddress( customerId, addressId, data ) )
 		},
 		customerData: (data, callback) => {
 			dispatch(customerData(data, callback));

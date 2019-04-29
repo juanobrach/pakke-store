@@ -10,7 +10,8 @@
 	font-size: 13px;
 	line-height:1;
 
-	input[type="checkbox"]{
+	input[type="checkbox"],
+	input[type="radio"]{
 		position: absolute;
 		opacity: 0;
 		cursor: pointer;
@@ -28,11 +29,13 @@
 	  cursor:pointer;
 	}
 
-	input[type="checkbox"] ~ .checkmark {
+	input[type="checkbox"] ~ .checkmark,
+	input[type="radio"] ~ .checkmark {
 		background-color: #f5f5f5;
 	}
 
-	input[type="checkbox"]:checked ~ .checkmark {
+	input[type="checkbox"]:checked ~ .checkmark,
+	input[type="radio"]:checked ~ .checkmark {
 		border-color: #2faf59;
 	}
 
@@ -43,7 +46,8 @@
 	}
 
 	/* Show the checkmark when checked */
-	input[type="checkbox"]:checked ~ .checkmark:after {
+	input[type="checkbox"]:checked ~ .checkmark:after,
+	input[type="radio"]:checked ~ .checkmark:after {
 	  display: block;
 	}
 

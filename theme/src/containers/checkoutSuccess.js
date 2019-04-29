@@ -27,7 +27,7 @@ const CheckoutSuccessContainer = props => {
 				<div className="container">
 					<div className="columns content">
 						<div className="column is-8 is-offset-2">
-							<div className="checkout-box">
+							<div className="">
 								<CheckoutSuccess
 									order={order}
 									settings={settings}

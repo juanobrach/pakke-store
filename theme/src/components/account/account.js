@@ -4,6 +4,11 @@ import { Redirect, Link } from 'react-router-dom';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
+import { formatCurrency, formatNumber } from '../../lib/helper';
+import AddressForm from './addressForm';
+import moment from 'moment';
+
+
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -21,6 +26,18 @@ const ReadOnlyField = ({ name, value }) => {
 		</div>
 	);
 };
+
+
+const formateDate = (date, settings) =>{
+
+	moment.locale('es');
+	const dateCreated = moment( date );
+	const day = dateCreated.format('D')
+	const monthYear = dateCreated.format('MMMM YYYY');
+	return day +' de '+ monthYear;
+}
+
+
 
 const InputField = field => (
 	<div className={field.className}>
@@ -44,8 +61,6 @@ class Account extends React.Component {
 		super(props);
 
 		this.state = {
-			profileSection: 1,
-			profileEdit: false,
 			reinitialized: false,
 			cartLayer: false
 		}
@@ -206,15 +221,6 @@ class Account extends React.Component {
 			: labelText;
 	};
 
-	handleProfile = () => {
-		this.setState({ profileSection: 1,  profileEdit: false });
-	}
-
-	handleOrderHistory = () => {
-		this.setState({ profileSection: 2 });
-	}
-
-
 	handleContactsEdit = () => {
 		this.setState({ profileEdit: true });
 	};
@@ -224,9 +230,10 @@ class Account extends React.Component {
 				customerProperties,
 				cartlayerBtnInitialized,
 				cart,
-				initialValues
+				initialValues,
+				settings
 		} = this.props;
-
+		console.log( this.props )
 		Lscache.flushExpired();
 
 		const accountInputField = 'account-field';
@@ -244,6 +251,10 @@ class Account extends React.Component {
 
 		let billingAddress = {};
 		let shippingAddress = {};
+		
+		let addresses = [];
+		let address = {};
+
 		let orderHistory = {};
 		const list = [];
 		let tableStyle = null;
@@ -267,93 +278,82 @@ class Account extends React.Component {
 		}
 
 		if (customerProperties !== undefined) {
+			console.log( customerProperties )
 			if (customerProperties.customer_settings !== null && 'addresses' in customerProperties.customer_settings) {
 				[].slice.call(customerProperties.customer_settings.addresses).forEach(function(key, i) {
-					if(i < 1) {
-						billingAddress['address1'] = key.address1;
-						billingAddress['address2'] = key.address2;
-						billingAddress['city'] = key.city;
-						billingAddress['postal_code'] = key.postal_code;
-						billingAddress['state'] = key.state;
-						billingAddress['country'] = key.country;
-					}
-					if(i > 0) {
-						shippingAddress['address1'] = key.address1;
-						shippingAddress['address2'] = key.address2;
-						shippingAddress['city'] = key.city;
-						shippingAddress['postal_code'] = key.postal_code;
-						shippingAddress['state'] = key.state;
-						shippingAddress['country'] = key.country;
-					}
+					address = {};
+					address.address_pakke_id = key.address_pakke_id;
+					address.full_name = key.full_name;
+					address.postal_code = key.postal_code;
+					address.state = key.state;
+					address.city = key.city;
+					address.address1 = key.address1;
+					address.neighborhood = key.neighborhood;
+					address.address_num_ext = key.address_num_ext;
+					address.address_num_int = key.address_num_int;
+					address.phone = key.phone;
+					address.address_type = key.address_type;
+					address.details = key.details;
+					addresses.push( address );
 				});
-
 				orderHistory = customerProperties.order_statuses.data.filter(obj => obj.draft !== true).reduce(function(map, obj, i) {
-					map['ordered_items' + i] = obj.items;
+					map['ordered_items' + i] = obj;
 					return map;
 				}, {});
 			}
+			const orders = [];
+			keyCounter = 0;
+			// TODO numer de guia y fecha de entrega de pakke
+			for(var i in orderHistory) {
+				let orderCreatedAt = formateDate( orderHistory[i].date_created, settings );
+				let grandTotal = orderHistory[i].grand_total;
+				let orderNumber = orderHistory[i].number;
+				let sendTo = orderHistory[i].shipping_address.full_name;
+				let guideNumber = "TBM018081738009";
+				let sendedOn = "07 Marzo 2019"
+				orders.push( 
+					<li key={i}>
+						<div className="columns">
+							<div className="column is-9">
+								<p className="is-marginless">Realizado el</p>
+								<strong>{orderCreatedAt}</strong>											
+							</div>
+							<div className="column">
+								<p className="is-marginless">Total</p>
+								<strong>{ formatCurrency(grandTotal, settings) }</strong>	
+							</div>
+						</div>
+						<p>Pedido Nº  <span>{orderNumber}</span></p>
+						<p>Enviado a: <span>{ sendTo}</span></p>
+						<p>Nº de guía:  <span>{guideNumber}</span></p>
+						<p>Entregado el<span> {sendedOn}</span></p>
+					</li>
+				)
+			};
 
-			// get all orders
-			keyCounter = 0;
-			for(var i in orderHistory) {
-				listHeader = orderHistory[i].map((p, j) =>{
-					if (j < 1) {
-						return (
-							<tr className="tr-header" key={keyCounter}>
-								{Object.keys(p).map((k, l) => {
-									return (
-										<th className="td-header" key={keyCounter+l}>
-											{this.getTableHeaderLabel(k)}
-										</th>
-									);
-								})}
-							</tr>
-						);
-					}
-				});
-				keyCounter++;
-			};
-			keyCounter = 0;
-			for(var i in orderHistory) {
-				list.push(orderHistory[i].map(p => {
-					return (
-						<tr className="tr-body" key={p.id+''+i}>
-							{Object.keys(p).map((k, d) => {
-								if(k.indexOf('product_image') !== -1) {
-									const setCounter = i.replace( /^\D+/g, '');
-									let urlContent = customerProperties.order_statuses.data[setCounter].landing_url.split(',');
-									if (p.product_image === null){
-										return (
-											<td className="td-body" key={p.id+''+k}>
-											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
-												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}>
-													<span key={p.id+''+k}>{text.no_image}</span>
-												</a>
-											</div>
-											</td>
-										);
-									}
-									return (
-										<td className="td-body" key={p.id+''+k}>
-											<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
-												<a href={urlContent.length <= 1 ? customerProperties.order_statuses.data[setCounter].landing_url : urlContent[keyCounter++]}><img src={p[k][0].url} alt="thumbnail" /></a>
-											</div>
-										</td>
-									);
-								} 
-								
-								return (
-									<td className="td-body" key={p.id+''+k}>
-										<div suppressContentEditableWarning="true" contentEditable="false" value={k}>
-											{p[k]}
-										</div>
-									</td>
-								);
-							})}
-						</tr>
-					);
-				}));
-			};
+			const addresses_container = [];
+			for (var i in addresses ) {
+				addresses_container.push(
+					<li key={i}>
+						<div className="columns">
+							<div className="column is-8">
+								<strong>{addresses[i].full_name}</strong>
+								<p className="is-marginless"><span>{addresses[i].address1}</span></p>
+								<p className="is-marginless">{addresses[i].neighborhood} {addresses[i].city}, {addresses[i].state} {addresses[i].postal_code}</p>
+								<p className="is-marginless">Tel contacto: {addresses[i].phone}</p>
+							</div>
+							<div className="column options">
+								<a href="#" className="delete-link">Eliminar</a>
+								<a href="#">Editar</a>
+								<a href="#">Predeterminada</a>
+							</div>
+						</div>
+					</li>
+
+				)
+			}
+
+
 
 			if (this.state.profileEdit && !this.state.reinitialized ) {
 				this.setInitialValues();
@@ -364,358 +364,68 @@ class Account extends React.Component {
 			};
 
 			return (
-				<div className="account-container">
-					<div className="account-section">
-						<h2 className={titleClassName}>
-							{text.welcome} {customerProperties.customer_settings.full_name}
-						</h2>
-					</div>
-					<div className={accountHeaderMenueContainer}>
-						<ul className={accountHeaderMenueItems}>
-							<li className={this.state.profileSection === 1 ? isActive : ''} onClick={this.handleProfile}>
-								{text.profile}
-							</li>
-							<li className={this.state.profileSection === 2 ? isActive : ''} onClick={this.handleOrderHistory}>
-								{text.orders}
-							</li>
-						</ul>
-					</div>
-					{this.state.profileSection === 1 && !this.state.profileEdit && <div className={accountProfileContainer}>
-						<div className={accountProfileList}>
-							<div className={accountProfileHeadline}>
-								<img
-									src="/assets/images/icons/person.svg"
-									alt="person-icon"
-									className="person-icon"
-									style={{ width: 25, height: 20 }}
-								/>
-								<h4>{text.account_profile_headline}</h4>
-							</div>
-							<ReadOnlyField
-								name={text.member_since}
-								value={new Date(customerProperties.customer_settings.date_created).toLocaleDateString("de-DE")}
-							/>
-							<ReadOnlyField
-								name={text.first_name}
-								value={customerProperties.customer_settings.first_name}
-							/>
-							<ReadOnlyField
-								name={text.last_name}
-								value={customerProperties.customer_settings.last_name}
-							/>
-							<ReadOnlyField
-								name={text.email}
-								value={customerProperties.customer_settings.email}
-							/>
+				<React.Fragment>
+					<div className="account-container">
+						<div className="account-section">
+							<h2 className={'has-text-left ' + titleClassName}>
+								Mi cuenta
+							</h2>
 						</div>
-						<div className={accountProfileList}>
-							<div className={accountProfileHeadline}>
-								<img
-									src="/assets/images/icons/address.svg"
-									alt="person-icon"
-									className="person-icon"
-									style={{ width: 25, height: 20 }}
-								/>
-								<h4>{text.account_billing_headline}</h4>
+						<div className="columns">
+							<div className="column is-4">
+								<h4>Mis pedidos</h4>
+								<ul className="orders_history_list">
+									{orders}
+								</ul>
 							</div>
-							{Object.keys(billingAddress).length > 0 && (<ReadOnlyField
-								name={text.address1}
-								value={billingAddress.address1}
-							/>)}
-							{Object.keys(billingAddress).length > 0 && (<ReadOnlyField
-								name={text.address2}
-								value={billingAddress.address2}
-							/>)}
-							{Object.keys(billingAddress).length > 0 && (<ReadOnlyField
-								name={text.city}
-								value={billingAddress.city}
-							/>)}
-							{Object.keys(billingAddress).length > 0 && (<ReadOnlyField
-								name={text.postal_code}
-								value={billingAddress.postal_code}
-							/>)}
-							{Object.keys(billingAddress).length > 0 && (<ReadOnlyField
-								name={text.state}
-								value={billingAddress.state}
-							/>)}
-							<p>{Object.keys(billingAddress).length === 0 ? text.empty : ''}</p>
-						</div>
-						<div className={accountProfileList}>
-							<div className={accountProfileHeadline}>
-								<img
-									src="/assets/images/icons/bag.svg"
-									alt="person-icon"
-									className="person-icon"
-									style={{ width: 25, height: 20 }}
-								/>
-								<h4>{text.shippingAddress}</h4>
+							<div className="column is-4">
+								<h4>Mis datos</h4>
+								<ul className="customer-data">
+									<li>
+										<strong>{customerProperties.customer_settings.first_name} {customerProperties.customer_settings.last_name}</strong>
+										<p className="is-marginless">{customerProperties.customer_settings.email}</p>
+										<p className="is-marginless">Tel: {customerProperties.customer_settings.mobile}</p>
+										<div className="options">
+											<a href="#">Editar</a>   |  <a href="#">Cambiar contraseña</a>
+										</div>
+									</li>
+								</ul>
 							</div>
-							{Object.keys(shippingAddress).length > 0 && (<ReadOnlyField
-								name={text.address1}
-								value={shippingAddress.address1}
-							/>)}
-							{Object.keys(shippingAddress).length > 0 && (<ReadOnlyField
-								name={text.address2}
-								value={shippingAddress.address2}
-							/>)}
-							{Object.keys(shippingAddress).length > 0 && (<ReadOnlyField
-								name={text.city}
-								value={shippingAddress.city}
-							/>)}
-							{Object.keys(shippingAddress).length > 0 && (<ReadOnlyField
-								name={text.postal_code}
-								value={shippingAddress.postal_code}
-							/>)}
-							{Object.keys(shippingAddress).length > 0 && (<ReadOnlyField
-								name={text.state}
-								value={shippingAddress.state}
-							/>)}
-							<p>{Object.keys(shippingAddress).length === 0 ? text.empty : ''}</p>
-						</div>
-					</div>}
-					{this.state.profileSection === 1 && this.state.profileEdit && <div className={accountProfileContainer}>
-						<form onSubmit={handleSubmit} className={accountForm}>
-							<h3 className={titleClassName}>
-								{text.edit_profile}
-							</h3>
-							<Field
-								className={accountInputField}
-								name="first_name"
-								id="customer.first_name"
-								autoComplete="new-password"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('first_name')}
-								validate={this.getFieldValidators('first_name')}
-								placeholder={this.getFieldPlaceholder('first_name')}
-							/>
-							<Field
-								className={accountInputField}
-								name="last_name"
-								id="customer.last_name"
-								autoComplete="new-password"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('last_name')}
-								validate={this.getFieldValidators('last_name')}
-								placeholder={this.getFieldPlaceholder('last_name')}
-							/>
-							<Field
-								className={accountInputField}
-								name="email"
-								id="customer.email"
-								autoComplete="new-password"
-								component={InputField} //this.state.loggedin
-								type="email"
-								label={this.getFieldLabel('email')}
-								validate={this.getFieldValidators('email')}
-								placeholder={this.getFieldPlaceholder('email')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="password"
-								id="customer.password"
-								autoComplete="new-password"
-								component={InputField}
-								type="password"
-								label={this.getFieldLabel('password')}
-								validate={this.getFieldValidators('password')}
-								placeholder={this.getFieldPlaceholder('password')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="password_verify"
-								id="customer.password_verify"
-								autoComplete="new-password"
-								component={InputField}
-								type="password"
-								label={this.getFieldLabel('password_verify')}
-								validate={this.getFieldValidators('password_verify')}
-								placeholder={this.getFieldPlaceholder('password_verify')}
-							/>
-							<h3 className={titleClassName}>
-								{text.shippingAddress}
-							</h3>
-							<Field
-								className={accountInputField}
-								name="shipping_address.address1"
-								id="shipping_address.address1"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('address1')}
-								validate={this.getFieldValidators('address1')}
-								placeholder={this.getFieldPlaceholder('address1')}
-							/>
-							<Field
-								className={accountInputField}
-								name="shipping_address.address2"
-								id="shipping_address.address2"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('address2')}
-								placeholder={this.getFieldPlaceholder('address2')}
-							/>
-							<Field
-								className={accountInputField}
-								name="shipping_address.country"
-								id="shipping_address.country"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('country')}
-								validate={this.getFieldValidators('country')}
-								placeholder={this.getFieldPlaceholder('country')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="shipping_address.state"
-								id="shipping_address.state"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('state')}
-								validate={this.getFieldValidators('state')}
-								placeholder={this.getFieldPlaceholder('state')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="shipping_address.postal_code"
-								id="shipping_address.postal_code"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('postal_code')}
-								validate={this.getFieldValidators('postal_code')}
-								placeholder={this.getFieldPlaceholder('postal_code')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="shipping_address.city"
-								id="shipping_address.city"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('city')}
-								validate={this.getFieldValidators('city')}
-								placeholder={this.getFieldPlaceholder('city')}
-							/>
-
-							<h3 className={titleClassName}>
-								{text.billingAddress}
-							</h3>
-							<Field
-								className={accountInputField}
-								name="billing_address.address1"
-								id="billing_address.address1"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('address1')}
-								validate={this.getFieldValidators('address1')}
-								placeholder={this.getFieldPlaceholder('address1')}
-							/>
-							<Field
-								className={accountInputField}
-								name="billing_address.address2"
-								id="billing_address.address2"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('address2')}
-								placeholder={this.getFieldPlaceholder('address2')}
-							/>
-							<Field
-								className={accountInputField}
-								name="billing_address.country"
-								id="billing_address.country"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('country')}
-								validate={this.getFieldValidators('country')}
-								placeholder={this.getFieldPlaceholder('country')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="billing_address.state"
-								id="billing_address.state"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('state')}
-								validate={this.getFieldValidators('state')}
-								placeholder={this.getFieldPlaceholder('state')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="billing_address.postal_code"
-								id="billing_address.postal_code"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('postal_code')}
-								validate={this.getFieldValidators('postal_code')}
-								placeholder={this.getFieldPlaceholder('postal_code')}
-							/>
-
-							<Field
-								className={accountInputField}
-								name="billing_address.city"
-								id="billing_address.city"
-								component={InputField}
-								type="text"
-								label={this.getFieldLabel('city')}
-								validate={this.getFieldValidators('city')}
-								placeholder={this.getFieldPlaceholder('city')}
-							/>
-
-							<div className="checkout-button-wrap">
-								<button
-									type="submit"
-									//disabled={invalid}
-									className={accountEditButtonClass}
-								>
-									{text.save}
-								</button>
-							</div>
-						</form>
-					</div>}
-					{this.state.profileSection === 2 && <div className={accountProfileContainer}>
-						<div className="orders-history-container">
-							<fieldset className="orders-history-fieldset">
-								<div className="heading">
-									{Object.keys(orderHistory).length < 1 && <p>{text.order_history_empty}</p>}
-									{Object.keys(orderHistory).length > 0 &&<h4>{text.order_history}</h4>}
+							<div className="column is-4">
+								<h4>Mis direcciones</h4>
+								<ul className="orders_history_list">
+									{addresses_container}
+								</ul>
+								<div className="addd-new-address btn-account-container">
+									<a href="#">
+										<div className="columns is-gapless">
+											<div className="column is-1">
+												<img src="/assets/images/icons/delivery-truck.png" alt="" />
+											</div>
+											<div className="column is-11">
+												<button className="btn-account">
+													<p>	
+														<span>
+															<img src="/assets/images/icons/add-icon.png" alt="" />
+														</span>
+														Agregar nueva dirección
+													</p>
+												</button>
+											</div>
+										</div>
+									</a>
 								</div>
-								<div className="schedule padd-lr">
-									<div className="tbl-header">
-										<table cellPadding="0" cellSpacing="0" id="mytable" style={tableStyle}>
-											<thead>{listHeader}</thead>
-										</table>
-									</div>
-									<div className="tbl-content">
-										<table cellPadding="0" cellSpacing="0" className={'orders-history-table'} style={tableStyle}>
-											<tbody>{list}</tbody>
-										</table>
-									</div>
-								</div>
-							</fieldset>
+							</div>
 						</div>
-					</div>}
-					<div className={accountButtonContainer}>
-					{this.state.profileSection !== 2 && <button
-							type="button"
-							onClick={this.handleContactsEdit}
-							className={accountEditButtonClass}
-						>
-							{text.edit}
-						</button>}
-						<button
-							type="button"
-							className={continueShoppingButton}
-						>
-							<Link  to="/" style={{textDecoration:'none'}} key={'account-continue-shopping'}>{text.continueshopping}</Link>
-						</button>
+						<div className="modal">
+						  <div className="modal-background"></div>
+						  <div className="modal-content">
+								<AddressForm />
+						  </div>
+						  <button className="modal-close is-large" aria-label="close"></button>
+						</div>
 					</div>
-				</div>
+				</React.Fragment>
 			)
 		}
 	}

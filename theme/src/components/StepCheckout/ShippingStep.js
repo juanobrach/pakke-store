@@ -1,9 +1,22 @@
 import React from 'react';
 import Lscache from 'lscache';
-import CheckoutStepContacts from './addressForm';
+import AddressForm from './addressForm';
 import { themeSettings, text } from '../../lib/settings';
+import { Field, reduxForm } from 'redux-form';
+import InputField from './inputField';
 
-export default class ShippingStep extends React.Component {
+
+
+const ReadOnlyField = ({ name, value }) => {
+	return (
+		<div className="checkout-field-preview">
+			<div className="name">{name}</div>
+			<div className="value">{value}</div>
+		</div>
+	);
+};
+
+class ShippingStep extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -15,58 +28,49 @@ export default class ShippingStep extends React.Component {
 		}
 	}
 
-
 	componentDidMount() {
 		if (Lscache.get('auth_data') !== null) {
 			this.setState({ loggedin: true });
 		}
 	}
 
+
 	render(){
 		const {
 			customerProperties,
-			handleLocationSave,
+			handleContactsSubmit,
+			handleSetFetchedShipping,
+			saveShippingLocation,
 			checkoutFields,
-			onSubmit,
-			onNext
-		} = this.props;
-
-		const {
-			checkoutInputClass = 'checkout-field',
-			checkoutButtonClass = 'checkout-button',
-			checkoutEditButtonClass = 'checkout-button-edit'
-		} = themeSettings;
-
-
+			customerProperties:{ 
+				customer_settings : { addresses }
+			}} = this.props;
+		
+		// Guardo pakke como metood de
+		console.log( addresses );
 		return(
 			<div className="shipping-step">
 				<section>
 					<h3>
 						Dirección más reciente
 					</h3>
-
 					<div className='columns'>
-						<div className="column is-one-quarter boxAddress">
-							<div>
-								<h5>Luis Miguel Hernandez</h5>
-								<p>Av. Constituyentes No. 908, piso 1, Next-cloud Lomas Altas, Ciudad de México, Ciudad de México, 11950</p>
-								<p>Nº móvil: 55 5989 4261</p>
-							</div>
-							<button onClick={onNext}>Enviar a esta dirección más reciente</button>
-						</div>
-						<div className="column is-one-quarter boxAddress">
-							<div >
-								<h5>Antonio Hernández</h5>
-								<p>Acacias 243-117, Col del Bosque Guasave <br />
-								 Sinaloa 81040</p>
-								<p>Nº móvil: 687 872 9786</p>
-							</div>
-							<button onClick={onNext}>Enviar a esta dirección</button>
-						</div>
+						{
+							addresses.length > 0 ? addresses.map( (address, i ) => {
+								return (<div  key={i} className="column is-one-quarter boxAddress">
+																	<div>
+																		<h5>{address.full_name}</h5>
+																		<p>{address.address1}, piso 1, Next-cloud Lomas Altas, Ciudad de México, Ciudad de México, 11950</p>
+																		<p>Nº móvil:{address.phone}</p>
+																	</div>
+																	<button onClick={ ()=>{handleSetFetchedShipping(i)}}>Enviar a esta dirección más reciente</button>
+																</div>)
+							}) : ''
+						}
 					</div>
 					<div className="columns">
 						<div className="column is-half divisor">
-							<hr/>
+							<hr />
 						</div>
 					</div>
 				</section>
@@ -74,14 +78,20 @@ export default class ShippingStep extends React.Component {
 					<h3>
 						Agregar nueva dirección
 					</h3>
-					<CheckoutStepContacts
+					<AddressForm
 						checkoutFields={checkoutFields}
-						onSubmit={onSubmit}
-						onNext={onNext}
-						
+						onSubmit={handleContactsSubmit}
+						saveShippingLocation={saveShippingLocation}						
 					/>
 				</section>
 			</div>
 		)
 	}
 }
+
+export default reduxForm({
+	form: 'ShippingStep',
+	enableReinitialize: true,
+	keepDirtyOnReinitialize: true
+})(ShippingStep);
+

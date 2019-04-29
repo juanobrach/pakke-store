@@ -78,7 +78,7 @@ const OrderSummary = props => {
 		updateCartItemQuantiry,
 		state: { cart, settings }
 	} = props;
-
+	console.log(cart)
 	if (cart && cart.items && cart.items.length > 0) {
 		const items = cart.items.map(item => (
 			<SummaryItem

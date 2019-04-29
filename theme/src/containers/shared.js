@@ -10,15 +10,23 @@ const SharedContainer = props => {
 		state: { currentPage, settings }
 	} = props;
 	const hideFooter =
-		(currentPage.path === '/checkout-success' ||
-			currentPage.path === '/checkout') &&
-		themeSettings.hide_footer_on_checkout === true;
+		( currentPage.path == '/checkout-success' ||
+			currentPage.path == '/checkout' ||
+			currentPage.path == '/login' ||
+			currentPage.path == '/register' || 
+			themeSettings.hide_footer_on_checkout === true
+		 ? true : false ) 
+
+	console.log('hideFooter' , hideFooter);
 
 	return (
 		<Fragment>
-			<Header {...props} />
+		{ currentPage.path === '/login' || currentPage.path == '/register'  ? ''  
+				: <Header {...props} />
+		}
 			{children}
-			{!hideFooter && <Footer settings={settings} />}
+			{ hideFooter == false
+				? <Footer settings={settings} /> : "" }
 		</Fragment>
 	);
 };

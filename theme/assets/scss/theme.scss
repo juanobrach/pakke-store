@@ -5,7 +5,25 @@
 @import "radio-box.scss";
 @import "social-share.scss";
 
+body, html{
+  height:100vh;
+  background: whitesmoke !important;
+}
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid green;
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
 
 
@@ -66,6 +84,7 @@ $ig-blue: #636363 !default;
 body {
   margin-top: 3.25rem;
   transition: margin 200ms ease-in-out;
+
 }
 
 a, input, button {

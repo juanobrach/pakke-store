@@ -92,7 +92,7 @@ const IndexContainer = props => {
 						<CustomProducts
 							sku={themeSettings.home_products_sku}
 							sort={themeSettings.home_products_sort}
-							limit="5"
+							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
 							columnCount={12}
@@ -136,7 +136,7 @@ const IndexContainer = props => {
 						<CustomProducts
 							sku={themeSettings.home_products_sku}
 							sort={themeSettings.home_products_sort}
-							limit="5"
+							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
 							columnCount={12}

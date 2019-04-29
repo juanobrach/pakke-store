@@ -8,6 +8,7 @@ import Account from './account';
 export default class AccountForm extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log('props',props)
 	}
 
 	handlecustomerProperties = () => {
@@ -37,6 +38,14 @@ export default class AccountForm extends React.Component {
 		});
 	}
 
+	handleUpdateAddress = values => {
+		this.props.changecustomerProperties({});
+	}
+
+	componentDidMount(){
+		//this.props.updateCustomerAddress("5cb2324f42a88910b1ebcc1e", "5cc05464ae7fa120c3d7f4cb", { "full_name" : "Predo Manuel" });
+	}
+
 	render() {
 
 		const {
@@ -45,6 +54,7 @@ export default class AccountForm extends React.Component {
 			initialValues,
 			cartlayerBtnInitialized
 		} = this.props.state;
+
 
 		Lscache.flushExpired();
 

@@ -108,71 +108,31 @@ const CheckoutSuccess = ({
 		return (
 			<div className="checkout-success-details">
 				<h1 className="checkout-success-title">
-					<img src="/assets/images/success.svg" alt="" />
+					<img src="/assets/images/card_success.svg" alt="" />
 					<br />
-					{text.checkoutSuccessTitle}
+					Gracias por tu pago
 				</h1>
 
-				<div
-					dangerouslySetInnerHTML={{
-						__html: pageDetails.content
-					}}
-				/>
-
-				<hr />
-
-				<div className="columns" style={{ marginBottom: '3rem' }}>
-					<div className="column is-6">
-						<b>{text.shipping}</b>
-						<MobileField order={order} checkoutFields={checkoutFields} />
-						<CityField order={order} checkoutFields={checkoutFields} />
-						<ShippingFields order={order} shippingMethod={shippingMethod} />
-						<CommentsField order={order} checkoutFields={checkoutFields} />
-					</div>
-
-					<div className="column is-6">
-						<b>{text.orderNumber}</b>: {order.number}
-						<br />
-						<b>{text.shippingMethod}</b>: {order.shipping_method}
-						<br />
-						<b>{text.paymentMethod}</b>: {order.payment_method}
-						<br />
+				<div className="columns is-centered" style={{ marginBottom: '3rem' }}>
+					<div className="column is-6 checkout-success-order-detail has-text-centered">
+						<p>
+							El cargo por  <span> { helper.formatCurrency(order.grand_total, settings)  }</span> se realizó con éxito,  
+						</p>
+						<p>
+							el núm. de folio de la compra es: <span> {order.number} </span>
+						</p>
 					</div>
 				</div>
-
-				<div className="columns is-mobile is-gapless checkout-success-row">
-					<div className="column is-6">
-						<b>{text.productName}</b>
-					</div>
-					<div className="column is-2 has-text-right">
-						<b>{text.price}</b>
-					</div>
-					<div className="column is-2 has-text-centered">
-						<b>{text.qty}</b>
-					</div>
-					<div className="column is-2 has-text-right">
-						<b>{text.total}</b>
+				<div className="columns is-centered">
+					<div className="column is-12">
+						<p>En breve te llegará por correo electrónico con toda la información y el comprobante de la compra.</p>
 					</div>
 				</div>
-
-				<OrderItems items={order.items} settings={settings} />
-
-				<div className="columns">
-					<div className="column is-offset-7 checkout-success-totals">
-						<div>
-							<span>{text.subtotal}:</span>
-							<span>{helper.formatCurrency(order.subtotal, settings)}</span>
-						</div>
-						<div>
-							<span>{text.shipping}:</span>
-							<span>
-								{helper.formatCurrency(order.shipping_total, settings)}
-							</span>
-						</div>
-						<div>
-							<b>{text.grandTotal}:</b>
-							<b>{helper.formatCurrency(order.grand_total, settings)}</b>
-						</div>
+				<div className="columns is-centered">
+					<div className="column is-12">
+						<p className="redirect-message">
+							En breve serás redireccionado al inicio de la tienda
+						</p>
 					</div>
 				</div>
 			</div>

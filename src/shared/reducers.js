@@ -112,6 +112,7 @@ const appReducer = (state = initialState, action) => {
 		case t.CART_ITEM_ADD_REQUEST:
 		case t.CART_ITEM_DELETE_REQUEST:
 		case t.CART_ITEM_UPDATE_REQUEST:
+		case t.CUSTOMER_UPDATE_ADDRESS:
 		case t.SITEMAP_REQUEST:
 		default:
 			return state;

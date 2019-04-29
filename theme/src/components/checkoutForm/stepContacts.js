@@ -69,7 +69,6 @@ class CheckoutStepContacts extends React.Component {
 
 		this.setState({ reinitialized: true });
 		this.setState({ emailValues: this.props.customerProperties.customer_settings.email });
-		// this.props.change("input", {disabled: true});
 	}
 
 	passwordTemp = value => {
@@ -314,7 +313,7 @@ class CheckoutStepContacts extends React.Component {
 							>
 								<Field
 									name="shipping_method_id"
-									component="input"
+									component="input "
 									type="radio"
 									value={method.id}
 									onClick={() => { saveShippingMethod(method.id) }}
