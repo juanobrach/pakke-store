@@ -43,7 +43,7 @@ export default class AccountForm extends React.Component {
 	}
 
 	componentDidMount(){
-		//this.props.updateCustomerAddress("5cb2324f42a88910b1ebcc1e", "5cc05464ae7fa120c3d7f4cb", { "full_name" : "Predo Manuel" });
+		this.props.updateCustomerAddress("5cb2324f42a88910b1ebcc1e", "5cc9f54b49ae3c30d165f45f", { "full_name" : "Predo Manuel" });
 	}
 
 	render() {
@@ -55,7 +55,7 @@ export default class AccountForm extends React.Component {
 			cartlayerBtnInitialized
 		} = this.props.state;
 
-
+		console.log( this.props );
 		Lscache.flushExpired();
 
 		if (Lscache.get('auth_data') === null && customerProperties === undefined) {
@@ -92,6 +92,7 @@ export default class AccountForm extends React.Component {
 					initialValues={initialValues}
 					cartlayerBtnInitialized={cartlayerBtnInitialized}
 					onSubmit={this.handleFormSubmit}
+					addCustomerAddress={this.props.addCustomerAddress}
 				/>
 			);
 		}

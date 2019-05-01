@@ -11,10 +11,10 @@ import Lscache from 'lscache';
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
 
-class AddressForm extends React.Component {
+class AccountForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleAddNewAddress = this.handleAddNewAddress.bind(this);
+		this.handleUpdateAccount = this.handleUpdateAccount.bind(this);
 	}
 
 
@@ -58,7 +58,7 @@ class AddressForm extends React.Component {
 			: '';
 	};
 
-	handleAddNewAddress = form => {
+	handleUpdateAccount = form => {
 		this.props.addCustomerAddress( this.props.customerProperties.customer_settings.id, form)
 		this.props.handleCloseModal()
 	}
@@ -81,14 +81,14 @@ class AddressForm extends React.Component {
 		} = this.props;
 
 		return (
-				<form onSubmit={handleSubmit(this.handleAddNewAddress)} className="modal-address-form">
-						<h3>Agregar nueva dirección</h3>
+				<form onSubmit={handleSubmit(this.handleUpdateAccount)} className="modal-address-form">
+						<h3>Mis datos</h3>
 						<div className='columns is-variable is-5' style={{ marginBottom:'50px'}}>
 							<div className="column">
 								<h4>Nombre de quien recibe</h4>
 								<Field
-									name="shipping_address.full_name"
-									id="shipping_address.full_name"
+									name="first_name"
+									id="first_name"
 									className="address-checkout-field"
 									component={InputField}
 									type="text"
@@ -238,7 +238,7 @@ class AddressForm extends React.Component {
 }
 
 export default reduxForm({
-	form: 'AddressForm',
+	form: 'AccountForm',
 	enableReinitialize: true,
 	keepDirtyOnReinitialize: true
-})(AddressForm);
+})(AccountForm);

@@ -353,4 +353,20 @@ ul.customer-data{
             }
         }
     }
+    .modal-content {
+        background: white;
+        box-shadow: 0 3px 8px 0 rgba(0,0,0,0.1);
+    }
+}
+
+
+.account-modal{
+    .modal-content{
+        width:auto;
+        padding: 30px;
+    }
+}
+
+.modal-address-form{
+    
 }

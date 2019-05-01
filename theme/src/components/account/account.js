@@ -62,12 +62,19 @@ class Account extends React.Component {
 
 		this.state = {
 			reinitialized: false,
-			cartLayer: false
+			cartLayer: false,
+			modalOpen: false,
+			modalContent: '',
 		}
+
+		this.handleOpenModal = this.handleOpenModal.bind(this);
+		this.handleCloseModal = this.handleCloseModal.bind(this);
+
 	}
 
 	setInitialValues() {
 		this.props.initialize({
+	
 			first_name: this.props.customerProperties.customer_settings.first_name,
 			last_name: this.props.customerProperties.customer_settings.last_name,
 			email: this.props.customerProperties.customer_settings.email,
@@ -225,17 +232,29 @@ class Account extends React.Component {
 		this.setState({ profileEdit: true });
 	};
 
+	handleOpenModal = ( modalContent ) => {
+		this.setState({
+			modalOpen: true,
+			modalContent: modalContent
+		})
+	}
+
+	handleCloseModal = () => {
+		this.setState({
+			modalOpen: false,
+			modalContent: ''
+		})
+	}
+
 	render() {
 		const { handleSubmit,
 				customerProperties,
 				cartlayerBtnInitialized,
 				cart,
 				initialValues,
-				settings
+				settings,
+				addCustomerAddress
 		} = this.props;
-		console.log( this.props )
-		Lscache.flushExpired();
-
 		const accountInputField = 'account-field';
 		const accountForm = 'account-form';
 		const titleClassName = 'login-title';
@@ -386,7 +405,7 @@ class Account extends React.Component {
 										<p className="is-marginless">{customerProperties.customer_settings.email}</p>
 										<p className="is-marginless">Tel: {customerProperties.customer_settings.mobile}</p>
 										<div className="options">
-											<a href="#">Editar</a>   |  <a href="#">Cambiar contraseña</a>
+											<a href="#" onClick={ ()=> { this.handleOpenModal('contact') } }>Editar</a>   |  <a href="#">Cambiar contraseña</a>
 										</div>
 									</li>
 								</ul>
@@ -417,12 +436,13 @@ class Account extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="modal">
+						<div className={"account-modal modal " + ( this.state.modalOpen ? "is-active" : "") }>
 						  <div className="modal-background"></div>
 						  <div className="modal-content">
-								<AddressForm />
+						  	{ this.state.modalContent == 'contact' &&
+									<AddressForm  handleCloseModal={this.handleCloseModal} customerProperties={customerProperties} addCustomerAddress={addCustomerAddress} />
+						  	}
 						  </div>
-						  <button className="modal-close is-large" aria-label="close"></button>
 						</div>
 					</div>
 				</React.Fragment>
