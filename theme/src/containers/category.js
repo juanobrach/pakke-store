@@ -38,7 +38,7 @@ const getFilterPriceSummary = (productFilter, settings) => {
 const CategoryHero = ({ categoryDetails, categories, products }) => (
 	<section className="hero is-light">
 		<div className="hero-body" style={{paddingBottom:'15px'}}>
-			<div className="container">
+			<div className="container is-fluid">
 				<div className="columns">
 					<div className="column">
 						{themeSettings.show_category_breadcrumbs && (

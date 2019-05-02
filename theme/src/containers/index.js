@@ -95,7 +95,7 @@ const IndexContainer = props => {
 							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
-							columnCount={12}
+							columnCount={5}
 						/>
 					</section>
 					<section style={{ marginTop:'30px'}}>
@@ -139,7 +139,7 @@ const IndexContainer = props => {
 							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
-							columnCount={12}
+							columnCount={5}
 						/>
 					</section>
 				</div>
