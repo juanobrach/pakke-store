@@ -94,7 +94,7 @@ class AddressForm extends React.Component {
 									validate={this.getFieldValidators('first_name')}
 									placeholder={this.getFieldPlaceholder('first_name')}
 									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ shipping_address.full_name: value }))
+										setTimeout(() => saveShippingLocation({ full_name: value }))
 									}
 								/>
 							</div>
