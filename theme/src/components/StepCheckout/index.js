@@ -51,7 +51,7 @@ const styles = theme => ({
 
 
 function getSteps() {
-  return ['Envio', 'Pago', 'Confirmacion'];
+  return ['Envío', 'Pago', 'Confirmación'];
 }
 
 
@@ -238,23 +238,53 @@ class StepCheckout extends React.Component {
       );
     }
 
-    const StepIcon = ({ label, color = 'grey', textColor = 'black'}) => (
-      <div style={{ position: 'relative', backgroundImage:'url("../../../assets/images/delivery-truck.svg")' }}>
-        <div style={{ color: textColor, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', textAlign: 'center', lineHeight: '24px' }}>{label}</div>
+    const StepIcon = ({ label, color = 'grey', textColor = 'black', activeStep}) => (
+      <div style={{ position: 'relative', padding: '0 38px'}}>
+
+        {console.log('activeStep', activeStep )}
+
+        {
+
+          label == 'Envío' ? <img src="../../../assets/images/checkout-steps/envio.png" alt=""/> : ''
+        }
+        {
+          label == 'Pago' ?
+            activeStep  == 'Pago' ? <img src="../../../assets/images/checkout-steps/pago.png" alt=""/> : 
+                                    <img src="../../../assets/images/checkout-steps/pago-off.png" alt=""/>
+            :""         
+        }
+
+        {
+          label == 'Confirmación' ?
+            activeStep  == 'Confirmación' ? <img src="../../../assets/images/checkout-steps/confirmacion.png" alt=""/> :
+                                            <img src="../../../assets/images/checkout-steps/confirmacion-off.png" alt=""/>
+            : ""
+        }
+        <div style={{ color: textColor, lineHeight: '24px' }}>{label}</div>
       </div>
     );
 
     return (
       <div className={classes.root}>
           <Stepper className={classes.MuiPaper} activeStep={activeStep} alternativeLabel>
-            {steps.map(label => (
-              <Step key={label}>
+              <Step key="Envío">
                 <StepButton
-                   icon={<StepIcon label={label} />}
+                   icon={<StepIcon label="Envío" activeStep={this.state.activeStep} />}
                    onClick={() => console.log('Clicked') }
-                   />
+                />
               </Step>
-            ))}
+              <Step key="Pago">
+                <StepButton
+                   icon={<StepIcon label="Pago" activeStep={this.state.activeStep} />}
+                   onClick={() => console.log('Clicked') }
+                />
+              </Step>
+              <Step key="Confirmación">
+                <StepButton
+                   icon={<StepIcon label="Confirmación" activeStep={this.state.activeStep} />}
+                   onClick={() => console.log('Clicked') }
+                />
+              </Step>
           </Stepper>
          <div className={classes.wizardContainer}>
             <div>

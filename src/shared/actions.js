@@ -124,6 +124,7 @@ export const addCartItem = item => async (dispatch, getState) => {
 	dispatch(requestAddCartItem());
 	const response = await api.ajax.cart.addItem(item);
 	const cart = response.json;
+	console.log( cart );
 	dispatch(receiveCart(cart));
 	analytics.addCartItem({
 		item: item,
