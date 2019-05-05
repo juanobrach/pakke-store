@@ -155,10 +155,7 @@ class Register extends React.Component {
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className="login-form">
 					<div className="register-section">
-						<h2 className={titleClassName}>
-							{text.register_title}
-						</h2>
-						{ registerProperties.errorConnection  ? <p className={errorAlertText}>{text.registry_bad_connection}</p> : ''}
+					{ registerProperties.errorConnection  ? <p className={errorAlertText}>{text.registry_bad_connection}</p> : ''}
 						
 						{!registerProperties.status && !registerProperties.isCustomerSaved && registerProperties.isCustomerSaved !== null && registerProperties.isRightToken && registerProperties.errorConnection === false ? <p className={errorAlertText}>{text.registry_failed}</p> : ''}
 						{registerProperties.status ? <p className={successAlertText}>{text.registry_doi_success}</p> : ''}
