@@ -98,15 +98,15 @@ const VendorsLinks = () =>{
 
 		
 		return (
-			<div className={"column " + item.columSize  } key={index}>
+			<li key={index}>
 				<a href={item.href} >
 					<img src={item.imgSrc} alt={item.alt} />
 				</a>
-			</div>
+			</li>
 		)
 	})
 
-	return <div className="columns">{items}</div>
+	return <ul className="brands-logos-container">{items}</ul>
 
 }
 
@@ -358,7 +358,7 @@ export default class Footer extends React.PureComponent {
 				<footer className="footer-bg">
 					<div className="container is-fluid">
 						<div className="content">
-							<div className="columns is-gapless">
+							<div className="columns">
 								<div className="column is-4">
 									<div className="mobile-padding">
 										<div className="footer-logo">

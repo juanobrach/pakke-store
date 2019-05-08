@@ -188,7 +188,7 @@ export default class Header extends React.Component {
 							</div>
 						</div>
 						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'.9vw'}}>
-							<div className="column is-8">
+							<div className="column is-9">
 								<div className="primary-nav is-hidden-mobile" style={{lineHeight:' 3px'}}>
 									<HeadMenu
 										categories={categories}
@@ -197,7 +197,7 @@ export default class Header extends React.Component {
 									/>
 								</div>
 							</div>
-							<div className="column is-4 is-flex" style={{ justifyContent:"flex-end"}}>
+							<div className="column is-3 is-flex" style={{ justifyContent:"flex-end"}}>
 								<div className="is-hidden-mobile is-inline-flex" style={{ alignItems:"flex-end"}}>
 									<div style={{ marginRight:"50px"}}>
 									 <CustomerMenu  

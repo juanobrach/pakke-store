@@ -3,6 +3,25 @@
   padding: 0;
 }
 
+
+
+.brands-logos-container{
+  list-style-type: none !important;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin: 0  !important;
+  margin-bottom: 20px !important;
+  padding: 0;
+  align-items: baseline;
+  li{
+    margin-right: 2em;
+    a img{
+      max-height:17px;
+    }
+  }
+}
+
 .content ul.footer-menu li {
   list-style: none;
   margin-bottom:14px;
