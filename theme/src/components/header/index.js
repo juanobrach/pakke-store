@@ -197,9 +197,9 @@ export default class Header extends React.Component {
 									/>
 								</div>
 							</div>
-							<div className="column is-3">
-								<div className="level is-hidden-mobile">
-									<div className="leve-item" style={{ marginLeft: '5px' }}>
+							<div className="column is-4 is-flex" style={{ justifyContent:"flex-end"}}>
+								<div className="is-hidden-mobile" style={{ alignItems:"flex-end"}}>
+									<div style={{ marginRight:"50px"}}>
 									 <CustomerMenu  
 									 	customerProperties={customerProperties}  
 									 	state={ settings } 
@@ -207,7 +207,7 @@ export default class Header extends React.Component {
 
 									 	/>
 									</div>
-									<div className="level-right">
+									<div>
 										<CartIndicator
 											cart={cart}
 											onClick={this.cartToggle}
