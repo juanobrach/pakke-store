@@ -354,9 +354,15 @@ export const loggedinUserTimeUp = (data, callback) => async (dispatch, getState)
 	dispatch(handleAccountProperties(customerProps));
 };
 
+
+const receiveRegisterUser = user => ({ type: t.REGISTER_REQUEST, user });
+const requestRegister = user =>({ type: t.REGISTER_RECEIVE, user })
+
 export const registerUser = (data, callback) => async (dispatch, getState) => {
+	dispatch(receiveRegisterUser(data));
 	const response = await api.ajax.register.retrieve(data);
 	dispatch(handleRegisterProperties(response.json));
+	dispatch( requestRegister(true))
 };
 
 export const changecustomerProperties = (data, callback) => async (dispatch, getState) => {

@@ -15,14 +15,16 @@ export default class RegisterForm extends React.Component {
 	}
 
 	handleContactsSubmit = values => {
-      this.props.registerUser({
+
+ 		this.props.registerUser({
 			first_name: values.first_name,
 			last_name: values.last_name,
 			email: values.email,
             password: AuthHeader.encodeUserPassword(values.password),
             history: this.props.history
-		});
+		})		
 	};
+
 
 	verifyToken() {
 		this.setState( {verifiedToken: true } );
@@ -35,8 +37,10 @@ export default class RegisterForm extends React.Component {
 
 		const {
 			settings,
-			registerProperties
+			registerProperties,
+			registerFormSubmiting
 		} = this.props.state;
+
 
 		if (this.props.location.search !== '' && this.props.location.search.indexOf('?token=') !== -1) {		
 			!this.state.verifiedToken ? this.verifyToken() : '';
@@ -102,6 +106,7 @@ export default class RegisterForm extends React.Component {
 									settings={settings}
 									registerProperties={registerProperties}			
 									onSubmit={this.handleContactsSubmit}
+									submiting={registerFormSubmiting}
 								/>
 					</div>
 					<div className="column is-7">

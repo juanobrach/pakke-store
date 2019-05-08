@@ -47,7 +47,6 @@ const initialData = {
 class Register extends React.Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			comparePassword: ''
 		}
@@ -140,8 +139,10 @@ class Register extends React.Component {
 	render() {
 		let {
 			handleSubmit,
-			registerProperties
+			registerProperties,
+			submiting
 		} = this.props;
+		console.log(this.props);
 
 		registerProperties = registerProperties === undefined ? initialData : registerProperties;
 
@@ -176,19 +177,6 @@ class Register extends React.Component {
 							/>
 						)}
 
-						{ registerProperties.status || !registerProperties.isCustomerSaved && (
-							<Field
-								className={inputClassName}
-								name="last_name"
-								id="customer.last_name"
-								component={InputField}
-								type="text"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
-								label="Tu correo electrónico"
-								validate={this.getFieldValidators('last_name')}
-								placeholder={this.getFieldPlaceholder('last_name')}
-							/>
-						)}
 
 						{ registerProperties.status || !registerProperties.isCustomerSaved && (
 							<Field
@@ -198,7 +186,7 @@ class Register extends React.Component {
 								component={InputField}
 								type="email"
 								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
-								label={this.getFieldLabel('email')}
+								label="Tu correo electrónico"
 								validate={this.getFieldValidators('email')}
 								placeholder={this.getFieldPlaceholder('email')}
 							/>
@@ -237,7 +225,7 @@ class Register extends React.Component {
 							{ registerProperties.status || !registerProperties.isCustomerSaved && <button
 								type="submit"
 								className={registerButtonClassName}
-								disabled={registerProperties !== undefined && registerProperties.status}
+								disabled={ submiting }
 							>
 								{text.register}
 							</button>}

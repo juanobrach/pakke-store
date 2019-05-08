@@ -49,6 +49,10 @@ const appReducer = (state = initialState, action) => {
 		case t.REGISTER_PROPERTIES:
 			return Object.assign({}, state, { registerProperties: action.data });
 
+		case t.REGISTER_REQUEST:
+			return Object.assign({}, state, { registerFormSubmiting: true });
+		case t.REGISTER_RECEIVE:
+			return Object.assign({}, state, { registerFormSubmiting: false });
 		case t.ACCOUNT_RECEIVE:
 			return Object.assign({}, state, { customerProperties: action.data });
 
