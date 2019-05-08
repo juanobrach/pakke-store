@@ -198,7 +198,7 @@ export default class Header extends React.Component {
 								</div>
 							</div>
 							<div className="column is-4 is-flex" style={{ justifyContent:"flex-end"}}>
-								<div className="is-hidden-mobile" style={{ alignItems:"flex-end"}}>
+								<div className="is-hidden-mobile is-inline-flex" style={{ alignItems:"flex-end"}}>
 									<div style={{ marginRight:"50px"}}>
 									 <CustomerMenu  
 									 	customerProperties={customerProperties}  
