@@ -69,7 +69,7 @@ const IndexContainer = props => {
 						<div className="title is-4">
 						 	Categorías
 						</div>
-						<div className="columns has-text-centered  categories-links">
+						<div className="columns has-text-centered  categories-links is-gapless">
 						 {
 						 	categories.map( (category, key )=>{
 						 		if( category.parent_id != null ) return false;
