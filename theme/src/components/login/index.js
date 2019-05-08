@@ -36,6 +36,7 @@ export default class LoginForm extends React.Component {
 			settings,
 			customerProperties,
 			cartlayerBtnInitialized,
+			isLoginSubmitting
 		} = this.props.state;
 
 		if (this.props.state.customerProperties !== undefined) {
@@ -106,6 +107,7 @@ export default class LoginForm extends React.Component {
 								cartlayerBtnInitialized={cartlayerBtnInitialized}
 								readOnly={true}
 								onSubmit={this.handleFormSubmit}
+								isLoginSubmitting={isLoginSubmitting}
 							/>
 					</div>
 					<div className="column is-7">

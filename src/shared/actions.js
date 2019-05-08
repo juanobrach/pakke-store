@@ -330,7 +330,12 @@ export const customerData = (data, callback) => async (dispatch, getState) => {;
 	dispatch(handleAccountProperties(decodedJSON));
 };
 
+
+
+const receiveLoginUser = user => ({ type: t.RECEIVE_LOGIN_USER, user });
+const requestLoginUser = user =>({ type: t.REQUEST_LOGIN_USER, user })
 export const loginUser = (data, callback) => async (dispatch, getState) => {
+	dispatch(requestLoginUser(data))
 	const response = await api.ajax.login.retrieve(data);
 	let decodedJSON = Buffer.from(response.json, 'base64').toString('ascii');
 	decodedJSON = JSON.parse(decodedJSON);
@@ -338,6 +343,7 @@ export const loginUser = (data, callback) => async (dispatch, getState) => {
 	if (decodedJSON.authenticated) {
 		data.history.push('/customer-account');
 	}
+	dispatch(receiveLoginUser(data))
 };
 
 export const logOutUser = (data, callback) => async (dispatch, getState) => {

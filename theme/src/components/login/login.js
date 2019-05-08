@@ -118,7 +118,8 @@ class Login extends React.Component {
 		const { 
 			handleSubmit,
 			customerProperties,
-			cartlayerBtnInitialized
+			cartlayerBtnInitialized,
+			isLoginSubmitting
 		} = this.props;
 
 		if (this.props.customerProperties !== undefined && Lscache.get('auth_data') !== null) {
@@ -189,6 +190,7 @@ class Login extends React.Component {
 							<button
 								type="submit"
 								className={loginButtonClass}
+								disabled={isLoginSubmitting}
 							>
 								Entrar
 							</button>
