@@ -1,5 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { formatCurrency, formatNumber } from '../../lib/helper';
+import moment from 'moment';
+
+const formateDate = (date, settings) =>{
+
+	moment.locale('es');
+	const dateCreated = moment( date );
+	const day = dateCreated.format('D')
+	const monthYear = dateCreated.format('MMMM YYYY');
+	return day +' de '+ monthYear;
+}
+
 
 export default class Order extends React.Component {
 	constructor(props) {
@@ -8,6 +20,7 @@ export default class Order extends React.Component {
 
 	render() {
 		const data = this.props.data;
+		const settings = this.props.settings;
 		console.log( data );
 		return (
 			<React.Fragment>
@@ -36,7 +49,7 @@ export default class Order extends React.Component {
 										</div>
 										<div className="level-right">
 											<p className="level-item">
-												$ 34,500.50
+												{ formatCurrency(data.subtotal, settings)}
 											</p>
 										</div>
 									</div>
@@ -48,7 +61,7 @@ export default class Order extends React.Component {
 										</div>
 										<div className="level-right">
 											<p className="level-item">
-												$ 1,500.00
+												{ formatCurrency(data.shipping_total, settings)}
 											</p>
 										</div>
 									</div>
@@ -60,7 +73,7 @@ export default class Order extends React.Component {
 										</div>
 										<div className="level-right">
 											<p className="level-item">
-												$ 36,000.50
+												{ formatCurrency(data.subtotal, settings)}
 											</p>
 										</div>
 									</div>
@@ -72,7 +85,7 @@ export default class Order extends React.Component {
 										</div>
 										<div className="level-right">
 											<p className="level-item">
-												<strong>$ 36,000.50</strong>
+												<strong>{ formatCurrency(data.grand_total, settings)}</strong>
 											</p>
 										</div>
 									</div>
@@ -82,15 +95,15 @@ export default class Order extends React.Component {
 							<ul className="box-container">
 								<li className="payment-method">
 									<div className="columns is-vcentered">
-										<div className="column is-2">
+										<div className="column is-1" style={{ marginRight: '2em'}}>
 											<div style={{borderRadius:'5px', backgroundColor:'#f2f2f2', textAlign:'center', width:'70px'}}>
 												<img src="/assets/images/payment/mastercard.png"  style={{ marginTop:'4px', width:'41px', height:'32px'}} alt=""/>
 											</div>
 										</div>
-										<div className="is-10">
+										<div className="is-11">
 											<p><strong>Mastercard **** 4375</strong></p>
 											<p>Pago por  $ 34,500.50</p>
-											<p>Pago referencia nº 34564557656 acreditado el 5 de marzo 2019</p>
+											<p>Pago referencia nº 34564557656 acreditado el {formateDate( data.date_paid, settings )}</p>
 										</div>
 									</div>
 								</li>
@@ -109,7 +122,7 @@ export default class Order extends React.Component {
 							{
 								data.items.map( (item, key) => {
 
-								 	let productImage = ( item.product_image != null ? item.product_image : '/assets/images/placeholder-50.png')
+								 	let productImage = ( item.product_image != null ? item.product_image[0].url : '/assets/images/placeholder-50.png')
 
 									return(
 										<li className="item-list" key={key}>
@@ -122,7 +135,9 @@ export default class Order extends React.Component {
 														<p>{item.quantity} { item.quantity > 1 ? "unidades" : "unidad"  }</p>
 													</div>
 													<div className="column is-3 has-text-right">
-														<p><strong>${item.price}</strong></p>
+														<p><strong>
+														{ formatCurrency(item.price, settings)}
+														</strong></p>
 													</div>
 											</div>									
 										</li>

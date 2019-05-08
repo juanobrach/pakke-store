@@ -4,8 +4,8 @@ import { Redirect, Link } from 'react-router-dom';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
-import { formatCurrency, formatNumber } from '../../lib/helper';
 import AddressForm from './addressForm';
+import { formatCurrency, formatNumber } from '../../lib/helper';
 import moment from 'moment';
 
 

@@ -51,10 +51,7 @@ class CardPaymentForm extends React.Component {
                    {
                      type == 'Mastercard' ? <img src="/assets/images/payment/mastercard.svg" alt="" /> : ''
                    }
-
-
                   </label>
-                 <div>{JSON.stringify({ value, valid, type })}</div>
                </div>
              )} />
           </div>
