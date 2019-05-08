@@ -346,6 +346,9 @@ class Account extends React.Component {
 						<p>Enviado a: <span>{ sendTo}</span></p>
 						<p>Nº de guía:  <span>{guideNumber}</span></p>
 						<p>Entregado el<span> {sendedOn}</span></p>
+						<div className="options">
+							<Link to={`/customer-account/order/${orderNumber}`}>Ver detalles del pedido</Link>
+						</div>
 					</li>
 				)
 			};

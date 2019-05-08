@@ -1,5 +1,5 @@
 import * as t from './actionTypes';
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
+import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH, ORDER } from './pageTypes';
 import queryString from 'query-string';
 import { animateScroll } from 'react-scroll';
 import api from '../client/api';
@@ -18,6 +18,21 @@ export const fetchProducts = () => async (dispatch, getState) => {
 	dispatch(receiveProducts(null));
 	dispatch(receiveProducts(products));
 };
+
+const requestOrder = () => ({ type: t.ORDER_REQUEST });
+const receiveOrder = order => ({ type: t.ORDER_RECEIVE, order });
+
+
+export const fetchOrder = (orderId) => async (dispatch, getState) => {
+	dispatch(requestOrder());
+	const response = await api.orders.retrieve(orderId);
+	const order = response.json;
+	dispatch(receiveOrder(null));
+	dispatch(receiveOrder(order));
+};
+
+
+
 
 export const getProductFilterForCategory = (locationSearch, sortBy) => {
 	const queryFilter = queryString.parse(locationSearch);
@@ -124,7 +139,6 @@ export const addCartItem = item => async (dispatch, getState) => {
 	dispatch(requestAddCartItem());
 	const response = await api.ajax.cart.addItem(item);
 	const cart = response.json;
-	console.log( cart );
 	dispatch(receiveCart(cart));
 	analytics.addCartItem({
 		item: item,
@@ -372,7 +386,6 @@ export const setCurrentPage = location => async (dispatch, getState) => {
 	let locationPathname = '/404';
 	let locationSearch = '';
 	let locationHash = '';
-
 	if (location) {
 		locationPathname = location.pathname;
 		locationSearch = location.search;
@@ -468,6 +481,10 @@ const fetchDataOnCurrentPageChange = currentPage => (dispatch, getState) => {
 			dispatch(receiveProduct(productData));
 			analytics.productView({ product: productData });
 			break;
+		case ORDER:
+			const orderData = currentPage.data;
+			dispatch(fetchOrder( orderData.id));
+			break;			
 		case PAGE:
 			const pageData = currentPage.data;
 			dispatch(receivePage(pageData));

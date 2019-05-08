@@ -16,11 +16,13 @@ import SearchContainer from './containers/search';
 import LoginContainer from './containers/login';
 import RegisterContainer from './containers/register';
 import AccountContainer from './containers/account';
+import OrderDetailsContainer from './containers/orderDetails';
+
 import ForgotPasswordContainer from './containers/forgotPassword';
 import ResetPasswordContainer from './containers/resetPassword';
 
 import { setCurrentPage } from './actions';
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from './pageTypes';
+import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH, ORDER } from './pageTypes';
 
 class SwitchContainers extends React.Component {
 	constructor(props) {
@@ -58,6 +60,8 @@ class SwitchContainers extends React.Component {
 				return <CategoryContainer />;
 			case SEARCH:
 				return <SearchContainer />;
+			case ORDER:
+				return <OrderDetailsContainer />;	
 			case PAGE:
 				if (locationPathname === '/login') {
 					return <LoginContainer />;

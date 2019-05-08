@@ -8,6 +8,7 @@ const PageContainer = props => {
 	const {
 		state: { pageDetails }
 	} = props;
+
 	const pageListTag = themeSettings.page_list_tag;
 	const pageListTagDefined = pageListTag && pageListTag.length > 0;
 	const pageListPath = pageListTagDefined ? `/${pageListTag}` : null;

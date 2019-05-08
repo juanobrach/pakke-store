@@ -17,7 +17,6 @@ const SharedContainer = props => {
 			themeSettings.hide_footer_on_checkout === true
 		 ? true : false ) 
 
-	console.log('hideFooter' , hideFooter);
 
 	return (
 		<Fragment>

@@ -9,6 +9,8 @@ export { default as CheckoutContainer } from './containers/checkout';
 export { default as LoginContainer } from './containers/login';
 export { default as RegisterContainer } from './containers/register';
 export { default as AccountContainer } from './containers/account';
+export { default as OrderDetailsContainer } from './containers/orderDetails';
+
 export { default as ForgotPasswordContainer } from './containers/forgotPassword';
 export { default as ResetPasswordContainer } from './containers/resetPassword';
 export {

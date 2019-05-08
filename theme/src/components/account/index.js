@@ -8,7 +8,6 @@ import Account from './account';
 export default class AccountForm extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log('props',props)
 	}
 
 	handlecustomerProperties = () => {
@@ -42,9 +41,7 @@ export default class AccountForm extends React.Component {
 		this.props.changecustomerProperties({});
 	}
 
-	componentDidMount(){
-		this.props.updateCustomerAddress("5cb2324f42a88910b1ebcc1e", "5cc9f54b49ae3c30d165f45f", { "full_name" : "Predo Manuel" });
-	}
+
 
 	render() {
 
@@ -55,11 +52,9 @@ export default class AccountForm extends React.Component {
 			cartlayerBtnInitialized
 		} = this.props.state;
 
-		console.log( this.props );
 		Lscache.flushExpired();
 
 		if (Lscache.get('auth_data') === null && customerProperties === undefined) {
-			Lscache.flush();
 			return (
 			  <Redirect to={{
 						pathname: '/login'
