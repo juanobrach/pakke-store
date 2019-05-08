@@ -170,7 +170,7 @@ class Register extends React.Component {
 								component={InputField}
 								type="text"
 								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
-								label={this.getFieldLabel('full_name')}
+								label="Tu nombre completo"
 								validate={this.getFieldValidators('full_name')}
 								placeholder={this.getFieldPlaceholder('full_name')}
 							/>
@@ -184,7 +184,7 @@ class Register extends React.Component {
 								component={InputField}
 								type="text"
 								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
-								label={this.getFieldLabel('last_name')}
+								label="Tu correo electrónico"
 								validate={this.getFieldValidators('last_name')}
 								placeholder={this.getFieldPlaceholder('last_name')}
 							/>
