@@ -17,8 +17,8 @@ export default class RegisterForm extends React.Component {
 	handleContactsSubmit = values => {
 
  		this.props.registerUser({
-			first_name: values.first_name,
-			last_name: values.last_name,
+			first_name: values.full_name,
+			last_name: "",
 			email: values.email,
             password: AuthHeader.encodeUserPassword(values.password),
             history: this.props.history
