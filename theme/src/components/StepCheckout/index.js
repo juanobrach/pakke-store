@@ -249,14 +249,14 @@ class StepCheckout extends React.Component {
         }
         {
           label == 'Pago' ?
-            activeStep  == 'Pago' ? <img src="../../../assets/images/checkout-steps/pago.png" alt=""/> : 
+            activeStep  == 1 ? <img src="../../../assets/images/checkout-steps/pago.png" alt=""/> : 
                                     <img src="../../../assets/images/checkout-steps/pago-off.png" alt=""/>
             :""         
         }
 
         {
           label == 'Confirmación' ?
-            activeStep  == 'Confirmación' ? <img src="../../../assets/images/checkout-steps/confirmacion.png" alt=""/> :
+            activeStep  == 2 ? <img src="../../../assets/images/checkout-steps/confirmacion.png" alt=""/> :
                                             <img src="../../../assets/images/checkout-steps/confirmacion-off.png" alt=""/>
             : ""
         }
