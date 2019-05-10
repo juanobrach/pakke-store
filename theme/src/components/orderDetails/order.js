@@ -22,6 +22,8 @@ export default class Order extends React.Component {
 		const data = this.props.data;
 		const settings = this.props.settings;
 		console.log( data );
+
+		let transaction = data.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
 		return (
 			<React.Fragment>
 					<nav className="breadcrumb is-small" aria-label="breadcrumbs" style={{marginTop:'17px'}}>
@@ -96,14 +98,42 @@ export default class Order extends React.Component {
 								<li className="payment-method">
 									<div className="columns is-vcentered">
 										<div className="column is-1" style={{ marginRight: '2em'}}>
-											<div style={{borderRadius:'5px', backgroundColor:'#f2f2f2', textAlign:'center', width:'70px'}}>
-												<img src="/assets/images/payment/mastercard.png"  style={{ marginTop:'4px', width:'41px', height:'32px'}} alt=""/>
+											<div style={{ display:'flex', alignItems:'center', borderRadius:'5px', backgroundColor:'#f2f2f2', textAlign:'center', width:'70px', height:'50px'}}>
+												<div>
+													{
+														transaction.order_type == 'VISA' ?
+															<img src="/assets/images/payment/visa.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
+													}
+
+
+													{	transaction.order_type == 'MASTERCARD' ?
+																											<img src="/assets/images/payment/mastercard.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
+													}
+													{	transaction.order_type == 'AMEX' ?
+																											<img src="/assets/images/payment/american_express.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
+													}
+													{	transaction.order_type == 'oxxo' ?
+																											<img src="/assets/images/payment/oxxo.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
+													}
+													{transaction.order_type == 'SPEI' ?
+															<img src="/assets/images/payment/spei.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
+													}
+												</div>
 											</div>
 										</div>
 										<div className="is-11">
-											<p><strong>Mastercard **** 4375</strong></p>
-											<p>Pago por  $ 34,500.50</p>
-											<p>Pago referencia nº 34564557656 acreditado el {formateDate( data.date_paid, settings )}</p>
+											<p><strong>{transaction.order_type} {data.etomin_card_number}</strong></p>
+											<p>Pago por  {formatCurrency( transaction.amount, settings)}</p>
+											<p>Pago referencia nº {transaction.transaction_id} { data.date_paid ? `acreditado el ${formateDate( data.date_paid, settings )}` : '' } </p>
+											{
+												transaction.order_type == 'oxxo' ?
+													<p><a href={transaction.urlPrint} style={{color: '#5e0d8b',
+    																																textDecoration: 'underline',
+    																																fontSize: '13px'}}>
+																Imprimir cupon de pago
+														</a>
+													</p> : ''
+											}
 										</div>
 									</div>
 								</li>

@@ -58,16 +58,10 @@ export default class ConfirmStep extends React.Component {
         const checked = event.target.checked;
         this.setState({ checked: checked });
     };
-
+    
     handleSubmitOrder = () => {
-      let cart   = this.props.state.cart;
-      let apiUrl = api.ajaxBaseUrl;
-      axios.post(`${apiUrl}/etominPayment`, cart ).then( res =>{
-        console.log('etomin card', res )
-        if( res.status == 200){
-          this.props.handleSuccessPayment()
-        }
-      })
+      console.log('handle submit')
+      this.props.checkout(this.props.cart);
     }
 
 

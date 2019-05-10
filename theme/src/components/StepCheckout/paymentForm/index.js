@@ -59,7 +59,18 @@ export default class PaymentForm extends React.Component {
 	}
 
 	render() {
-		const { gateway, shopSettings, onPayment, onCreateToken, handlePaymentStepSuccess, updateCart } = this.props;
+		const { 
+			gateway, 
+			shopSettings, 
+			onPayment,
+			onSubmit,
+			onCreateToken, 
+			handlePaymentStepSuccess,
+			handlePaymentStepSubmit, 
+			handleBack,
+			classes,
+			updateCart } = this.props;
+
 		const { formSettings, loading } = this.state;
 
 		if (loading) {
@@ -76,27 +87,6 @@ export default class PaymentForm extends React.Component {
 							/>
 						</div>
 					);
-				case 'liqpay':
-					return (
-						<div className="payment-form">
-							<LiqPay
-								formSettings={formSettings}
-								shopSettings={shopSettings}
-								onPayment={onPayment}
-							/>
-						</div>
-					);
-				case 'stripe-elements':
-					return (
-						<div className="payment-form">
-							<StripeElements
-								formSettings={formSettings}
-								shopSettings={shopSettings}
-								onPayment={onPayment}
-								onCreateToken={onCreateToken}
-							/>
-						</div>
-					);
 				case 'etomin':
 					return (
 						<div className="payment-form">
@@ -106,7 +96,11 @@ export default class PaymentForm extends React.Component {
 								onPayment={onPayment}
 								onCreateToken={onCreateToken}
 								handlePaymentStepSuccess={handlePaymentStepSuccess}
+								handlePaymentStepSubmit={handlePaymentStepSubmit}
 								updateCart={updateCart}
+								handleBack={handleBack}
+								classes={classes}
+								onSubmit={onSubmit}
 							/>
 						</div>
 					);	

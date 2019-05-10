@@ -181,6 +181,10 @@ class StepCheckout extends React.Component {
     });
   };
 
+  handlePaymentStepSubmit = data =>{
+
+  }
+
   handlePaymentStepSuccess = data => {
     this.props.updateCart({
       etomin_card_token: data
@@ -204,7 +208,7 @@ class StepCheckout extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, checkout } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
     // const activeStep  = 2;
@@ -238,9 +242,8 @@ class StepCheckout extends React.Component {
       );
     }
 
-    const StepIcon = ({ label, color = 'grey', textColor = 'black', activeStep}) => (
+    const StepIcon = ({ label, color = 'grey', textColor = '#ff5959', activeStep }) => (
       <div style={{ position: 'relative', padding: '0 38px'}}>
-
         {console.log('activeStep', activeStep )}
 
         {
@@ -260,7 +263,10 @@ class StepCheckout extends React.Component {
                                             <img src="../../../assets/images/checkout-steps/confirmacion-off.png" alt=""/>
             : ""
         }
-        <div style={{ color: textColor, lineHeight: '24px' }}>{label}</div>
+        <div style={{ color: textColor, 
+          lineHeight: '24px', 
+          fontFamily:'open_sanssemibold',
+          fontSize:'15px' }}>{label}</div>
       </div>
     );
 
@@ -315,7 +321,11 @@ class StepCheckout extends React.Component {
                   handleSuccessPayment={this.handleSuccessPayment}
                   onCreateToken={this.handleCheckoutWithToken}
                   handlePaymentStepSuccess={this.handlePaymentStepSuccess}
+                  handlePaymentStepSubmit={this.handlePaymentStepSubmit}
                   updateCart={this.props.updateCart}
+                  handleBack={this.handleBack}
+                  classes={classes}
+
                 /> : ''
               }
 
@@ -326,35 +336,15 @@ class StepCheckout extends React.Component {
                   checkoutFields={checkoutFields}
                   onSubmit={this.handleContactsSubmit}
                   handleSuccessPayment={this.handleSuccessPayment}
+                  handleBack={this.handleBack}
+                  classes={classes}
+                  checkout={checkout}
+                  cart={cart}
 
                   {...this.props}
                 /> : ''
               }
 
-            </div>
-            <div>
-              {this.state.activeStep === steps.length ? (
-                <div>
-                  <Typography className={classes.instructions}>All steps completed</Typography>
-                  <Button onClick={this.handleReset}>Reset</Button>
-                </div>
-              ) : (
-                <div>
-                  <div>
-                    { activeStep != 0 ? 
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={this.handleBack}
-                        className={classes.backButton}
-                      >
-                        Cancelar
-                      </Button>
-                      : ''
-                    }
-                   
-                  </div>
-                </div>
-              )}
             </div>
          </div>
       </div>

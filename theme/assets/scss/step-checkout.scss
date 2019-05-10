@@ -1,7 +1,22 @@
 .shipping-step,
 .payment-step,
+.confirm-step{
+	position:relative;
+}
+
+.shipping-step,
+.payment-step,
 .confirm-step,
 .modal{
+	.back-button{
+		border-radius: 12px;
+		padding: 5px 45px;
+		border: 2px solid #cccccc;
+		font-family: 'open_sansregular';
+		background:white;
+		color: #4d4d4d;
+		text-transform: capitalize;
+	}
 	.final-step{
 		background: $green;
 		color:white;

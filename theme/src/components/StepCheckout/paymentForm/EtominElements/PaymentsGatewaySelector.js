@@ -38,10 +38,10 @@ export default class PaymentsGatewaySelector extends React.Component  {
                             type="radio"
                             onChange={this.props.handleChangePaymentMethod}
                             name="payment_method"
-                            value="bank"
+                            value="spei"
                         />
                         <h4>
-                          Transferencia bancaria
+                          SPEI
                         </h4>
                         <span className="checkmark"></span>
                     </label>
@@ -52,10 +52,10 @@ export default class PaymentsGatewaySelector extends React.Component  {
                             type="radio"
                             onChange={this.props.handleChangePaymentMethod}
                             name="payment_method"
-                            value="referenced"
+                            value="oxxo"
                         />
                         <h4>
-                          Pago referenciado
+                          OXXO
                         </h4>
                         <span className="checkmark"></span>
                     </label>

@@ -232,14 +232,12 @@ export const checkout = (cart, history) => async (dispatch, getState) => {
 	}
 
 	const cartResponse = await api.ajax.cart.retrieve();
-	const chargeNeeded = !!cartResponse.json.payment_token;
-
-	if (chargeNeeded) {
-		const chargeResponse = await api.ajax.cart.client.post('/cart/charge');
-		const chargeSucceeded = chargeResponse.status === 200;
-		if (!chargeSucceeded) {
-			return;
-		}
+/*	const chargeNeeded = !!cartResponse.json.payment_token;
+*/
+	const chargeResponse = await api.ajax.cart.client.post('/cart/charge');
+	const chargeSucceeded = chargeResponse.status === 200;
+	if (!chargeSucceeded) {
+		return;
 	}
 
 	const response = await api.ajax.cart.checkout();

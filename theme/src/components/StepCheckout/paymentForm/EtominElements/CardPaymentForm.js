@@ -1,23 +1,25 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import InputField from '../../inputField';
+
 
 import { Number, Cvc, Expiration } from "react-credit-card-primitives";
 import { YearPicker, MonthPicker, DayPicker } from 'react-dropdown-date';
 
-const handleCardNumerChange = (event) =>{
-  console.log(event)
-}
 
 class CardPaymentForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleCardNumerChange = this.handleCardNumerChange.bind(this);
   }
 
+  handleCardNumerChange = (event) =>{
+    this.props.dispatch(change('CardPaymentForm', 'card_number', event.value ));
+  }
 
   render(){
-    const { inProgress, handleSubmit } = this.props;
+    const { inProgress, handleSubmit, handleBack, classes } = this.props;
     const submit = this.submit;
     return (
       <form onSubmit={handleSubmit}>
@@ -27,21 +29,26 @@ class CardPaymentForm extends React.Component {
               Nombre como aparece en la tarjeta
             </h4>
             <Field
-            name="name_card"
+            name="card_name"
             id="customer.first_name"
             component={InputField}
             type="text"
             />
           </div>
           <div className="column is-4">
+            <Field  type="hidden"
+                    name="card_number"
+                    id="customer.cardNumber"
+                    component={InputField}
+            />
             <Number
-             onChange={handleCardNumerChange}
+             onChange={this.handleCardNumerChange}
              render={({ value, valid, type, getInputProps }) => (
 
                <div className="card-holder-container">
                  <h4>Número de la tarjeta</h4>
                   <label htmlFor="" className="card-number-label">
-                    <input  name="number" className="card-input" {...getInputProps() } placeholder="" />
+                    <input  className="card-input" {...getInputProps() } placeholder="" />
                    {
                      type == 'Visa' ? <img src="/assets/images/payment/visa.svg" alt="" /> : ''
                    }
@@ -78,7 +85,7 @@ class CardPaymentForm extends React.Component {
           <div className="column is-2">
               <h4></h4>
               <Field
-              name="Cvc"
+              name="card_cvc"
               id="card_Cvc"
               className="card_Cvc"
               placeholder="CVV"
@@ -87,7 +94,10 @@ class CardPaymentForm extends React.Component {
               />
           </div>
         </div>
-        <div className="columns">
+        <div className="columns is-marginless is-vcentered" style={{position:'absolute', left:'0', right:'0', width:'100%'}}>
+          <div className="column">
+            <button onClick={handleBack} className="back-button">Cancelar</button>  
+          </div>
           <div className="column">
             <button type="submit" 
               className="is-pulled-right"

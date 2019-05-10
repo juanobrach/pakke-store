@@ -41,7 +41,9 @@ export default class PaymentStep extends React.Component {
 			shippingMethod,
 			onCreateToken,
 			handlePaymentStepSuccess,
-			updateCart
+			updateCart,
+			handleBack,
+			classes
 		} = this.props;
 
 	const { payment_method_gateway, grand_total } = cart;
@@ -70,9 +72,12 @@ export default class PaymentStep extends React.Component {
 						shopSettings={settings}
 						shippingMethod={shippingMethod}
 						onPayment={handleSuccessPayment}
+						onSubmit={onSubmit}
 						onCreateToken={onCreateToken}
 						handlePaymentStepSuccess={handlePaymentStepSuccess}
 						updateCart={updateCart}
+						handleBack={handleBack}
+						classes={classes}
 					/>
 				)}
 				{processingCheckout && <p>{text.loading}</p>}
