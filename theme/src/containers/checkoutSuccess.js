@@ -12,7 +12,6 @@ const CheckoutSuccessContainer = props => {
 		order,
 		shippingMethods
 	);
-
 	return (
 		<Fragment>
 			<MetaTags

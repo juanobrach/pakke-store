@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import Lscache from 'lscache';
 import PropTypes from 'prop-types';
 import MetaTags from '../components/metaTags';
 import OrderSummary from '../components/orderSummary';
@@ -8,9 +10,17 @@ import StepCheckout from '../components/StepCheckout';
 
 const CheckoutContainer = props => {
 	const {
-		state: { pageDetails }
+		state: { pageDetails },
+		customerProperties
 	} = props;
-
+	if (Lscache.get('auth_data') === null && customerProperties === undefined) {
+	  Lscache.flush();
+	  return (
+	    <Redirect to={{
+	        pathname: '/login'
+	    }}/>
+	  );
+	}
 	return (
 		<Fragment>
 			<MetaTags

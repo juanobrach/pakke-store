@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { text } from '../lib/settings';
@@ -97,6 +98,14 @@ const OrderItems = ({ items, settings }) => {
 	return null;
 };
 
+const redirectToAdmin = () =>{
+	setTimeout( ()=>{
+		<Redirect to={{
+			pathname: '/customer-account'
+		}}/>
+	}, 2000)
+}
+
 const CheckoutSuccess = ({
 	order,
 	settings,
@@ -104,20 +113,35 @@ const CheckoutSuccess = ({
 	shippingMethod,
 	checkoutFields
 }) => {
+
+	redirectToAdmin();
+	// Search a transaction completed
+	let transaction = order.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
 	if (order && order.items && order.items.length > 0) {
 		return (
 			<div className="checkout-success-details">
 				<h1 className="checkout-success-title">
 					<img src="/assets/images/card_success.svg" alt="" />
 					<br />
-					Gracias por tu pago
+					Gracias por tu compra
 				</h1>
 
 				<div className="columns is-centered" style={{ marginBottom: '3rem' }}>
 					<div className="column is-6 checkout-success-order-detail has-text-centered">
-						<p>
-							El cargo por  <span> { helper.formatCurrency(order.grand_total, settings)  }</span> se realizó con éxito,  
-						</p>
+						{ transaction.order_type != 'OXXO' && 
+							<p>El cargo por <span>{helper.formatCurrency(order.grand_total, settings)}</span> se realizó con éxito,</p>
+						}
+						{ transaction.order_type == 'OXXO' && 
+							<p>
+								Recuerda imprimir o presentar el ticket de pago en el OXXO para completar tu pedido por un total de <span> { helper.formatCurrency(order.grand_total, settings)  }</span>,
+								<a style={{display:'block'}} href={transaction.urlPrint}>Imprime tu ticket aqui</a>  
+							</p>
+						}
+						{ transaction.order_type == 'SPEI' && 
+							<p>
+								Recuerda que para finalizar el pago deberas depositar a la cuenta <span><strong>{transaction.deposit_account}</strong></span> un total de  <span>{ helper.formatCurrency(order.grand_total, settings)  }</span>
+							</p>
+						}
 						<p>
 							el núm. de folio de la compra es: <span> {order.number} </span>
 						</p>

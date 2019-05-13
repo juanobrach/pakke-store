@@ -126,12 +126,19 @@ export default class Order extends React.Component {
 											<p>Pago por  {formatCurrency( transaction.amount, settings)}</p>
 											<p>Pago referencia nº {transaction.transaction_id} { data.date_paid ? `acreditado el ${formateDate( data.date_paid, settings )}` : '' } </p>
 											{
-												transaction.order_type == 'oxxo' ?
+												transaction.order_type == 'OXXO' ?
 													<p><a href={transaction.urlPrint} style={{color: '#5e0d8b',
     																																textDecoration: 'underline',
     																																fontSize: '13px'}}>
 																Imprimir cupon de pago
 														</a>
+													</p> : ''
+											}
+
+											{
+												transaction.order_type == 'SPEI' ?
+													<p>
+														Numero de cuenta para deposito {transaction.deposit_account}
 													</p> : ''
 											}
 										</div>

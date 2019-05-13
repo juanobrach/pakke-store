@@ -70,8 +70,9 @@ export default class ConfirmStep extends React.Component {
         const {
             customerProperties,
             onSubmit,
-            state: { cart, settings },
-            handleSuccessPayment
+            state: { cart, settings, processingCheckout },
+            handleSuccessPayment,
+            handleBack
         } = this.props;
 
 
@@ -159,14 +160,18 @@ export default class ConfirmStep extends React.Component {
                               </div>
                               <div className="columns">
                                 <div className="column">
-                                  <button className="final-step" onClick={this.handleSubmitOrder}>
+                                  <button disabled={processingCheckout} className="final-step" onClick={this.handleSubmitOrder}>
                                     <img src="/assets/images/icons/finalstep_btn.png" alt="" />
                                     Finalizar compra
                                   </button>
                                 </div>
                               </div>
                             </div>
-
+                        </div>
+                        <div className="colums">
+                          <div className="column">
+                            <button onClick={handleBack} className="back-button">Cancelar</button>  
+                          </div>
                         </div>
                     </section>
                 </div>

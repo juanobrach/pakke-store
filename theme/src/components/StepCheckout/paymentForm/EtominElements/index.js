@@ -2,6 +2,8 @@ import React from 'react';
 import PaymentsGatewaySelector from './PaymentsGatewaySelector';
 import CardPaymentForm from './CardPaymentForm';
 import OxxoForm from './OxxoForm';
+import SpeiForm from './SpeiForm';
+
 import api from '../../../../lib/api';
 import axios from 'axios';
 
@@ -19,6 +21,8 @@ export default class EtominElements extends React.Component {
 		this.handleChangePaymentMethod = this.handleChangePaymentMethod.bind(this)
 		this.handleCardPaymentSumbit   = this.handleCardPaymentSumbit.bind(this)
 		this.handleOxxoSubmit          = this.handleOxxoSubmit.bind(this)
+		this.handleSpeiSubmit          = this.handleSpeiSubmit.bind(this)
+
 	}
 
 	handleChangePaymentMethod( event ){
@@ -46,10 +50,21 @@ export default class EtominElements extends React.Component {
 	}
 
 	handleOxxoSubmit(){
-		this.props.updateCart({
-			payment_method_type : 'oxxo'
-		})
-		this.props.onSubmit()
+		if( this.state.etomin != null ){
+			this.props.updateCart({
+				payment_method_type : 'oxxo'
+			})
+			this.props.onSubmit()
+		}
+	}
+
+	handleSpeiSubmit(){
+		if( this.state.etomin != null ){
+			this.props.updateCart({
+				payment_method_type : 'spei'
+			})
+			this.props.onSubmit()			
+		}
 	}
 
 
@@ -84,6 +99,10 @@ export default class EtominElements extends React.Component {
 
 					{ this.state.selectedMethod == 'oxxo' 
 					&& ( <OxxoForm classes={classes} onSubmit={this.handleOxxoSubmit} inProgress={this.state.inProgress}  handleBack={handleBack} />) 
+				}
+
+					{ this.state.selectedMethod == 'spei' 
+					&& ( <SpeiForm classes={classes} onSubmit={this.handleSpeiSubmit} inProgress={this.state.inProgress}  handleBack={handleBack} />) 
 				}
 			</React.Fragment>
 		)
