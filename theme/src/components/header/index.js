@@ -140,6 +140,8 @@ export default class Header extends React.Component {
 			customerProperties
 		} = this.props.state;
 
+		let isLogged = customerProperties !== undefined && Lscache.get('auth_data') !== null ? true : false;
+
 		const classToggle = this.state.mobileMenuIsActive
 			? 'navbar-burger is-hidden-tablet is-active'
 			: 'navbar-burger is-hidden-tablet';
@@ -186,6 +188,11 @@ export default class Header extends React.Component {
 									}
 								/>
 							</div>
+							{ !!isLogged && <div className="column is-4 has-text-right is-flex" style={{justifyContent: 'flex-end', alignItems: 'center'}}>
+															<div>
+																<img src="/assets/images/meses-sin-interes.png" alt="" />
+															</div>
+														</div>}
 						</div>
 						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'.9vw'}}>
 							<div className="column is-9">
