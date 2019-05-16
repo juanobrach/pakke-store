@@ -18,7 +18,7 @@ class FooterMenu extends React.Component {
 	};
 
 	render() {
-		const { title, items, paddingLeft } = this.props;
+		const { title, items } = this.props;
 		let ulItems = null;
 
 		if (items && items.length > 0) {
@@ -30,7 +30,7 @@ class FooterMenu extends React.Component {
 		}
 
 		return (
-			<div className="column is-2" style={{ paddingLeft }}>
+			<div className="column is-3">
 				<div
 					className={
 						'footer-title mobile-padding' +
@@ -159,7 +159,6 @@ export default class Footer extends React.PureComponent {
 
 		const footerMenu = {
 			catalogo:{
-				paddingLeft: '30px',
 				title:'Catálogo',
 				items:[
 					{
@@ -193,7 +192,6 @@ export default class Footer extends React.PureComponent {
 				]
 			},
 			nosotros:{
-				paddingLeft: '40px',
 				title:'Nosotros',
 				items:[
 					{
@@ -223,7 +221,6 @@ export default class Footer extends React.PureComponent {
 				]
 			},
 			ayuda:{
-				paddingLeft: '25px',
 				title:'Ayuda',
 				items:[
 					{
@@ -245,7 +242,6 @@ export default class Footer extends React.PureComponent {
 				]
 			},
 			cuenta:{
-				paddingLeft: '60px',
 				title:'Mi cuenta',
 				items:[
 					{
@@ -371,28 +367,27 @@ export default class Footer extends React.PureComponent {
 										<p style={{fontSize:"13px"}}>Av. Constituyentes 908, Lomas Altas C.P. 11950 CDMX</p>
 									</div>
 								</div>
+								<div className="column is-8">
+									<div className="columns">
+											<FooterMenu
+												title={footerMenu.catalogo.title}
+												items={footerMenu.catalogo.items}
+											/>
+											<FooterMenu
+												title={footerMenu.nosotros.title}
+												items={footerMenu.nosotros.items}
+											/>
+											<FooterMenu
+												title={footerMenu.ayuda.title}
+												items={footerMenu.ayuda.items}
 
-								<FooterMenu
-									title={footerMenu.catalogo.title}
-									items={footerMenu.catalogo.items}
-									paddingLeft={footerMenu.catalogo.paddingLeft}
-								/>
-								<FooterMenu
-									title={footerMenu.nosotros.title}
-									items={footerMenu.nosotros.items}
-									paddingLeft={footerMenu.nosotros.paddingLeft}
-								/>
-								<FooterMenu
-									title={footerMenu.ayuda.title}
-									items={footerMenu.ayuda.items}
-									paddingLeft={footerMenu.ayuda.paddingLeft}
-
-								/>
-								<FooterMenu
-									title={footerMenu.cuenta.title}
-									items={footerMenu.cuenta.items}
-									paddingLeft={footerMenu.cuenta.paddingLeft}
-								/>
+											/>
+											<FooterMenu
+												title={footerMenu.cuenta.title}
+												items={footerMenu.cuenta.items}
+											/>
+										</div>
+								</div>
 							</div>
 						</div>
 						<hr />
