@@ -41,7 +41,7 @@ export default class CartIndicator extends React.PureComponent {
 		return (
 			<span className="cart-button leve-item" onClick={onClick}>
 				<CartIcon cartIsActive={cartIsActive} />
-				<CartCount cart={cart} />
+			{ !cartIsActive &&	<CartCount cart={cart} />}
 			</span>
 		);
 	}

@@ -207,12 +207,12 @@ export default class Header extends React.Component {
 							<div className="column is-3 is-flex" style={{ justifyContent:"flex-end"}}>
 								<div className="is-hidden-mobile is-inline-flex" style={{ alignItems:"flex-end"}}>
 									<div style={{ marginRight:"50px"}}>
-									 <CustomerMenu  
-									 	customerProperties={customerProperties}  
-									 	state={ settings } 
-									 	{...this.props}
-
-									 	/>
+									{ !this.state.cartIsActive  && <CustomerMenu  
+																		 	customerProperties={customerProperties}  
+																		 	state={ settings } 
+																		 	{...this.props}
+									
+																		 	/>}
 									</div>
 									<div>
 										<CartIndicator
