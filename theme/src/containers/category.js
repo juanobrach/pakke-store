@@ -36,9 +36,9 @@ const getFilterPriceSummary = (productFilter, settings) => {
 };
 
 const CategoryHero = ({ categoryDetails, categories, products }) => (
-	<section className="hero is-light">
-		<div className="hero-body" style={{paddingBottom:'15px'}}>
-			<div className="container is-fluid">
+	<section className="hero is-light container is-fluid">
+		<div className="style={{paddingBottom:'15px'}}">
+			<div>
 				<div className="columns">
 					<div className="column">
 						{themeSettings.show_category_breadcrumbs && (
@@ -112,14 +112,14 @@ const CategoryContainer = props => {
 			<CategoryHero categoryDetails={categoryDetails} categories={categories} products={products}/>
 
 			<section className="section section-category">
-				<div className="container">
+				<div className="container is-fluid">
 					<div className="columns">
 						{showFilter === true && (
-							<div className="column is-one-quarter left-sidebar">
+							<div className="column is-3 left-sidebar">
 								<ProductFilter {...props} />
 							</div>
 						)}
-						<div className="column category">
+						<div className="column is-9 category">
 							<ProductList
 								products={products}
 								addCartItem={addCartItem}
@@ -128,9 +128,9 @@ const CategoryContainer = props => {
 								hasMore={productsHasMore}
 								loadingProducts={loadingProducts}
 								loadingMoreProducts={loadingMoreProducts}
-								columnCountOnDesktop="4"
-								columnCountOnWidescreen="4"
-								columnCountOnFullhd="4"
+								columnCountOnDesktop="3"
+								columnCountOnWidescreen="3"
+								columnCountOnFullhd="3"
 								columnCount="12"
 								columnCountOnMobile="1"
 							/>
