@@ -14,6 +14,9 @@ class CardPaymentForm extends React.Component {
     this.handleCardNumerChange = this.handleCardNumerChange.bind(this);
   }
 
+  validateRequired = (value) =>{
+    value && value.length > 0 ? undefined : 'Este campo es requerido';
+  }
   handleCardNumerChange = (event) =>{
     this.props.dispatch(change('CardPaymentForm', 'card_number', event.value ));
   }
@@ -40,6 +43,8 @@ class CardPaymentForm extends React.Component {
                     name="card_number"
                     id="customer.cardNumber"
                     component={InputField}
+                    validate={this.validateRequired()}
+
             />
             <Number
              onChange={this.handleCardNumerChange}
@@ -71,6 +76,7 @@ class CardPaymentForm extends React.Component {
             placeholder="Mes"
             component={InputField}
             type="input"
+            validate={this.validateRequired()}
             />
              <p className="mont-year-exp-separator">/</p>
              <Field
@@ -80,6 +86,7 @@ class CardPaymentForm extends React.Component {
             placeholder="Año"
             component={InputField}
             type="input"
+            validate={this.validateRequired()}
             />
           </div>
           <div className="column is-2">
@@ -91,6 +98,7 @@ class CardPaymentForm extends React.Component {
               placeholder="CVV"
               component={InputField}
               type="input"
+              validate={this.validateRequired()}
               />
           </div>
         </div>

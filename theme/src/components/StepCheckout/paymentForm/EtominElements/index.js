@@ -6,6 +6,7 @@ import SpeiForm from './SpeiForm';
 
 import api from '../../../../lib/api';
 import axios from 'axios';
+import { ToastContainer,toast } from 'react-toastify';
 
 
 export default class EtominElements extends React.Component {
@@ -44,6 +45,30 @@ export default class EtominElements extends React.Component {
 						etomin_card_number: res.data.card
 					})
 					this.props.onSubmit()
+				}else{
+					console.log(res.data)
+					this.setState({
+			      inProgress: false
+			    });
+					let error = res.data.code == 400
+					let errorMessage = "Hemo tenido un error al validar este metodo de pago";
+					switch( error ){
+							case 400:
+							errorMessage = "Estan faltado informacion en al consulta";
+							break;
+							default:
+							errorMessage = res.data.message;
+							break;
+					}
+					toast(errorMessage, {
+						position: "bottom-right",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true
+					});
+
 				}
 			})
 		}
@@ -104,6 +129,17 @@ export default class EtominElements extends React.Component {
 					{ this.state.selectedMethod == 'spei' 
 					&& ( <SpeiForm classes={classes} onSubmit={this.handleSpeiSubmit} inProgress={this.state.inProgress}  handleBack={handleBack} />) 
 				}
+				<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnVisibilityChange
+				draggable
+				pauseOnHover
+				/>
 			</React.Fragment>
 		)
 	}
