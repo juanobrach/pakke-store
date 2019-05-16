@@ -184,8 +184,22 @@
 }
 
 
-.confirm-step hr{
-	margin:0;
+.confirm-step{
+	hr{
+		margin:0;
+	}
+	.checkbox-container{
+		font-size:13px;
+	
+		p{ 
+			color: $gray-light-dark
+		}
+		
+		a{
+			color: $red-cake;
+			text-decoration: underline;
+		}
+	}
 }
 
 

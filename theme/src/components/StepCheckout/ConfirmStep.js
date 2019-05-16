@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+
 import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import * as helper from '../../lib/helper';
@@ -53,7 +54,9 @@ export default class ConfirmStep extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          acceptTerms: false
         }
+        this.handleTerms = this.handleTerms.bind(this);
     }
 
 
@@ -66,7 +69,10 @@ export default class ConfirmStep extends React.Component {
       console.log('handle submit')
       this.props.checkout(this.props.cart);
     }
-
+  
+    handleTerms = () =>{
+      this.setState( prevState => ({acceptTerms: !prevState.acceptTerms }));
+    }
 
 
     render(){
@@ -87,6 +93,10 @@ export default class ConfirmStep extends React.Component {
                     settings={settings}
                 />
             ));
+
+            const isDisabled = this.state.acceptTerms;
+            const classChecked = this.state.acceptTerms ? 'attribute-checked' : '';
+            const classDisabled = isDisabled ? 'attribute-disabled' : '';
 
             return (
                 <div className="confirm-step">
@@ -158,12 +168,21 @@ export default class ConfirmStep extends React.Component {
                               </div>
                               <div className="columns">
                                 <div className="column">
-                                    Acepto los Términos y condiciones
+                                    <label className={'checkbox-container ' +  classChecked + ' ' + classDisabled}>
+                                      <input
+                                        type="checkbox"
+                                        onChange={this.handleTerms}
+                                        checked={this.state.acceptTerms}
+                                      />
+                                      <p>Acepto <Link target="_blank" to="http://help.pakke.mx/terminos-y-condiciones/"> los Términos y condiciones </Link></p>
+                                      <span className="checkmark"></span>
+                                    </label>
+                                    
                                 </div>
                               </div>
                               <div className="columns">
                                 <div className="column">
-                                  <button disabled={processingCheckout} className="final-step" onClick={this.handleSubmitOrder}>
+                                  <button disabled={processingCheckout || !this.state.acceptTerms }  className="final-step" onClick={this.handleSubmitOrder}>
                                     <img src="/assets/images/icons/finalstep_btn.png" alt="" />
                                     Finalizar compra
                                   </button>
@@ -173,7 +192,7 @@ export default class ConfirmStep extends React.Component {
                         </div>
                         <div className="colums">
                           <div className="column">
-                            <button onClick={handleBack} className="back-button">Cancelar</button>  
+                            <button onClick={handleBack} disabled={ this.state.terms} className="back-button">Cancelar</button>  
                           </div>
                         </div>
                     </section>
