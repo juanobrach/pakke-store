@@ -9,10 +9,14 @@ import api from '../../lib/api';
 
 
 const SummaryItem = ({ settings, item }) => {
-    const thumbnail = helper.getThumbnailUrl(
+    let thumbnail = helper.getThumbnailUrl(
         item.image_url,
         themeSettings.cartThumbnailWidth
     );
+
+    if( !thumbnail ){
+      thumbnail = 'http://via.placeholder.com/100x100';
+    }
 
     return (
         <tr>
@@ -22,7 +26,6 @@ const SummaryItem = ({ settings, item }) => {
                       <img
                         className="product-image"
                         src={thumbnail}
-                        alt={item.name}
                         title={item.name}
                       />
                   </NavLink>
