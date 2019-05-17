@@ -114,11 +114,9 @@ const CategoryContainer = props => {
 			<section className="section section-category">
 				<div className="container is-fluid">
 					<div className="columns">
-						{showFilter === true && (
-							<div className="column is-3 left-sidebar">
-								<ProductFilter {...props} />
-							</div>
-						)}
+						<div className="column is-3 left-sidebar">
+							<ProductFilter {...props} />
+						</div>
 						<div className="column is-9 category">
 							<ProductList
 								products={products}
