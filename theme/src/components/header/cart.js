@@ -48,7 +48,7 @@ const CartItem = ({ item, deleteCartItem, settings }) => {
 export default class Cart extends React.PureComponent {
 	render() {
 		const { cart, deleteCartItem, settings, cartToggle } = this.props;
-
+		console.log( cart );
 		if (cart && cart.items && cart.items.length > 0) {
 			const items = cart.items.map(item => (
 				<CartItem
@@ -63,6 +63,14 @@ export default class Cart extends React.PureComponent {
 				<div className="mini-cart">
 					{items}
 					<hr className="separator" />
+					<div className="columns is-mobile is-gapless">
+						<div className="column is-7">
+							<b>IVA</b>
+						</div>
+						<div className="column is-5 has-text-right">
+							<b>{helper.formatCurrency(cart.tax_included_total, settings)}</b>
+						</div>
+					</div>
 					<div className="columns is-mobile is-gapless">
 						<div className="column is-7">
 							<b>{text.subtotal}</b>

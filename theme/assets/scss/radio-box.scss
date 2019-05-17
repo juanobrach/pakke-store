@@ -1,15 +1,15 @@
 .radio-box{
 	display:flex;
-	justify-content: space-between;
 	flex-flow: row wrap;
 	div{
 		height: 39px;
 		line-height: 39px;
+		margin-right:20px;
 		label{
 			border:1px solid $gray-super-light;
 			cursor:pointer;
 			height:39px;
-			font-size:1.1vw;
+			font-size:15px;
 			padding: 10px 14px;
 		}
 		&.checked label{

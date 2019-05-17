@@ -6,6 +6,7 @@ import { themeSettings, text } from '../../lib/settings';
 const Option = ({ option, onChange, selectedOptions }) => {
 	const values = option.values
 		.map((value, index) => {
+			console.log(value)
 			if( option.control == 'radio'){
 				console.log("change")
 				let checked = false;
@@ -60,6 +61,7 @@ const Option = ({ option, onChange, selectedOptions }) => {
 
 const Options = ({ options, onChange, selectedOptions }) => {
 	if (options && options.length > 0) {
+		console.log(options)
 		const items = options.map((option, index) => (
 			<Option key={index} option={option} onChange={onChange} selectedOptions={selectedOptions} />
 		));

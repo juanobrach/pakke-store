@@ -139,7 +139,7 @@ export default class Header extends React.Component {
 			cartlayerBtnInitialized,
 			customerProperties
 		} = this.props.state;
-
+		console.log(cart);
 		let isLogged = customerProperties !== undefined && Lscache.get('auth_data') !== null ? true : false;
 
 		const classToggle = this.state.mobileMenuIsActive

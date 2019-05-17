@@ -12,6 +12,9 @@ import { Redirect } from 'react-router-dom';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector from '@material-ui/core/StepConnector';
+
+
 import Button from '@material-ui/core/Button';
 import StepButton from '@material-ui/core/StepButton';
 import Typography from '@material-ui/core/Typography';
@@ -40,6 +43,31 @@ const styles = theme => ({
   },
   MuiPaper:{
     backgroundColor:'whitesmoke'
+  },
+  MuiStepConnector:{
+    top: '20%',
+    left: 'calc(-40% + 40px)',
+    right: 'calc(40% + 40px)',
+    position: 'absolute',
+    width: '60%',
+  },
+  connectorActive: {
+    '& $connectorLine': {
+      borderColor: '#ff5959',
+    },
+  },
+  connectorCompleted: {
+    '& $connectorLine': {
+      borderColor: '#ff5959',
+    },
+  },
+  connectorDisabled: {
+    '& $connectorLine': {
+      borderColor:'gray',
+    },
+  },
+  connectorLine: {
+    transition: 'all .5s',
   },
   wizardContainer:{
     backgroundColor:'white',
@@ -240,8 +268,8 @@ class StepCheckout extends React.Component {
         }}/>
       );
     }
-
-    const StepIcon = ({ label, color = 'grey', textColor = '#ff5959', activeStep }) => (
+    
+    const StepIcon = ({ label, color = 'gry', textColor = '#ff5959', activeStep }) => (
       <div style={{ position: 'relative', padding: '0 38px'}}>
         {console.log('activeStep', activeStep )}
 
@@ -251,7 +279,7 @@ class StepCheckout extends React.Component {
         }
         {
           label == 'Pago' ?
-            activeStep  == 1 ? <img src="../../../assets/images/checkout-steps/pago.png" alt=""/> : 
+            activeStep  == 1 || activeStep  == 2  ? <img src="../../../assets/images/checkout-steps/pago.png" alt=""/> : 
                                     <img src="../../../assets/images/checkout-steps/pago-off.png" alt=""/>
             :""         
         }
@@ -265,13 +293,23 @@ class StepCheckout extends React.Component {
         <div style={{ color: textColor, 
           lineHeight: '24px', 
           fontFamily:'open_sanssemibold',
-          fontSize:'15px' }}>{label}</div>
+          fontSize:'15px', marginTop:'15px' }}>{label}</div>
       </div>
     );
-
+    const connector = (
+      <StepConnector
+        className={classes.MuiStepConnector}
+        classes={{
+          active: classes.connectorActive,
+          completed: classes.connectorCompleted,
+          disabled: classes.connectorDisabled,
+          line: classes.connectorLine,
+        }}
+      />
+      );
     return (
       <div className={classes.root}>
-          <Stepper className={classes.MuiPaper} activeStep={activeStep} alternativeLabel>
+          <Stepper className={classes.MuiPaper} activeStep={activeStep} connector={connector} alternativeLabel>
               <Step key="Envío">
                 <StepButton
                    icon={<StepIcon label="Envío" activeStep={this.state.activeStep} />}
@@ -280,13 +318,16 @@ class StepCheckout extends React.Component {
               </Step>
               <Step key="Pago">
                 <StepButton
-                   icon={<StepIcon label="Pago" activeStep={this.state.activeStep} />}
+                   icon={<StepIcon label="Pago" activeStep={this.state.activeStep} textColor={ (activeStep == 0 ? 'gray' : '#ff5959') } />}
                    onClick={() => console.log('Clicked') }
                 />
               </Step>
               <Step key="Confirmación">
                 <StepButton
-                   icon={<StepIcon label="Confirmación" activeStep={this.state.activeStep} />}
+                   icon={<StepIcon label="Confirmación" 
+                                   activeStep={this.state.activeStep} 
+                                   textColor={ (activeStep == 0 || activeStep == 1   ? 'gray' : '#ff5959') }
+                                   />}
                    onClick={() => console.log('Clicked') }
                 />
               </Step>

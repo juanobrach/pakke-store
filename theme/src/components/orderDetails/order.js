@@ -82,6 +82,18 @@ export default class Order extends React.Component {
 									<div className="level">
 										<div className="level-left">
 											<p className="level-item">
+												IVA:
+											</p>
+										</div>
+										<div className="level-right">
+											<p className="level-item">
+												{ formatCurrency(data.tax_included_total, settings)}
+											</p>
+										</div>
+									</div>
+									<div className="level">
+										<div className="level-left">
+											<p className="level-item">
 												<strong>Total con IVA:</strong>
 											</p>
 										</div>

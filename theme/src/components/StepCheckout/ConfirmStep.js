@@ -137,7 +137,7 @@ export default class ConfirmStep extends React.Component {
                                 </div>
                                 <div className="column">
                                 <p className="is-pulled-right">
-
+                                  {helper.formatCurrency(cart.tax_included_total, settings)}
                                 </p>
                                 </div>
                               </div>
