@@ -70,6 +70,48 @@
 
 .price-filter {
   margin: 40px 0;
+  .max-field{
+    position:relative;
+    &:after{
+      content:"- -";
+      position:absolute;
+      left: -21%;
+      color: $sub-title-gray;
+      letter-spacing:-1.47px;
+    }
+  }
+  input{
+    width:65px;
+    height:26px;
+    border:1px solid $red-cake;
+    background:transparent;
+    font-family:'open_sansbold';
+    margin-right:29px;
+    font-size: 13px;
+    text-align: center;
+    &::-webkit-input-placeholder{
+      font-family:'open_sansregular';
+      color: $sub-title-gray;
+    }
+  }
+  button{
+    border-radius:100%;
+    background:$red-cake;
+    position:relative;
+    border:none;
+    width:24px;
+    height:24px;
+    &:after{
+      content:'';
+      position:absolute;
+      top:25%;
+      left:33%;
+      background-image:url('/assets/images/icons/arrow-button.png');
+      background-repeat:no-repeat;
+      width:22px;
+      height:22px;
+    }
+  }
 }
 
 .price-filter-range {

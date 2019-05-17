@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 
 import Sort from '../sort';
-import PriceSlider from './priceSlider';
+import PriceSelectors from './priceSelectors';
 import AttributeFilter from './attributeFilter';
 
 export default class ProductFilter extends React.Component {
@@ -64,7 +64,7 @@ export default class ProductFilter extends React.Component {
 								/>
 							</div>
 
-							<PriceSlider
+							<PriceSelectors
 								minPrice={productsMinPrice}
 								maxPrice={productsMaxPrice}
 								minValue={productFilter.priceFrom}
