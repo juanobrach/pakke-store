@@ -44,9 +44,9 @@ const Item = ({
 				product.stock_status
 			}`}
 		>	
-			<article style={{ backgroundColor:"#fff", borderRadius:'10px', padding:'10px'}}>
+			<article style={{ backgroundColor:"#fff", borderRadius:'10px', padding:'10px', minHeight: '200px'}}>
 				<NavLink to={product.path}>
-					<figure className="image" style={{ height: imageHeight }}>
+					<figure className="image" style={{ minHeight: '200px' }}>
 						<ItemTags tags={product.tags} />
 						<ItemImage
 							images={product.images}
