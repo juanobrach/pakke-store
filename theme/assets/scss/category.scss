@@ -101,6 +101,7 @@
     border:none;
     width:24px;
     height:24px;
+    cursor:pointer;
     &:after{
       content:'';
       position:absolute;
@@ -187,6 +188,16 @@
 }
 .section-category{
   .product-item-column{
+  }
+}
+
+.price-list-filter{
+  line-height: 23px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #333333;
+  p{
+    cursor:pointer;
   }
 }
 

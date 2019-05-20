@@ -35,7 +35,8 @@ export default class ProductFilter extends React.Component {
 			productFilter,
 			productsMinPrice,
 			productsMaxPrice,
-			productsAttributes
+			productsAttributes,
+			products
 		} = this.props.state;
 
 		return (
@@ -71,6 +72,7 @@ export default class ProductFilter extends React.Component {
 								maxValue={productFilter.priceTo}
 								setPriceFromAndTo={this.props.setPriceFromAndTo}
 								settings={settings}
+								products={products}
 							/>
 
 							<AttributeFilter

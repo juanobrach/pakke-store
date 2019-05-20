@@ -41,12 +41,10 @@ const CategoryHero = ({ categoryDetails, categories, products }) => (
 			<div>
 				<div className="columns">
 					<div className="column">
-						{themeSettings.show_category_breadcrumbs && (
-							<CategoryBreadcrumbs
-								currentCategory={categoryDetails}
-								categories={categories}
-							/>
-						)}
+						<CategoryBreadcrumbs
+							currentCategory={categoryDetails}
+							categories={categories}
+						/>
 					</div>
 					<div className="column">
 						<ShareButtons shareUrl={categoryDetails.url} pageDescription={categoryDetails.name} />
