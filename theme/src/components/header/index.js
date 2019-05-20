@@ -188,11 +188,11 @@ export default class Header extends React.Component {
 									}
 								/>
 							</div>
-							{ !!isLogged && <div className="column is-4 has-text-right is-flex" style={{justifyContent: 'flex-end', alignItems: 'center'}}>
-															<div>
-																<img src="/assets/images/meses-sin-interes.png" alt="" />
-															</div>
-														</div>}
+							<div className="column is-4 has-text-right is-flex" style={{justifyContent: 'flex-end', alignItems: 'center'}}>
+									<div>
+										<img src="/assets/images/meses-sin-interes.png" alt="" />
+									</div>
+							</div>
 						</div>
 						<div className="columns is-gapless" style={{alignItems:'flex-end', justifyContent:'space-between', marginTop:'.9vw', paddingBottom:'10px'}}>
 							<div className="column is-9">
