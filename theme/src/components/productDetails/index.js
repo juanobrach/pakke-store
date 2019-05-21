@@ -117,8 +117,8 @@ export default class ProductDetails extends React.Component {
 			return (
 				<Fragment>
 					<section className="section-product">
-						<div className="container is-fluid">
-							<div className="columns">
+						<div className="container is-widescreen">
+							<div className="columns is-text-centered">
 								<div className="column">
 								{themeSettings.show_product_breadcrumbs && (
 									<Breadcrumbs product={product} categories={categories} />
@@ -175,7 +175,7 @@ export default class ProductDetails extends React.Component {
 					</section>
 
 					<section className="section-product-description">
-						<div className="container is-fluid">
+						<div className="container is-widescreen">
 							<div className="content">
 								<div className="columns">
 									<div className="column is-7">

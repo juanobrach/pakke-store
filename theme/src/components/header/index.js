@@ -152,7 +152,7 @@ export default class Header extends React.Component {
 				<header
 					className={this.state.mobileSearchIsActive ? 'search-active' : ''}
 				>
-					<div className="container is-fluid">
+					<div className="container is-widescreen">
 						<div className="columns is-gapless is-mobile header-container">
 							<div className="column is-4 column-burger is-hidden-tablet">
 								{!showBackButton && (

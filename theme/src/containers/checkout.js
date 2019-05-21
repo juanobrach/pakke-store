@@ -32,7 +32,7 @@ const CheckoutContainer = props => {
 			/>
 
 			<section className="section section-checkout">
-				<div className="container is-fluid">
+				<div className="container is-widescreen">
 					<StepCheckout {...props} />
 				</div>
 			</section>

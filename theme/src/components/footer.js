@@ -271,7 +271,7 @@ export default class Footer extends React.PureComponent {
 			<section className="section-footer">
 				<hr />
 				<div className="payments-methods">
-					<div className="container is-fluid">
+					<div className="container is-widescreen">
 						<div className="level">
 						{	paymentMethods.map( (paymentMethod, index ) => {
 								return <div className="level-item has-text-centered" key={index}><img src={ paymentMethod.img} alt={ paymentMethod.alt } /> </div>
@@ -281,7 +281,7 @@ export default class Footer extends React.PureComponent {
 					</div>
 				</div>
 				<div className="customer-help-contact footer">
-					<div className="container is-fluid">
+					<div className="container is-widescreen">
 						<div className="content">
 							<div className="columns is-centered">
 								<div className="column is-three-fifths is-offset-1">
@@ -352,7 +352,7 @@ export default class Footer extends React.PureComponent {
 					</div>
 				</div>
 				<footer className="footer-bg">
-					<div className="container is-fluid">
+					<div className="container is-widescreen">
 						<div className="content">
 							<div className="columns">
 								<div className="column is-4">

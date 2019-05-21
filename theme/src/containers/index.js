@@ -51,7 +51,7 @@ const IndexContainer = props => {
 			{pageDetails.content &&
 				pageDetails.content.length > 10 && (
 					<section>
-						<div className="container is-fluid">
+						<div className="container is-widescreen">
 							<div className="content">
 								<div
 									dangerouslySetInnerHTML={{
@@ -64,7 +64,7 @@ const IndexContainer = props => {
 				)}
 
 			<section className="section" style={{paddingTop:'40px'}}>
-				<div className="container is-fluid">
+				<div className="container is-widescreen">
 					<section style={{paddingTop:'30px'}} >
 						<div className="title is-4">
 						 	Categorías
@@ -95,7 +95,7 @@ const IndexContainer = props => {
 							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
-							columnCount={5}
+							columnCount={12}
 						/>
 					</section>
 					<section style={{ marginTop:'30px'}}>
@@ -139,7 +139,7 @@ const IndexContainer = props => {
 							limit={5}
 							settings={settings}
 							addCartItem={addCartItem}
-							columnCount={5}
+							columnCount={12}
 						/>
 					</section>
 				</div>

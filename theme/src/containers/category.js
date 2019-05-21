@@ -36,7 +36,7 @@ const getFilterPriceSummary = (productFilter, settings) => {
 };
 
 const CategoryHero = ({ categoryDetails, categories, products }) => (
-	<section className="hero is-light container is-fluid">
+	<section className="hero is-light container is-widescreen">
 		<div className="style={{paddingBottom:'15px'}}">
 			<div>
 				<div className="columns">
@@ -110,7 +110,7 @@ const CategoryContainer = props => {
 			<CategoryHero categoryDetails={categoryDetails} categories={categories} products={products}/>
 
 			<section className="section section-category">
-				<div className="container is-fluid">
+				<div className="container is-widescreen">
 					<div className="columns">
 						<div className="column is-3 left-sidebar">
 							<ProductFilter {...props} />

@@ -11,7 +11,7 @@ const OrderDetailsContainer = props => {
 	return (
 		<Fragment>
 			<section className="section">
-				<div className="container is-fluid">
+				<div className="container is-widescreen">
 					<div className="content">
 						<OrderDetails {...props} />
 					</div>

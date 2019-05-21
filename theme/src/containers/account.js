@@ -11,7 +11,7 @@ const AccountContainer = props => {
 	return (
 		<Fragment>
 			<section className="section">
-				<div className="container is-fluid">
+				<div className="container is-widescreen">
 					<div className="content">
 						<Account {...props} />
 					</div>
