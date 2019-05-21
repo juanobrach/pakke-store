@@ -287,12 +287,9 @@ export default class Footer extends React.PureComponent {
 								<div className="column is-three-fifths is-offset-1">
 									<div className="level-item has-text-centered">
 										<div>
-											<p>
-												<strong style={{fontFamily:'open_sansbold', color:'#4d4d4d',fontSize:'22px'}}>24 / 7</strong>
-											</p>
 											<p style={{color:'#4d4d4d'}}>
-											Despreocúpate, si tienes dudas, no puedes generar una compra, problemas en un pedido
-											ó simplemente quieres hablar con nosotros, estamos siempre para atenderte.
+											Despreocúpate, si tienes dudas, no puedes generar una compra, problemas en un pedido,
+											estamos siempre para atenderte.
 											</p>
 										</div>
 									</div>
