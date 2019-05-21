@@ -8,6 +8,7 @@ const FormattedCurrency = ({ number, settings }) =>
 const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
 	<div className="product-price">
 		<span className="product-new-price">
+			Precio
 			<FormattedCurrency settings={settings} number={newPrice} />
 		</span>
 		<del className="product-old-price">

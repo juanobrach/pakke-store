@@ -118,11 +118,9 @@ export default class ProductDetails extends React.Component {
 				<Fragment>
 					<section className="section-product">
 						<div className="container is-widescreen">
-							<div className="columns is-text-centered">
+							<div className="columns">
 								<div className="column">
-								{themeSettings.show_product_breadcrumbs && (
-									<Breadcrumbs product={product} categories={categories} />
-								)}
+								<Breadcrumbs product={product} categories={categories} />
 								</div>
 								<div className="column">
 									<ShareButtons shareUrl={shareUrl} pageDescription={product.meta_description} />
