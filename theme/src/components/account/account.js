@@ -352,6 +352,9 @@ class Account extends React.Component {
 					</li>
 				)
 			};
+			if( orders.length <= 0 ){
+				orders.push(<li>Aun no tienes pedidos</li>)
+			}
 
 			const addresses_container = [];
 			for (var i in addresses ) {
