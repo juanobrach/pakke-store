@@ -127,10 +127,10 @@ export default class ProductDetails extends React.Component {
 								</div>
 							</div>
 							<div className="columns">
-								<div className="column is-7">
+								<div className="column is-6">
 									<Gallery images={product.images} />
 								</div>
-								<div className="column is-5">
+								<div className="column is-6">
 									<div className="content">
 										<Tags tags={product.tags} />
 										<h1 className="title is-4 product-name">{product.name}</h1>
