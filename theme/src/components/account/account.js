@@ -428,7 +428,7 @@ class Account extends React.Component {
 												<img src="/assets/images/icons/delivery-truck.png" alt="" />
 											</div>
 											<div className="column is-11">
-												<button className="btn-account">
+												<button className="btn-account"  onClick={ ()=> { this.handleOpenModal('address') } }>
 													<p>	
 														<span>
 															<img src="/assets/images/icons/add-icon.png" alt="" />
@@ -446,6 +446,9 @@ class Account extends React.Component {
 						  <div className="modal-background"></div>
 						  <div className="modal-content">
 						  	{ this.state.modalContent == 'contact' &&
+									<AddressForm  handleCloseModal={this.handleCloseModal} customerProperties={customerProperties} addCustomerAddress={addCustomerAddress} />
+						  	}
+						  	{ this.state.modalContent == 'address' &&
 									<AddressForm  handleCloseModal={this.handleCloseModal} customerProperties={customerProperties} addCustomerAddress={addCustomerAddress} />
 						  	}
 						  </div>
