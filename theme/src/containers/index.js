@@ -11,6 +11,8 @@ const IndexContainer = props => {
 		state: { pageDetails, settings, categories }
 	} = props;
 
+	console.log(props)
+
 	const slider_pictures = [
 		{
 			image: '/assets/images/slider/slider_1.png',
@@ -102,32 +104,14 @@ const IndexContainer = props => {
 						<div className="title is-4">
 							Paquete de cajas
 						</div>
-						<div className="columns is-gapless">
-							<div className="column boxes-pack">
-								<div className="columns">
-									<div className="column is-offset-6">
-									 	<p>
-									 	Paquetes de 500 
-									 	cajas de cartón 
-									 	sin membrete
-									 	</p>
-									 	<button className="button-view-more">Ver más</button>
-									</div>
-								</div>
-							</div>
-							<div className="column boxes-pack">
-								<div className="columns">
-									<div className="column is-offset-6">
-									 	<p>
-									 	Paquetes de 500 
-									 	cajas de cartón 
-									 	sin membrete
-									 	</p>
-									 	<button className="button-view-more">Ver más</button>
-									</div>
-								</div>
-							</div>
-						</div>
+						<CustomProducts
+							is_pack={true}
+							sort={themeSettings.home_products_sort}
+							limit={2}
+							settings={settings}
+							addCartItem={addCartItem}
+							columnCount={12}
+						/>
 					</section>
 					<section style={{ marginTop:'30px'}}>
 						<div className="title is-4">

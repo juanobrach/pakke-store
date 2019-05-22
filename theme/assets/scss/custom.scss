@@ -25,17 +25,32 @@ hmtl,body{
 }
 
 .boxes-pack{
-	background-image: url(/assets/images/pack_of_box.png);
-	background-size: cover;
-	background-repeat: no-repeat;
 	height:254px;
-	.columns .column{
-		padding:2em;
-		p{
-			font-size: 22px;
-			line-height: 36px;
-			color: #4d4d4d;
-			margin-bottom:27px;
+	> div{ 
+		display:flex;
+		background: white;
+		border-radius:10px;
+		> div {
+			width:50%;
+			padding:2em;
+			position:relative;
+			overflow:hidden;
+			p{
+				font-size: 22px;
+				line-height: 36px;
+				color: #4d4d4d;
+				margin-bottom:27px;
+				font-family:'open_sansregular';
+			}
+			img{
+				position:absolute;
+				top:-10%;
+				left: -10%;
+				overflow: hidden;
+			}
+			button{
+				cursor:pointer;
+			}
 		}
 	}
 }

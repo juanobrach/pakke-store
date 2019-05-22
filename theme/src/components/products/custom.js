@@ -12,6 +12,7 @@ export default class CustomProducts extends React.Component {
 		sort: PropTypes.string,
 		limit: PropTypes.number.isRequired,
 		category_id: PropTypes.string,
+		category_slug: PropTypes.string,
 		tags: PropTypes.string,
 		attributes: PropTypes.arrayOf(
 			PropTypes.shape({
@@ -19,6 +20,7 @@ export default class CustomProducts extends React.Component {
 				value: PropTypes.string.isRequired
 			})
 		),
+		is_pack: PropTypes.bool,
 		price_from: PropTypes.number,
 		price_to: PropTypes.number,
 		on_sale: PropTypes.bool,
@@ -35,9 +37,11 @@ export default class CustomProducts extends React.Component {
 
 	static defaultProps = {
 		ids: null,
+		is_pack: null,
 		sku: null,
 		sort: null,
 		category_id: null,
+		category_slug: null,
 		tags: null,
 		attributes: null,
 		price_from: null,
@@ -73,8 +77,10 @@ export default class CustomProducts extends React.Component {
 		ids,
 		sku,
 		sort,
+		is_pack,
 		limit,
 		category_id,
+		category_slug,
 		tags,
 		attributes,
 		price_from,
@@ -86,13 +92,15 @@ export default class CustomProducts extends React.Component {
 			sku,
 			tags,
 			on_sale,
+			is_pack,
 			search: null,
 			category_id,
+			category_slug,
 			price_from,
 			price_to,
 			sort,
 			fields:
-				'path,id,name,category_id,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags',
+				'path,id,name,category_id,category_slug,is_pack,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags',
 			limit: limit || 4,
 			offset: 0
 		};
@@ -101,7 +109,8 @@ export default class CustomProducts extends React.Component {
 			attributes.forEach(attr => {
 				filter[`attributes.${attr.name}`] = attr.value;
 			});
-		}
+		}	
+
 
 		api.ajax.products
 			.list(filter)
@@ -126,7 +135,8 @@ export default class CustomProducts extends React.Component {
 			columnCountOnDesktop,
 			columnCountOnWidescreen,
 			columnCountOnFullhd,
-			columnCount
+			columnCount,
+			is_pack
 		} = this.props;
 
 		const { products } = this.state;
@@ -146,6 +156,7 @@ export default class CustomProducts extends React.Component {
 				isCentered={isCentered}
 				className={className}
 				columnCount={columnCount}
+				is_pack={is_pack}
 			/>
 		);
 	}

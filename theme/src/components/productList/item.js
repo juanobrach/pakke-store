@@ -17,7 +17,8 @@ const Item = ({
 	columnCountOnDesktop = columnCountOnDesktop ||  5,
 	columnCountOnWidescreen = columnCountOnWidescreen || 5,
 	columnCountOnFullhd = columnCountOnFullhd || 2,
-	columnCount
+	columnCount,
+	is_pack
 }) => {
 	const _columnCount = columnCount || 5;
 
@@ -38,7 +39,32 @@ const Item = ({
 			? themeSettings.list_image_max_height
 			: 200;
 
+
+	let product_pack = <div className="column boxes-pack">
+												<div className="">
+													<div className="">
+														<ItemImage
+															images={product.images}
+															productName={product.name}
+															height={placeholderHeight}
+														/>
+													</div>
+													<div className="">
+													 	<p>
+													 	{product.name}
+													 	</p>
+													 	<NavLink to={product.path}>
+													 		<button className="button-view-more">Ver más</button>
+													 	</NavLink>
+													</div>
+												</div>
+											</div>
+
+	if( is_pack ){
+		return ( product_pack )
+	}else{
 	return (
+
 		<div
 			className={`product-item-column column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
 				product.stock_status
@@ -63,6 +89,10 @@ const Item = ({
 			</article>
 		</div>
 	);
+
+	}
+
+
 };
 
 export default Item;

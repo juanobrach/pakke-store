@@ -18,7 +18,8 @@ const ProductList = ({
 	columnCountOnDesktop,
 	columnCountOnWidescreen,
 	columnCountOnFullhd,
-	columnCount
+	columnCount,
+	is_pack
 }) => {
 	const items = products
 		? products.map(product => (
@@ -33,6 +34,7 @@ const ProductList = ({
 					columnCountOnWidescreen={columnCountOnWidescreen}
 					columnCountOnFullhd={columnCountOnFullhd}
 					columnCount={columnCount}
+					is_pack={is_pack}
 				/>
 		  ))
 		: null;
