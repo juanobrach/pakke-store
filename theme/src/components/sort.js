@@ -21,10 +21,10 @@ const Sort = ({ defaultSort, currentSort, setSort }) => (
 							<option value="name">{text.sortAlphabet}</option>
 							<option value={defaultSort}>{text.sortFavorite}</option>
 							<option value={themeSettings.sortNewest}>{text.sortNewest}</option>
-							<option value={themeSettings.sortPriceLow}>
+							<option value={"price"}>
 								{text.sortPriceLow}
 							</option>
-							<option value={themeSettings.sortPriceHigh}>
+							<option value={"-price"}>
 								{text.sortPriceHigh}
 							</option>
 						</select>
