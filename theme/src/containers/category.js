@@ -10,6 +10,7 @@ import ShareButtons from '../components/shareButtons';
 
 import * as helper from '../lib/helper';
 
+let listType = "grid";
 const getFilterAttributesSummary = productFilter => {
 	let attributesSummary = '';
 	if (productFilter.attributes) {
@@ -34,6 +35,8 @@ const getFilterPriceSummary = (productFilter, settings) => {
 	}
 	return priceSummary;
 };
+
+
 
 const CategoryHero = ({ categoryDetails, categories, products }) => (
 	<section className="hero is-light container is-widescreen">
@@ -66,6 +69,7 @@ CategoryHero.propTypes = {
 const CategoryContainer = props => {
 	const {
 		setSort,
+		setCurrentView,
 		addCartItem,
 		loadMoreProducts,
 		getJSONLD,
@@ -78,9 +82,17 @@ const CategoryContainer = props => {
 			productsHasMore,
 			categories,
 			loadingProducts,
-			loadingMoreProducts
+			loadingMoreProducts,
+			currentGrid
 		}
 	} = props;
+	
+	console.log('props', props )
+	const changeLayout = ( layoutType )=>{
+		console.log( 'layoutType', layoutType );
+		props.setCurrentView( layoutType )
+
+	}
 	const filterAttributesSummary = getFilterAttributesSummary(productFilter);
 	const filterPriceSummary = getFilterPriceSummary(productFilter, settings);
 
@@ -113,7 +125,7 @@ const CategoryContainer = props => {
 				<div className="container is-widescreen">
 					<div className="columns">
 						<div className="column is-3 left-sidebar">
-							<ProductFilter {...props} />
+							<ProductFilter {...props} changeLayout={changeLayout} />
 						</div>
 						<div className="column is-9 category">
 							<ProductList
@@ -129,6 +141,7 @@ const CategoryContainer = props => {
 								columnCountOnFullhd="3"
 								columnCount="12"
 								columnCountOnMobile="1"
+								listType={currentGrid}
 							/>
 						</div>
 					</div>

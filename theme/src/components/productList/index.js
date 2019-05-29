@@ -19,11 +19,13 @@ const ProductList = ({
 	columnCountOnWidescreen,
 	columnCountOnFullhd,
 	columnCount,
-	is_pack
+	is_pack,
+	listType
 }) => {
 	const items = products
-		? products.map(product => (
-				<Item
+		? products.map(product => {
+
+				return ( <Item
 					key={product.id}
 					product={product}
 					addCartItem={addCartItem}
@@ -35,8 +37,9 @@ const ProductList = ({
 					columnCountOnFullhd={columnCountOnFullhd}
 					columnCount={columnCount}
 					is_pack={is_pack}
-				/>
-		  ))
+					listType={listType}
+				/> )
+		  })
 		: null;
 
 	return (

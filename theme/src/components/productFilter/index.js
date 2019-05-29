@@ -62,6 +62,7 @@ export default class ProductFilter extends React.Component {
 									defaultSort={settings.default_product_sorting}
 									currentSort={productFilter.sort}
 									setSort={this.props.setSort}
+									changeLayout={this.props.changeLayout}
 								/>
 							</div>
 

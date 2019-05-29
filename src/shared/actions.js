@@ -291,6 +291,17 @@ export const setSort = sort => (dispatch, getState) => {
 	dispatch(fetchProducts());
 };
 
+
+const setCurrentView = grid => ({
+	type: t.SET_CURRENT_VIEW,
+	grid
+});
+
+export const setGridView = grid => (dispatch, getState) => {
+	dispatch(setCurrentView(grid));
+};
+
+
 const setProductsFilter = filter => ({
 	type: t.SET_PRODUCTS_FILTER,
 	filter: filter

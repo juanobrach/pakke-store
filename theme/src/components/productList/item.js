@@ -18,7 +18,8 @@ const Item = ({
 	columnCountOnWidescreen = columnCountOnWidescreen || 5,
 	columnCountOnFullhd = columnCountOnFullhd || 2,
 	columnCount,
-	is_pack
+	is_pack,
+	listType
 }) => {
 	const _columnCount = columnCount || 5;
 
@@ -63,12 +64,15 @@ const Item = ({
 	if( is_pack ){
 		return ( product_pack )
 	}else{
+
+	console.log( 'prod', listType )
 	return (
 
 		<div
 			className={`product-item-column column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
 				product.stock_status
 			}`}
+			style={{ width: ( listType == 'list' ? '100%' : '') }}
 		>	
 			<article style={{ backgroundColor:"#fff", borderRadius:'10px', padding:'10px', minHeight: '200px'}}>
 				<NavLink to={product.path}>

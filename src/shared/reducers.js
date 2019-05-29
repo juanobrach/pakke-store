@@ -108,6 +108,9 @@ const appReducer = (state = initialState, action) => {
 		case t.SET_CURRENT_CATEGORY:
 			return Object.assign({}, state, { categoryDetails: action.category });
 
+		case t.SET_CURRENT_VIEW:
+			return Object.assign({}, state, { currentGrid: action.grid });
+
 		case t.SET_PRODUCTS_FILTER:
 			return Object.assign({}, state, {
 				productFilter: Object.assign({}, state.productFilter, action.filter)

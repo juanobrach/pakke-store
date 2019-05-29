@@ -20,7 +20,8 @@ import {
 	registerUser,
 	cartLayerInitialized,
 	forgotPassword,
-	resetPassword
+	resetPassword,
+	setGridView
 } from './actions';
 
 const setQuery = (history, query) => {
@@ -41,6 +42,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		addCartItem: item => {
 			dispatch(addCartItem(item));
+		},
+		setCurrentView: viewType =>{
+			dispatch( setGridView( viewType ) )
 		},
 		deleteCartItem: item_id => {
 			dispatch(deleteCartItem(item_id));
