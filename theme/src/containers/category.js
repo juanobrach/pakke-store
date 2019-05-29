@@ -39,14 +39,14 @@ const CategoryHero = ({ categoryDetails, categories, products }) => (
 	<section className="hero is-light container is-widescreen">
 		<div className="style={{paddingBottom:'15px'}}">
 			<div>
-				<div className="columns">
-					<div className="column">
+				<div className="columns is-marginless">
+					<div className="column is-paddingless">
 						<CategoryBreadcrumbs
 							currentCategory={categoryDetails}
 							categories={categories}
 						/>
 					</div>
-					<div className="column">
+					<div className="column is-paddingless">
 						<ShareButtons shareUrl={categoryDetails.url} pageDescription={categoryDetails.name} />
 					</div>
 				</div>

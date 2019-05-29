@@ -50,7 +50,7 @@ class ShippingStep extends React.Component {
 		console.log( addresses );
 		return(
 			<div className="shipping-step">
-				<section>
+				<section style={{ overflow:'hidden'}}>
 					<h3>
 						Dirección más reciente
 					</h3>

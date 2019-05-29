@@ -13,8 +13,9 @@ header {
   }
 
 .logo-image img {
-  max-height: 80px;
-  max-width: 100%;
+  max-height: 45px;
+  height: 45px;
+  width:114px;
   margin: 0 auto;
 }
 
@@ -76,9 +77,7 @@ header {
     height: 6.25rem;
   }
 
-  header .logo-image img {
-    max-height: 3.25rem;
-  }
+
 
   .cart-button {
     margin: 0 1.2rem;
@@ -310,11 +309,12 @@ body.search-active .mobile-nav {
     background-color:#e5e5e5;
     position:absolute;
     right: 80px;
-  }
+  };
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
 }
 
 .search-box.has-focus {
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
 }
 
 .search-icon-search, .search-icon-clear {

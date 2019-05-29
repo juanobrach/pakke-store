@@ -1,6 +1,7 @@
 .radio-box{
 	display:flex;
 	flex-flow: row wrap;
+	justify-content: left;
 	div{
 		height: 39px;
 		line-height: 39px;

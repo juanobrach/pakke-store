@@ -27,7 +27,7 @@ import ConfirmStep from './ConfirmStep';
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    width: '100%',
     background:'transparent'
   },
   backButton: {

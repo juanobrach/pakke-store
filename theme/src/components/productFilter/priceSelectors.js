@@ -101,7 +101,7 @@ export default class PriceSelectors extends React.Component {
 
 		return (
 			<div className="price-filter">
-				<div className="attribute-title">{text.price}</div>
+				<div className="attribute-title" style={{ marginBottom:'0'}}>{text.price}</div>
 				{ this.rangePriceSelector(products, minPrice, maxPrice) }
 				<div className="is-flex min-max-value">
 					<div className="min-field">

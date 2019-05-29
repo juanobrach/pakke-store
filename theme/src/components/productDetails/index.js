@@ -180,9 +180,6 @@ export default class ProductDetails extends React.Component {
 										<h3>Descripción del producto</h3>
 										<Description description={product.description} />
 									</div>
-									<div className="column is-5">
-										<Attributes attributes={product.attributes} />
-									</div>
 								</div>
 							</div>
 						</div>
