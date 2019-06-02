@@ -5,7 +5,7 @@ import SepomexField from '../../SepomexField.js';
 import NumberComponent from '../../NumberComponent.js';
 import CvcComponent from '../../CvcComponent.js';
 import {Button} from 'antd';
-
+import moment from 'moment';
 
 
 import { Number, Cvc, Expiration } from "react-credit-card-primitives";
@@ -36,11 +36,58 @@ class CardPaymentForm extends React.Component {
     }
   }
 
+  getYears = ()=>{
+    const actualYear = moment().format('YY'); 
+    const years = [];
+    
+    let acumulator = actualYear;
+    for (var i = 0; i <= 20 ; i++) {
+      years.push(
+        {
+          value: acumulator,
+          text: `20${acumulator}`,
+        }
+      );
+      acumulator++
+    }
+    return years;
+  }
+
+  getMonts = ()=>{
+    const start = 1; 
+    const months = [];
+    
+    let acumulator = start;
+    for (var i = 0; i <= 11 ; i++) {
+      
+      
+      let val = ( acumulator < 10 ? `0${acumulator}` : acumulator );
+      months.push(
+        {
+          value: val,
+          text: val,
+        }
+      );
+      acumulator++
+    }
+    return months;
+  }
+
 
 
   render(){
     const { inProgress, handleSubmit, handleBack, classes } = this.props;
     const submit = this.submit;
+    const years = this.getYears();
+    const months = this.getMonts();
+      
+
+
+
+
+    
+
+
     return (
       <form onSubmit={handleSubmit} className={"card-payment-form"}>
         <div className='columns'>
@@ -74,7 +121,7 @@ class CardPaymentForm extends React.Component {
             placeholder="Mes"
             label={"Mes"}
             component={SepomexField}
-            data={[{value:'01', text:'01'},{value:'02', text:'02'}]}
+            data={months}
             showArrow={true}
             validate={this.validateRequired()}
             />
@@ -86,7 +133,7 @@ class CardPaymentForm extends React.Component {
             placeholder="Año"
             label={"Año"}
             component={SepomexField}
-            data={[{value:'20', text:'20'},{value:'21', text:'2021'}]}
+            data={years}
             validate={this.validateRequired()}
             showArrow={true}
             />
