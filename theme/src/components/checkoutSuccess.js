@@ -138,6 +138,7 @@ const CheckoutSuccess = ({
 							</p>
 						}
 						{ transaction.order_type == 'SPEI' && 
+							<React.Fragment>
 							<p>
 								Recuerda que para finalizar el pago deberas depositar a la cuenta <span><strong>{transaction.deposit_account}</strong></span> un total de  <span>{ helper.formatCurrency(order.grand_total, settings)  }</span>
 							</p>
@@ -148,6 +149,7 @@ const CheckoutSuccess = ({
 
 							  <li>3.- Listo, espera a que el Pakke libere tu pedido</li>
 							</ul>
+							</React.Fragment>
 						}
 						<p>
 							el núm. de folio de la compra es: <span> {order.number} </span>
