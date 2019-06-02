@@ -4,6 +4,8 @@ import InputField from '../../inputField';
 import SepomexField from '../../SepomexField.js';
 import NumberComponent from '../../NumberComponent.js';
 import CvcComponent from '../../CvcComponent.js';
+import {Button} from 'antd';
+
 
 
 import { Number, Cvc, Expiration } from "react-credit-card-primitives";
@@ -84,7 +86,7 @@ class CardPaymentForm extends React.Component {
             placeholder="Año"
             label={"Año"}
             component={SepomexField}
-            data={[{value:'2019', text:'2019'},{value:'2020', text:'2020'}]}
+            data={[{value:'20', text:'20'},{value:'21', text:'2021'}]}
             validate={this.validateRequired()}
             showArrow={true}
             />
@@ -107,10 +109,12 @@ class CardPaymentForm extends React.Component {
             <button onClick={handleBack} className="back-button">Cancelar</button>  
           </div>
           <div className="column">
-            <button type="submit" 
+            <Button
+              onClick={handleSubmit}
               className="is-pulled-right"
               disabled={inProgress}
-              >Agregar este nuevo método</button>
+              loading={inProgress}
+              >Agregar este nuevo método</Button>
           </div>
         </div>
       </form>

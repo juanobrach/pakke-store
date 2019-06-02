@@ -116,6 +116,13 @@ class StepCheckout extends React.Component {
     super(props);
     props.loadShippingMethods();
     props.loadPaymentMethods();
+    let customerProperties = props.state.customerProperties;  
+    if( customerProperties != undefined &&  customerProperties.customer_settings ){ 
+      props.updateCart({  
+        customer_id: customerProperties.customer_settings.id, 
+        email: customerProperties.customer_settings.email 
+      })  
+    }
   }
 
   state = {
@@ -140,19 +147,7 @@ class StepCheckout extends React.Component {
     });
   };
 
-  componentDidUpdate( prevProps, prevState ){
-    console.log( 'prevProps', prevProps);
-    let customerProperties = prevProps.customerProperties;
-    let actualCustomer     = this.props.customerProperties;
 
-    if( customerProperties != undefined &&  customerProperties.customer_settings ){
-      props.updateCart({
-        customer_id: customerProperties.customer_settings.id,
-        email: customerProperties.customer_settings.email
-      })
-    }
-
-  }
 
   componentDidMount() {
     this.props.customerData({

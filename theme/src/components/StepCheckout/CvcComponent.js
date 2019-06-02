@@ -20,7 +20,6 @@ const CvcComponent = field => {
 			{field.label}
 		</label>
 		<Cvc
-      masked={true}
 			{...field.input}
 		 onChange={field.handleChange}
 		 render={ ({ value, valid, type, getInputProps }) => {

@@ -24,6 +24,7 @@ export default class Order extends React.Component {
 		console.log( data );
 
 		let transaction = data.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
+		let transaction_type = transaction.order_type.toLowerCase()
 		return (
 			<React.Fragment>
 					<nav className="breadcrumb is-small" aria-label="breadcrumbs" style={{marginTop:'17px'}}>
@@ -109,31 +110,31 @@ export default class Order extends React.Component {
 							<ul className="box-container">
 								<li className="payment-method">
 									<div className="columns is-vcentered">
-										<div className="column is-1" style={{ marginRight: '2em'}}>
+										<div className="column is-2" >
 											<div style={{ display:'flex', alignItems:'center', borderRadius:'5px', backgroundColor:'#f2f2f2', textAlign:'center', width:'70px', height:'50px'}}>
 												<div>
 													{
-														transaction.order_type == 'VISA' ?
+														transaction_type == 'visa' ?
 															<img src="/assets/images/payment/visa.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
 													}
 
 
-													{	transaction.order_type == 'MASTERCARD' ?
+													{	transaction_type == 'mastercard' ?
 																											<img src="/assets/images/payment/mastercard.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
 													}
-													{	transaction.order_type == 'AMEX' ?
+													{	transaction_type == 'amex' ?
 																											<img src="/assets/images/payment/american_express.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
 													}
-													{	transaction.order_type == 'oxxo' ?
+													{	transaction_type == 'oxxo' ?
 																											<img src="/assets/images/payment/oxxo.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
 													}
-													{transaction.order_type == 'SPEI' ?
+													{transaction_type == 'spei' ?
 															<img src="/assets/images/payment/spei.png"  style={{ marginTop:'4px', width:'41px'}} alt=""/> : ''
 													}
 												</div>
 											</div>
 										</div>
-										<div className="is-11">
+										<div className="is-11" style={{ marginLeft: '.5em'}}>
 											<p><strong>{transaction.order_type} {data.etomin_card_number}</strong></p>
 											<p>Pago por  {formatCurrency( transaction.amount, settings)}</p>
 											<p>Pago referencia nº {transaction.transaction_id} { data.date_paid ? `acreditado el ${formateDate( data.date_paid, settings )}` : '' } </p>
@@ -166,7 +167,7 @@ export default class Order extends React.Component {
 							</ul>
 						</div>
 						<div className="column is-6">
-							<h3>Compraste el 5 de Marzo 2019</h3>
+							<h3>Compraste el {formateDate(data.date_placed, settings)}</h3>
 							<ul className="items-container box-container">
 							{
 								data.items.map( (item, key) => {

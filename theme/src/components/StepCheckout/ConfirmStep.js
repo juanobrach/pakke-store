@@ -6,6 +6,7 @@ import { themeSettings, text } from '../../lib/settings';
 import * as helper from '../../lib/helper';
 import axios from 'axios';
 import api from '../../lib/api';
+import {Button} from 'antd';
 
 
 
@@ -182,10 +183,10 @@ export default class ConfirmStep extends React.Component {
                               </div>
                               <div className="columns">
                                 <div className="column">
-                                  <button disabled={processingCheckout || !this.state.acceptTerms }  className="final-step" onClick={this.handleSubmitOrder}>
+                                  <Button loading={processingCheckout} disabled={processingCheckout || !this.state.acceptTerms }   className="final-step" onClick={this.handleSubmitOrder}>
                                     <img src="/assets/images/icons/finalstep_btn.png" alt="" />
                                     Finalizar compra
-                                  </button>
+                                  </Button>
                                 </div>
                               </div>
                             </div>

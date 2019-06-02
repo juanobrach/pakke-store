@@ -4,6 +4,8 @@ import { themeSettings, text } from '../../lib/settings';
 import { formatCurrency } from '../../lib/helper';
 import InputField from './inputField';
 import SepomexField from './SepomexField';
+
+import api from '../../lib/api';
 import axios from 'axios';
 
 import Lscache from 'lscache';
@@ -80,7 +82,7 @@ class AddressForm extends React.Component {
 	fetchStateAndCity =(cp)=>{
 			axios({
 			method:'POST',
-			url:'http://localhost:3001/ajax/sepomex/getCities',
+			url:`${api.ajaxBaseUrl}/sepomex/getCities`,
 			data: { cp: cp }
 		}).then( ( res )=>{
 			

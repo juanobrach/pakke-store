@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
 import { Link, Redirect, NavLink } from 'react-router-dom';
 import Lscache from 'lscache';
+import {Button} from 'antd';
+
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -187,13 +189,14 @@ class Login extends React.Component {
 						<span className="checkmark"></span>
 					</label>
 						<div className="login-button-wrap">
-							<button
-								type="submit"
+							<Button
+								onClick={handleSubmit}
 								className={loginButtonClass}
 								disabled={isLoginSubmitting}
+								loading={isLoginSubmitting}
 							>
 								Entrar
-							</button>
+							</Button>
 						</div>
 						<div className="login-link-wrap forgot-password has-text-centered">
 							<Link to="/forgot-password">No recuerdo mi contraseña</Link>
