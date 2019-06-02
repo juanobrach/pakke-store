@@ -1,13 +1,24 @@
 import React from 'react';
 
-const InputField = field => (
-	<div className={field.className}>
-		<label htmlFor={field.id}>
+const InputField = field => {
+	console.log('field', field)
+
+	let error = false
+	if( field.meta.error ){
+		error = true;
+	}
+
+	if( !field.meta.dirty ){
+		error = true;
+	}
+
+	return(
+	<div className={`${field.className} ${ error  ? "error" : ""}`}>
+		<label htmlFor={field.id} >
 			{field.label}
 		</label>
 		<input
 			{...field.input}
-			placeholder={field.placeholder}
 			disabled={field.disabled}
 			type={field.type}
 			id={field.id}
@@ -16,6 +27,6 @@ const InputField = field => (
 		{field.meta.touched &&
 			field.meta.error && <span className="error">{field.meta.error}</span>}
 	</div>
-);
+)};
 
 export default InputField;

@@ -19,6 +19,21 @@ export const fetchProducts = () => async (dispatch, getState) => {
 	dispatch(receiveProducts(products));
 };
 
+
+
+const requestSepomex = () =>({ type: t.SEPOMEX_REQUEST});
+const receiveSepomex = sepomex => ({ type: t.SEPOMEX_RECEIVE, sepomex }); 
+
+export const getAllZipCodes = () => async (dispatch, getState) => {
+	dispatch(requestSepomex());
+	const response = await api.sepomex.getAllZipCodes();
+	const zipCodes = response.json;
+	dispatch(receiveSepomex(null));
+	dispatch(receiveSepomex(zipCodes));
+};
+
+
+
 const requestOrder = () => ({ type: t.ORDER_REQUEST });
 const receiveOrder = order => ({ type: t.ORDER_RECEIVE, order });
 

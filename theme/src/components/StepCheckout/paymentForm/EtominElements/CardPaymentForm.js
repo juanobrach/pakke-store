@@ -1,6 +1,9 @@
 import React from 'react';
 import { Field, reduxForm, change } from 'redux-form';
 import InputField from '../../inputField';
+import SepomexField from '../../SepomexField.js';
+import NumberComponent from '../../NumberComponent.js';
+import CvcComponent from '../../CvcComponent.js';
 
 
 import { Number, Cvc, Expiration } from "react-credit-card-primitives";
@@ -17,88 +20,85 @@ class CardPaymentForm extends React.Component {
   validateRequired = (value) =>{
     value && value.length > 0 ? undefined : 'Este campo es requerido';
   }
+
+
   handleCardNumerChange = (event) =>{
-    this.props.dispatch(change('CardPaymentForm', 'card_number', event.value ));
+    if( event.value.length <= 16 ){
+      this.props.dispatch( change('CardPaymentForm', 'card_number', event.value ));
+    }
   }
+
+  handleCVCNumerChange = (event) =>{
+    if( event.value.length <= 5 ){
+      this.props.dispatch( change('CardPaymentForm', 'card_cvc', event.value ));
+    }
+  }
+
+
 
   render(){
     const { inProgress, handleSubmit, handleBack, classes } = this.props;
     const submit = this.submit;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={"card-payment-form"}>
         <div className='columns'>
           <div className="column is-3">
-            <h4>
-              Nombre como aparece en la tarjeta
-            </h4>
             <Field
             name="card_name"
             id="customer.first_name"
             component={InputField}
+            label={"Nombre como aparece en la tarjeta"}
             type="text"
+            validate={this.validateRequired()}
+            className={'payment-checkout-field'}
             />
           </div>
           <div className="column is-4">
             <Field  type="hidden"
                     name="card_number"
                     id="customer.cardNumber"
-                    component={InputField}
+                    component={ NumberComponent }
                     validate={this.validateRequired()}
-
+                    label={"Número de la tarjeta"}
+                    handleChange={this.handleCardNumerChange}
+                    className={'payment-checkout-field card-number'}
             />
-            <Number
-             onChange={this.handleCardNumerChange}
-             render={({ value, valid, type, getInputProps }) => (
-
-               <div className="card-holder-container">
-                 <h4>Número de la tarjeta</h4>
-                  <label htmlFor="" className="card-number-label">
-                    <input  className="card-input" {...getInputProps() } placeholder="" />
-                   {
-                     type == 'Visa' ? <img src="/assets/images/payment/visa.svg" alt="" /> : ''
-                   }
-                   {
-                     type == 'American Express' ? <img src="/assets/images/payment/american_express.png" alt="" /> : ''
-                   }
-                   {
-                     type == 'Mastercard' ? <img src="/assets/images/payment/mastercard.svg" alt="" /> : ''
-                   }
-                  </label>
-               </div>
-             )} />
           </div>
           <div className="column is-3">
-            <h4></h4>
             <Field
             name="card_month_exp"
             id="card_month_exp"
-            className="card_month_exp"
+            className="card_month_exp payment-checkout-field"
             placeholder="Mes"
-            component={InputField}
-            type="input"
+            label={"Mes"}
+            component={SepomexField}
+            data={[{value:'01', text:'01'},{value:'02', text:'02'}]}
+            showArrow={true}
             validate={this.validateRequired()}
             />
-             <p className="mont-year-exp-separator">/</p>
-             <Field
+            <p className="mont-year-exp-separator">/</p>
+            <Field
             name="card_year_exp"
             id="card_year_exp"
-            className="card_year_exp"
+            className="card_year_exp payment-checkout-field"
             placeholder="Año"
-            component={InputField}
-            type="input"
+            label={"Año"}
+            component={SepomexField}
+            data={[{value:'2019', text:'2019'},{value:'2020', text:'2020'}]}
             validate={this.validateRequired()}
+            showArrow={true}
             />
           </div>
           <div className="column is-2">
-              <h4></h4>
               <Field
               name="card_cvc"
               id="card_Cvc"
-              className="card_Cvc"
-              placeholder="CVV"
-              component={InputField}
-              type="input"
+              className="payment-checkout-field card_Cvc"
+              label={"Cvv"}
+              component={CvcComponent}
+              type="number"
               validate={this.validateRequired()}
+              handleChange={this.handleCVCNumerChange}
               />
           </div>
         </div>

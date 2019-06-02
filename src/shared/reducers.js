@@ -6,6 +6,17 @@ const initialState = {};
 
 const appReducer = (state = initialState, action) => {
 	switch (action.type) {
+
+
+		case t.SEPOMEX_REQUEST:
+			return Object.assign({}, state, { loadingSepomex: true });
+
+		case t.SEPOMEX_RECEIVE:
+			return Object.assign({}, state, {
+				loadingSepomex: false, 
+				sepomex : { cp: action.sepomex || [] } 
+			});
+
 		case t.PRODUCT_RECEIVE:
 			return Object.assign({}, state, { productDetails: action.product });
 

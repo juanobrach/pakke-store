@@ -21,7 +21,8 @@ import {
 	cartLayerInitialized,
 	forgotPassword,
 	resetPassword,
-	setGridView
+	setGridView,
+	getAllZipCodes
 } from './actions';
 
 const setQuery = (history, query) => {
@@ -42,6 +43,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		addCartItem: item => {
 			dispatch(addCartItem(item));
+		},
+		getAllZipCodes: ()=>{
+			dispatch( getAllZipCodes() )
 		},
 		setCurrentView: viewType =>{
 			dispatch( setGridView( viewType ) )

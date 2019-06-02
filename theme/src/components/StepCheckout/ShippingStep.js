@@ -28,11 +28,9 @@ class ShippingStep extends React.Component {
 		}
 	}
 
-	componentDidMount() {
-		if (Lscache.get('auth_data') !== null) {
-			this.setState({ loggedin: true });
-		}
-	}
+
+
+
 
 
 	render(){
@@ -41,13 +39,9 @@ class ShippingStep extends React.Component {
 			handleContactsSubmit,
 			handleSetFetchedShipping,
 			saveShippingLocation,
-			checkoutFields,
-			customerProperties:{ 
-				customer_settings : { addresses }
-			}} = this.props;
-		
-		// Guardo pakke como metood de
-		console.log( addresses );
+			checkoutFields } = this.props;
+
+
 		return(
 			<div className="shipping-step">
 				<section style={{ overflow:'hidden'}}>
@@ -56,16 +50,18 @@ class ShippingStep extends React.Component {
 					</h3>
 					<div className='columns'>
 						{
-							addresses.length > 0 ? addresses.map( (address, i ) => {
-								return (<div  key={i} className="column is-one-quarter boxAddress">
-																	<div>
-																		<h5>{address.full_name}</h5>
-																		<p>{address.address1}, piso 1, Next-cloud Lomas Altas, Ciudad de México, Ciudad de México, 11950</p>
-																		<p>Nº móvil:{address.phone}</p>
-																	</div>
-																	<button onClick={ ()=>{handleSetFetchedShipping(i)}}>Enviar a esta dirección más reciente</button>
-																</div>)
-							}) : ''
+							customerProperties != null && customerProperties.customer_settings !=null && customerProperties.customer_settings.addresses != null && 
+								customerProperties.customer_settings.addresses.length > 0 ? customerProperties.customer_settings.addresses.map( (address, i ) => {
+									return (<div  key={i} className="column is-one-quarter boxAddress">
+																		<div>
+																			<h5>{address.full_name}</h5>
+																			<p>{address.address1}, piso 1, Next-cloud Lomas Altas, Ciudad de México, Ciudad de México, 11950</p>
+																			<p>Nº móvil:{address.phone}</p>
+																		</div>
+																		<button onClick={ ()=>{handleSetFetchedShipping(i)}}>Enviar a esta dirección más reciente</button>
+																	</div>)
+								}) : ''
+
 						}
 					</div>
 					<div className="columns">
@@ -81,7 +77,8 @@ class ShippingStep extends React.Component {
 					<AddressForm
 						checkoutFields={checkoutFields}
 						onSubmit={handleContactsSubmit}
-						saveShippingLocation={saveShippingLocation}						
+						saveShippingLocation={saveShippingLocation}
+						{...this.props}						
 					/>
 				</section>
 			</div>

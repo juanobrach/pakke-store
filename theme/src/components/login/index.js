@@ -110,7 +110,7 @@ export default class LoginForm extends React.Component {
 								isLoginSubmitting={isLoginSubmitting}
 							/>
 					</div>
-					<div className="column is-7">
+					<div className="column is-7 is-hidden-mobile">
 						<div className="columns background-pakke">
 							<div className="column has-text-centered" style={{ marginTop:'100px', position:'relative'}}>
 								<img src="/assets/images/logo-pakke-bco-2.png" alt="" />

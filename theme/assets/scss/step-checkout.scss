@@ -62,6 +62,10 @@
 	}
 
 	padding: 25px 30px 39px 30px;
+	@media screen and (max-width: 769px) {
+		padding: 25px 10px 39px 10px;
+	}
+
 	h3{
 		font-size:18px;
 		color: $title-gray;
@@ -99,26 +103,79 @@
 		margin-bottom: 38px;
 	}
 	
-	.card-number-label{
+	.payment-checkout-field.card-number{
 		position:relative;
 		img{
 			position:absolute;
-			right: 20px;
+			height:30px;
+			right: 16px;
+			bottom: 1px;	
 		}
-	}
-	.card-holder-container{
-		img{
-			height:30px;	
+
+
+		&.error{
+			.separator{
+				opacity:0;
+			}
 		}
+
 		.card-input{
 			font-size: 15px;
 			font-family: 'open_sansbold';
-			height: 30px;
 			word-spacing: 45px;
-			line-height: 30px;
 			width: 100%;
 			color:$link-gray;
 			width:95%;
+			@media screen and (max-width: 769px) {
+				word-spacing: 35px;
+			}
+		}
+
+		.separator{
+			span{
+				position: absolute;
+				&:after{
+					position:absolute;
+					font-family: 'open_sansregular';
+					content: "-";
+					color: #b3b3b3;
+					font-size: 15px;
+				}
+
+				&:nth-child(1){
+					left: 16%;
+				}
+				&:nth-child(2){
+					left: 41%;
+					@media screen and (max-width: 769px) {
+						left: 39%;
+					}
+				}
+				&:nth-child(3){
+					left: 67%;
+					@media screen and (max-width: 769px) {
+						left: 62%;
+					}
+				}
+			}
+		}
+	}
+
+
+
+	.card-holder-container{
+		position:relative;
+		
+		.card-input{
+			font-size: 15px;
+			font-family: 'open_sansbold';
+			word-spacing: 45px;
+			width: 100%;
+			color:$link-gray;
+			width:95%;
+			@media screen and (max-width: 769px) {
+				word-spacing: 35px;
+			}
 		}
 	}
 
@@ -154,8 +211,7 @@
 	  min-height:19px;
 	  width:100%;
 	  font-family:'open_sansbold';
-	  padding-left:12px;
-	  padding-bottom:5px;
+	  padding:0;
 	  background-color: transparent;
 	  &:-webkit-autofill,
 	  &:-webkit-autofill:hover,
@@ -180,6 +236,13 @@
 	> ul {
 		display:flex;
 		flex-flow:row wrap;
+	}
+
+	.gateways-selector{
+		@media screen and (max-width: 769px) {
+			display:flex;
+			flex-flow:row wrap;
+		}
 	}
 }
 
@@ -220,5 +283,37 @@
 .shipping-step{
 	button{
 		margin-top:0;
+	}
+}
+
+.card-payment-form{
+	.card_month_exp > .ant-select ,
+	.card_year_exp > .ant-select {
+			width:35%;
+	}
+}
+
+.card-payment-form,
+.payment-checkout-field,
+.address-checkout-field{
+	position:relative;
+	margin-bottom:30px;
+
+	label{
+		position: absolute;
+		top: -20px;
+		font-size:13px;
+		color: #4d4d4d;
+		opacity: .5;
+		transition:all .3s
+	}
+
+
+	&.error,
+	&.dirty{
+		label{
+			top:0;
+			transition:all .3s
+		}
 	}
 }

@@ -14,7 +14,7 @@ export default class PaymentsGatewaySelector extends React.Component  {
               <h3>
                   Agregar nuevo método de pago
               </h3>
-              <div className="columns">
+              <div className="columns gateways-selector">
                 <div className="column is-3">
                     <label className='checkbox-container'>
                         <input

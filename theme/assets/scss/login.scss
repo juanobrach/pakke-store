@@ -43,6 +43,9 @@
             color: $gray-super-light;
             padding:0  50px 5px 50px;
             cursor:pointer;
+            @media screen and (max-width: 769px) {
+                padding:0;
+            }
             &.is-active{
                 font-family:'open_sansbold';
                 color:$red-cake;

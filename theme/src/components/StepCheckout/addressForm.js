@@ -3,7 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
 import { formatCurrency } from '../../lib/helper';
 import InputField from './inputField';
-import SelectField from './selectField';
+import SepomexField from './SepomexField';
+import axios from 'axios';
 
 import Lscache from 'lscache';
 
@@ -11,10 +12,20 @@ import Lscache from 'lscache';
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
 
+
 class AddressForm extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+				form:{
+					states:[],
+					cities:[],
+					colonies:[]
+				}
+		}
 	}
+
+
 
 
 
@@ -33,6 +44,8 @@ class AddressForm extends React.Component {
 		return this.getFieldStatus(fieldName) === 'optional';
 	};
 
+
+
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
 		let validatorsArray = [];
@@ -42,6 +55,7 @@ class AddressForm extends React.Component {
 		if (fieldName === 'email') {
 			validatorsArray.push(validateEmail);
 		}
+
 		if (fieldName === 'password_verify') {
 			validatorsArray.push(this.confirmPassword);
 		}
@@ -63,6 +77,88 @@ class AddressForm extends React.Component {
 			: '';
 	};
 
+	fetchStateAndCity =(cp)=>{
+			axios({
+			method:'POST',
+			url:'http://localhost:3001/ajax/sepomex/getCities',
+			data: { cp: cp }
+		}).then( ( res )=>{
+			
+		
+			if( res.data ){
+				let states = [];
+				if( res.data.state.length > 0){
+					let state = {
+						text: res.data.state[0],
+						value: res.data.state[0]
+					}
+					states.push( state );
+				}
+
+				let cities = [];
+				if( res.data.city.length > 0){
+					let city = {
+						text: res.data.city[0],
+						value: res.data.city[0]
+					}
+					cities.push( city );
+				}				
+
+				let colonies = [];
+				if( res.data.colonies.length > 0){
+					colonies = res.data.colonies.map( ( colony )=>{
+						return{
+							text: colony,
+							value: colony							
+						}
+					})
+				}	
+				
+
+/*				console.log('state', states)
+				console.log('city', cities)
+				console.log('colonies', colonies)*/
+
+
+				this.setState({
+					['states']: "",
+					['cities']: "",
+					['colonies']: "",
+
+					form:{ 
+						states:states,
+						cities:cities,
+						colonies:colonies
+					}} 
+				);
+			} 
+		})
+	}
+
+
+	handleOnChange(propertyName, event) {
+      if (event && event.target) {
+
+
+      		if( propertyName == 'postal_code'){
+      			if( event.target.value.toString().length <= 5){
+      				this.setState({[propertyName]: event.target.value}); //For Input And Radio
+      				this.fetchStateAndCity(event.target.value);
+      			}else if( propertyName === "state"){
+      				this.setState({[propertyName]: event.target.value})
+      			}else{
+      				event.preventDefault();
+      			}
+      		}else{
+          	this.setState({[propertyName]: event.target.value}); //For Input And Radio
+      		}
+
+
+      }
+      else {
+          this.setState({[propertyName]: event});//For Date
+      }
+	}
 
 	render() {
 		const {
@@ -77,91 +173,78 @@ class AddressForm extends React.Component {
 			buttonClassName,
 			editButtonClassName,
 			isReadOnly,
-			title
+			title,
+			onChange,
 		} = this.props;
 
 		return (
 				<form onSubmit={handleSubmit}>
-						<div className='columns is-variable is-5' style={{ marginBottom:'50px'}}>
+						<div className='columns is-variable is-5'>
 							<div className="column">
-								<h4>Nombre de quien recibe</h4>
 								<Field
+									className="address-checkout-field"
 									name="shipping_address.full_name"
 									id="shipping_address.full_name"
-									className="address-checkout-field"
 									component={InputField}
 									type="text"
 									validate={this.getFieldValidators('first_name')}
-									placeholder={this.getFieldPlaceholder('first_name')}
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ full_name: value }))
-									}
+									label="Nombre de quien recibe"
 								/>
 							</div>
 							<div className="column">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.postal_code"
 									id="shipping_address.postal_code"
 									component={InputField}
-									type="text"
+									type="number"
 									validate={this.getFieldValidators('postal_code')}
-									placeholder="Código postal"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ postal_code: value }))
-									}
+									label="Código postal"
+									onChange={ (e)=>{ this.handleOnChange('postal_code',e)} }
 								/>
 							</div>
 							<div className="column">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.state"
 									id="shipping_address.state"
-									component={InputField}
-									type="text"
+									component={SepomexField}
 									validate={this.getFieldValidators('state')}
-									placeholder="Estado"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ state: value }))
-									}
+									label="Estado"
+									data={this.state.form.states}
+									{...this.props}
 								/>
 							</div>
 							<div className="column">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.city"
 									id="shipping_address.city"
-									component={InputField}
-									type="text"
+									component={SepomexField}
 									validate={this.getFieldValidators('city')}
-									placeholder="Ciudad"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ city: value }))
-									}
+									label="Ciudad"
+									data={this.state.form.cities}
+									{...this.props}
 								/>
 							</div>
 						</div>
 						
 						<div className="columns is-variable is-5">
 							<div className="column is-3">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.neighborhood"
 									id="shipping_address.neighborhood"
-									component={InputField}
+									component={SepomexField}
 									type="text"
-									placeholder="Colonia"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ neighborhood: value }))
-									}
+									label="Colonia"
+									data={this.state.form.colonies}
+									validate={this.getFieldValidators('neighborhood')}
+									showArrow={true}
+									{...this.props}
 								/>
 							</div>
 							<div className="column is-4">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.address1"
@@ -169,80 +252,62 @@ class AddressForm extends React.Component {
 									component={InputField}
 									type="text"
 									validate={this.getFieldValidators('address1')}
-									placeholder="Nombre de la calle"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ address1: value }))
-									}
+									label="Nombre de la calle"
 								/>
 							</div>
-							<div className="column is-3">	
-								<h4></h4>												
+							<div className="column is-3">													
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.address_num_ext"
 									id="shipping_address.address_num_ext"
 									component={InputField}
+									validate={this.getFieldValidators('address_num_ext')}
 									type="number"
-									placeholder="Nº exterior"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ address_num_ext: value }))
-									}
+									label="Nº exterior"
 								/>
 							</div>
-							<div className="column is-2">
-								<h4></h4>						
+							<div className="column is-2">						
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.address_num_int"
 									id="shipping_address.address_num_int"
 									component={InputField}
 									type="number"
-									placeholder="Nº interior"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ address_num_int: value }))
-									}
+									label="Nº interior"
 								/>
 							</div>
 						</div>
 						<div className="columns is-variable is-5">
 							<div className="column is-3">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.phone"
 									id="shipping_address.phone"
 									component={InputField}
 									type="number"
-									placeholder="Teléfono móvil"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ phone: value }))
-									}
+									label="Teléfono móvil"
 								/>
 							</div>
 
 							<div className="column is-3">
-								<h4>Tipo de dirección</h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.address_type"
 									id="shipping_address.address_type"
-									component={SelectField}
+									component={InputField}
+									label={"Tipo de dirección"}
 								>
 								  <option name="Residencial">Residencial</option>
 								</Field>
 							</div>
 							<div className="column">
-								<h4></h4>
 								<Field
 									className="address-checkout-field"
 									name="shipping_address.details"
 									id="shipping_address.details"
 									component={InputField}
 									type="text"
-									placeholder="Referencias para ubicar mejor el domicilio"
-									onBlur={(event, value) =>
-										setTimeout(() => saveShippingLocation({ details: value }))
-									}
+									label="Referencias para ubicar mejor el domicilio"
 								/>
 							</div>
 						</div>
@@ -267,5 +332,6 @@ class AddressForm extends React.Component {
 export default reduxForm({
 	form: 'AddressForm',
 	enableReinitialize: true,
-	keepDirtyOnReinitialize: true
+	keepDirtyOnReinitialize: true,
+	asyncBlurFields: []
 })(AddressForm);

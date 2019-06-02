@@ -5,6 +5,56 @@
 @import "radio-box.scss";
 @import "social-share.scss";
 
+@import '~antd/dist/antd.css';
+.ant-select-focused,
+.ant-select-focused .ant-select-selection,
+.ant-select-selection, .ant-select-open  {
+  box-shadow:none;
+  border:none;
+  color: $link-gray;
+  border:none;
+  border-bottom: 2px solid rgba(77, 77, 77, 0.50);
+  max-height:26px;
+  font-size: 15px;
+  min-height:19px;
+  width:100%;
+  font-family:'open_sansbold';
+  padding:0px;
+  background-color: transparent;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+      -webkit-transition-delay: 99999s;
+  }
+  &::placeholder {
+    font-family:'open_sansregular';
+    color: $gray-light-dark;
+  }
+  :focus{
+    border:none;
+    padding:0;
+  }
+  &:hover{
+    border:none;
+    border-right-width:0;
+    border-bottom: 2px solid rgba(77, 77, 77, 0.50);
+    padding:0;
+    box-shadow:none;
+  }
+
+
+}
+
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+
+.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
+  border:none;
+
+}
+
 body, html{
   height:100vh;
   background: whitesmoke !important;

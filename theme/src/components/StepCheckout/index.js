@@ -7,7 +7,11 @@ import Lscache from 'lscache';
 
 
 
+
+
+
 import { Redirect } from 'react-router-dom';
+
 
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -24,11 +28,13 @@ import PaymentStep from './PaymentStep';
 import ConfirmStep from './ConfirmStep';
 
 
-
 const styles = theme => ({
   root: {
     width: '100%',
-    background:'transparent'
+    background:'transparent',
+    [theme.breakpoints.down('sm')]: {
+      padding:0
+    }
   },
   backButton: {
     marginRight: theme.spacing.unit,
@@ -37,12 +43,29 @@ const styles = theme => ({
     border: '1px solid #cccccc',
     fontFamily: 'open_sansregular'
   },
+  MuiButtonBase:{
+    root:{
+      [theme.breakpoints.down('sm')]: { 
+        padding:0
+      }
+    }
+  },
+  MuiStepButton:{
+    [theme.breakpoints.down('sm')]: { 
+      padding:0
+    }
+  },
   instructions: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
   MuiPaper:{
-    backgroundColor:'whitesmoke'
+    backgroundColor:'whitesmoke',
+    [theme.breakpoints.down('sm')]: {
+      padding:0,
+      paddingTop: '40px',
+      paddingLeft: '2%'
+    }
   },
   MuiStepConnector:{
     top: '20%',
@@ -50,6 +73,9 @@ const styles = theme => ({
     right: 'calc(40% + 40px)',
     position: 'absolute',
     width: '60%',
+    [theme.breakpoints.down('sm')]: {
+      display:'none'      
+    }
   },
   connectorActive: {
     '& $connectorLine': {
@@ -73,7 +99,8 @@ const styles = theme => ({
     backgroundColor:'white',
     borderRadius: '10px',
     minHeight: '500px',
-    padding: '0 20px 40px 20px'    
+    padding: '0 20px 40px 20px'
+
   }
 });
 
@@ -89,14 +116,6 @@ class StepCheckout extends React.Component {
     super(props);
     props.loadShippingMethods();
     props.loadPaymentMethods();
-    console.log( customerProperties )
-    let customerProperties = props.state.customerProperties; 
-    if( customerProperties != undefined &&  customerProperties.customer_settings ){
-      props.updateCart({
-        customer_id: customerProperties.customer_settings.id,
-        email: customerProperties.customer_settings.email
-      })
-    }
   }
 
   state = {
@@ -121,6 +140,19 @@ class StepCheckout extends React.Component {
     });
   };
 
+  componentDidUpdate( prevProps, prevState ){
+    console.log( 'prevProps', prevProps);
+    let customerProperties = prevProps.customerProperties;
+    let actualCustomer     = this.props.customerProperties;
+
+    if( customerProperties != undefined &&  customerProperties.customer_settings ){
+      props.updateCart({
+        customer_id: customerProperties.customer_settings.id,
+        email: customerProperties.customer_settings.email
+      })
+    }
+
+  }
 
   componentDidMount() {
     this.props.customerData({
@@ -150,7 +182,6 @@ class StepCheckout extends React.Component {
 
 
   handleContactsSubmit = values => {
-    console.log('guardando direccion', values )
     let { shipping_address, billing_address } = values;
     shipping_address = Object.assign({full_name: `${values.first_name}`}, shipping_address);
     this.props.updateCart({
@@ -173,7 +204,6 @@ class StepCheckout extends React.Component {
   };
 
   handleShippingMethodSave = shippingMethodId => {
-    console.log('guardando shipping')
     this.props.updateCart(
       {
         payment_method_id: null,
@@ -187,7 +217,6 @@ class StepCheckout extends React.Component {
 
 
   handleSetFetchedShipping = shippingAddressId => {
-    console.log('guardando shipping historico', shippingAddressId );
     let customerSettings = this.props.state.customerProperties.customer_settings;
     let selectedAddress = customerSettings.addresses[shippingAddressId];
     this.props.updateCart({
@@ -260,18 +289,17 @@ class StepCheckout extends React.Component {
     } = themeSettings;
 
 
-    if (Lscache.get('auth_data') === null && customerProperties === undefined) {
+/*    if (Lscache.get('auth_data') === null && customerProperties === undefined) {
       Lscache.flush();
       return (
         <Redirect to={{
             pathname: '/login'
         }}/>
       );
-    }
+    }*/
     
     const StepIcon = ({ label, color = 'gry', textColor = '#ff5959', activeStep }) => (
       <div style={{ position: 'relative', padding: '0 38px'}}>
-        {console.log('activeStep', activeStep )}
 
         {
 
@@ -310,16 +338,19 @@ class StepCheckout extends React.Component {
     return (
       <div className={classes.root}>
           <Stepper className={classes.MuiPaper} activeStep={activeStep} connector={connector} alternativeLabel>
-              <Step key="Envío">
+              <Step key="Envío" className={activeStep}>
                 <StepButton
                    icon={<StepIcon label="Envío" activeStep={this.state.activeStep} />}
                    onClick={() => console.log('Clicked') }
+                   className={classes.MuiStepButton}
                 />
               </Step>
               <Step key="Pago">
                 <StepButton
                    icon={<StepIcon label="Pago" activeStep={this.state.activeStep} textColor={ (activeStep == 0 ? 'gray' : '#ff5959') } />}
                    onClick={() => console.log('Clicked') }
+                   className={classes.MuiStepButton}
+
                 />
               </Step>
               <Step key="Confirmación">
@@ -329,6 +360,8 @@ class StepCheckout extends React.Component {
                                    textColor={ (activeStep == 0 || activeStep == 1   ? 'gray' : '#ff5959') }
                                    />}
                    onClick={() => console.log('Clicked') }
+                   className={classes.MuiStepButton}
+
                 />
               </Step>
           </Stepper>
@@ -345,6 +378,7 @@ class StepCheckout extends React.Component {
                   shippingMethod={shippingMethod}
                   shippingMethods={shippingMethods}
                   handleSetFetchedShipping={this.handleSetFetchedShipping}
+                  {...this.props}
                 /> : ''
               }
 
