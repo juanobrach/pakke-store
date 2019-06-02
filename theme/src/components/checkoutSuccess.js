@@ -141,6 +141,13 @@ const CheckoutSuccess = ({
 							<p>
 								Recuerda que para finalizar el pago deberas depositar a la cuenta <span><strong>{transaction.deposit_account}</strong></span> un total de  <span>{ helper.formatCurrency(order.grand_total, settings)  }</span>
 							</p>
+							<ul>
+							  <li>1.- Registra la cuenta a 18 digítos en tu cuenta de banco</li>
+
+							  <li>2.- Transfiere la cantidad exacta de tu pedido</li>
+
+							  <li>3.- Listo, espera a que el Pakke libere tu pedido</li>
+							</ul>
 						}
 						<p>
 							el núm. de folio de la compra es: <span> {order.number} </span>

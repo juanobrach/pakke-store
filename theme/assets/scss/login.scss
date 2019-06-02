@@ -43,6 +43,8 @@
             color: $gray-super-light;
             padding:0  50px 5px 50px;
             cursor:pointer;
+            width: 40%;
+            text-align: center;
             @media screen and (max-width: 769px) {
                 padding:0;
             }
@@ -153,7 +155,7 @@
 
 .login-form {
     margin: auto;
-    width: 300px;
+    width: 100%;
 }
 
 .login-form-with-guest {

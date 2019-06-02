@@ -93,11 +93,12 @@ export default class LoginForm extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="columns login-register-page">
-					<div className="column is-5" style={{padding:'100px 36px 160px 36px'}}>
-						<ul className="login-register-selector">
-							<li className="is-active"><Link to="/login">Ingresar</Link></li>
-							<li><Link to="/register">Registro</Link></li>	
-						</ul>
+					<div className="column is-paddingless is-5-widescreen is-12-mobile is-10-tablet">
+						<div style={{padding:'80px'}}>
+							<ul className="login-register-selector">
+								<li className="is-active"><Link to="/login">Ingresar</Link></li>
+								<li><Link to="/register">Registro</Link></li>	
+							</ul>
 							<Login
 								inputClassName={checkoutInputClass}
 								buttonClassName={checkoutButtonClass}
@@ -109,6 +110,7 @@ export default class LoginForm extends React.Component {
 								onSubmit={this.handleFormSubmit}
 								isLoginSubmitting={isLoginSubmitting}
 							/>
+						</div>
 					</div>
 					<div className="column is-7 is-hidden-mobile">
 						<div className="columns background-pakke">

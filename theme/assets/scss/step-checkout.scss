@@ -123,12 +123,15 @@
 		.card-input{
 			font-size: 15px;
 			font-family: 'open_sansbold';
-			word-spacing: 45px;
+			word-spacing: 2.6vw;
 			width: 100%;
 			color:$link-gray;
 			width:95%;
 			@media screen and (max-width: 769px) {
 				word-spacing: 35px;
+			}
+			@media screen and (max-width: 1280px) {
+				word-spacing: 2vw;
 			}
 		}
 
@@ -144,18 +147,24 @@
 				}
 
 				&:nth-child(1){
-					left: 16%;
+					left: 15%;
+					@media screen and (max-width: 1280px) {
+						word-spacing: 3.5vw;
+					}
+					@media screen and (max-width: 1440px) {
+					left: 3.6vw;
+					}
 				}
 				&:nth-child(2){
-					left: 41%;
-					@media screen and (max-width: 769px) {
-						left: 39%;
+					left: 40%;
+					@media screen and (max-width: 1440px) {
+						left: 9vw;
 					}
 				}
 				&:nth-child(3){
-					left: 67%;
-					@media screen and (max-width: 769px) {
-						left: 62%;
+					left: 65%;
+					@media screen and (max-width: 1440px) {
+						left: 14vw;
 					}
 				}
 			}
@@ -170,7 +179,7 @@
 		.card-input{
 			font-size: 15px;
 			font-family: 'open_sansbold';
-			word-spacing: 45px;
+			word-spacing: 2.6vw;
 			width: 100%;
 			color:$link-gray;
 			width:95%;
