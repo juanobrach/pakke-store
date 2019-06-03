@@ -32,7 +32,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     background:'transparent',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.only('sm')]: {
       padding:0
     }
   },
@@ -45,13 +45,13 @@ const styles = theme => ({
   },
   MuiButtonBase:{
     root:{
-      [theme.breakpoints.down('sm')]: { 
+      [theme.breakpoints.only('sm')]: { 
         padding:0
       }
     }
   },
   MuiStepButton:{
-    [theme.breakpoints.down('sm')]: { 
+    [theme.breakpoints.only('sm')]: { 
       padding:0
     }
   },
@@ -61,7 +61,7 @@ const styles = theme => ({
   },
   MuiPaper:{
     backgroundColor:'whitesmoke',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.only('sm')]: {
       padding:0,
       paddingTop: '40px',
       paddingLeft: '2%'
@@ -73,7 +73,7 @@ const styles = theme => ({
     right: 'calc(40% + 40px)',
     position: 'absolute',
     width: '60%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.only('sm')]: {
       display:'none'      
     }
   },
@@ -99,7 +99,7 @@ const styles = theme => ({
     backgroundColor:'white',
     borderRadius: '10px',
     minHeight: '500px',
-    padding: '0 20px 40px 20px'
+    padding: '30px 30px 40px 30px'
 
   }
 });

@@ -17,6 +17,9 @@ class CardPaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleCardNumerChange = this.handleCardNumerChange.bind(this);
+    this.state = {
+      creditCardType: ''
+    }
   }
 
   validateRequired = (value) =>{
@@ -25,8 +28,10 @@ class CardPaymentForm extends React.Component {
 
 
   handleCardNumerChange = (event) =>{
+    console.log( event )
     if( event.value.length <= 16 ){
       this.props.dispatch( change('CardPaymentForm', 'card_number', event.value ));
+      this.setState({ creditCardType: event.type })
     }
   }
 
@@ -145,6 +150,7 @@ class CardPaymentForm extends React.Component {
               className="payment-checkout-field card_Cvc"
               label={"Cvv"}
               component={CvcComponent}
+              cardType={this.state.creditCardType}
               type="number"
               validate={this.validateRequired()}
               handleChange={this.handleCVCNumerChange}

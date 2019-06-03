@@ -1,5 +1,7 @@
 import React from 'react';
-const ItemActions = ({addCartItem, product})=> {
+import { NavLink } from 'react-router-dom';
+
+const ItemActions = ({addCartItem, product, isPack})=> {
 
 	const handlerAddToCart = ()=>{
 		console.log('product', product)
@@ -19,9 +21,21 @@ const ItemActions = ({addCartItem, product})=> {
 						<span className="add-to-cart-icon"></span> 
 					</div>
 					<div className="level-right">
+
+						{ !isPack &&
 						<p onClick={handlerAddToCart} style={{ opacity:'.6'}}>
 							Agregar al carrito
-						</p>
+						</p>}
+
+						{ isPack &&
+						<NavLink to={product.path}>
+							<p style={{ opacity:'.6'}}>
+							Elige tu opción
+							</p>
+						</NavLink>
+						}
+
+
 					</div>
 				</div>
 			</div>

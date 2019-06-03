@@ -361,13 +361,13 @@ class Account extends React.Component {
 				addresses_container.push(
 					<li key={i}>
 						<div className="columns">
-							<div className="column is-8">
+							<div className="column is-7">
 								<strong>{addresses[i].full_name}</strong>
 								<p className="is-marginless"><span>{addresses[i].address1}</span></p>
 								<p className="is-marginless">{addresses[i].neighborhood} {addresses[i].city}, {addresses[i].state} {addresses[i].postal_code}</p>
 								<p className="is-marginless">Tel contacto: {addresses[i].phone}</p>
 							</div>
-							<div className="column options">
+							<div className="column is-5 options" style={{textAlign:"right", lineHeight:'27px'}}>
 								<a href="#" className="delete-link">Eliminar</a>
 								<a href="#">Editar</a>
 								<a href="#">Predeterminada</a>

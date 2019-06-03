@@ -251,12 +251,15 @@ tbody tr td:first-child {
     -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3); 
 }
 
-ul.orders_history_list,
-ul.customer_addresses,
-ul.customer-data{
+.account-container ul{
   list-style-type:none;
   margin: 0;
   margin-bottom:10px;
+  div.options{
+    a{
+     display:block;
+    } 
+  }
   
   li{
     padding:18px;
@@ -316,12 +319,12 @@ ul.customer-data{
         padding:18px;
     }
 
-    ul.orders_history_list{
+    ul.customer-data{
         div.options{
-           a{
-            display:block;
-           } 
-        }
+            a{
+             display:inline-block;
+            } 
+         }
     }
 
     .options{

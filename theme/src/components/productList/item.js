@@ -65,7 +65,7 @@ const Item = ({
 		return ( product_pack )
 	}else{
 
-	console.log( 'prod', listType )
+	console.log( 'prod', product )
 	return (
 
 		<div
@@ -89,7 +89,7 @@ const Item = ({
 						<ItemPrice product={product} settings={settings} />
 					</div>
 				</NavLink>
-				<ItemActions addCartItem={addCartItem} product={product} />
+				<ItemActions addCartItem={addCartItem} isPack={product.is_pack} product={product} />
 			</article>
 		</div>
 	);

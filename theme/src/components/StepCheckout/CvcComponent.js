@@ -22,6 +22,7 @@ const CvcComponent = field => {
 		<Cvc
 			{...field.input}
 		 onChange={field.handleChange}
+		 cardType={field.cardType}
 		 render={ ({ value, valid, type, getInputProps }) => {
 		  let props = getInputProps();
 		  console.log( 'props on change', props );
