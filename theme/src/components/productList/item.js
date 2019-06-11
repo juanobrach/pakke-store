@@ -19,7 +19,8 @@ const Item = ({
 	columnCountOnFullhd = columnCountOnFullhd || 2,
 	columnCount,
 	is_pack,
-	listType
+	listType,
+	hasVariants
 }) => {
 	const _columnCount = columnCount || 5;
 
@@ -89,7 +90,7 @@ const Item = ({
 						<ItemPrice product={product} settings={settings} />
 					</div>
 				</NavLink>
-				<ItemActions addCartItem={addCartItem} isPack={product.is_pack} product={product} />
+				<ItemActions addCartItem={addCartItem} hasVariants={hasVariants} product={product} />
 			</article>
 		</div>
 	);

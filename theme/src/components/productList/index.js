@@ -24,7 +24,6 @@ const ProductList = ({
 }) => {
 	const items = products
 		? products.map(product => {
-
 				return ( <Item
 					key={product.id}
 					product={product}
@@ -36,7 +35,8 @@ const ProductList = ({
 					columnCountOnWidescreen={columnCountOnWidescreen}
 					columnCountOnFullhd={columnCountOnFullhd}
 					columnCount={columnCount}
-					is_pack={is_pack}
+					hasVariants={ ( product.variants.length > 0  ) }
+					is_pack={is_pack }
 					listType={listType}
 				/> )
 		  })

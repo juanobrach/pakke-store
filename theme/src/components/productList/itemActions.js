@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ItemActions = ({addCartItem, product, isPack})=> {
+const ItemActions = ({addCartItem, product, hasVariants})=> {
 
 	const handlerAddToCart = ()=>{
 		console.log('product', product)
@@ -22,12 +22,12 @@ const ItemActions = ({addCartItem, product, isPack})=> {
 					</div>
 					<div className="level-right">
 
-						{ !isPack &&
+						{ !hasVariants &&
 						<p onClick={handlerAddToCart} style={{ opacity:'.6'}}>
 							Agregar al carrito
 						</p>}
 
-						{ isPack &&
+						{ hasVariants &&
 						<NavLink to={product.path}>
 							<p style={{ opacity:'.6'}}>
 							Elige tu opción

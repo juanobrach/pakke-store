@@ -93,6 +93,7 @@ export default class CustomProducts extends React.Component {
 			tags,
 			on_sale,
 			is_pack,
+			variants:[],
 			search: null,
 			category_id,
 			category_slug,
@@ -100,7 +101,7 @@ export default class CustomProducts extends React.Component {
 			price_to,
 			sort,
 			fields:
-				'path,id,name,category_id,category_slug,is_pack,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags',
+				'variants,path,id,name,category_id,category_slug,is_pack,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags',
 			limit: limit || 4,
 			offset: 0
 		};
