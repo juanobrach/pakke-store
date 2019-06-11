@@ -35,7 +35,7 @@ const ProductList = ({
 					columnCountOnWidescreen={columnCountOnWidescreen}
 					columnCountOnFullhd={columnCountOnFullhd}
 					columnCount={columnCount}
-					hasVariants={ ( product.variants.length > 0  ) }
+					hasVariants={ ( product.variants !== undefined && product.variants.length > 0  ) }
 					is_pack={is_pack }
 					listType={listType}
 				/> )
