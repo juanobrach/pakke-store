@@ -142,7 +142,6 @@ class Register extends React.Component {
 			registerProperties,
 			submiting
 		} = this.props;
-		console.log(this.props);
 
 		registerProperties = registerProperties === undefined ? initialData : registerProperties;
 

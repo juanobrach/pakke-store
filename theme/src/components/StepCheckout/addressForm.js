@@ -117,9 +117,7 @@ class AddressForm extends React.Component {
 				}	
 				
 
-/*				console.log('state', states)
-				console.log('city', cities)
-				console.log('colonies', colonies)*/
+
 
 
 				this.setState({

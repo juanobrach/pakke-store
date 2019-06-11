@@ -3,7 +3,6 @@ import { Cvc } from "react-credit-card-primitives";
 
 
 const CvcComponent = field => {
-	console.log('field', field)
 
 	let error = false
 	if( field.meta.error ){
@@ -25,7 +24,6 @@ const CvcComponent = field => {
 		 cardType={field.cardType}
 		 render={ ({ value, valid, type, getInputProps }) => {
 		  let props = getInputProps();
-		  console.log( 'props on change', props );
 		  let error = false
 		  
 		  if( !valid ){

@@ -206,7 +206,6 @@ class CheckoutStepContacts extends React.Component {
 		} = this.props;
 
 		if (customerProperties !== undefined && !this.state.reinitialized && this.state.loggedin) {
-			console.log(customerProperties)
 			this.setInitialValues();
 		}
 

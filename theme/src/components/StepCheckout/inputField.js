@@ -1,7 +1,6 @@
 import React from 'react';
 
 const InputField = field => {
-	console.log('field', field)
 
 	let error = false
 	if( field.meta.error ){

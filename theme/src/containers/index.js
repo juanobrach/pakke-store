@@ -11,7 +11,6 @@ const IndexContainer = props => {
 		state: { pageDetails, settings, categories }
 	} = props;
 
-	console.log(props)
 
 	const slider_pictures = [
 		{

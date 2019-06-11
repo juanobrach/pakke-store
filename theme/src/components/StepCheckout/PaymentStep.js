@@ -27,7 +27,6 @@ export default class PaymentStep extends React.Component {
 
 
 	handleCardPaymentSubmit( card ){
-		console.log( 'card form', card )
 	}
 
 	render(){

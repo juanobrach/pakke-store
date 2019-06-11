@@ -157,6 +157,15 @@ class StepCheckout extends React.Component {
     this.props.cartLayerInitialized({
       cartlayerBtnInitialized: false
     })
+
+    if (Lscache.get('auth_data') === null && customerProperties === undefined) {
+      Lscache.flush();
+      return (
+        <Redirect to={{
+            pathname: '/login'
+        }}/>
+      );
+    }
   }
 
   // Asigno metodo de envio y pago ya que por el momento solo existe una variante por cada uno
@@ -284,14 +293,6 @@ class StepCheckout extends React.Component {
     } = themeSettings;
 
 
-/*    if (Lscache.get('auth_data') === null && customerProperties === undefined) {
-      Lscache.flush();
-      return (
-        <Redirect to={{
-            pathname: '/login'
-        }}/>
-      );
-    }*/
     
     const StepIcon = ({ label, color = 'gry', textColor = '#ff5959', activeStep }) => (
       <div style={{ position: 'relative', padding: '0 38px'}}>

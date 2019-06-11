@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 const ItemActions = ({addCartItem, product, hasVariants})=> {
 
 	const handlerAddToCart = ()=>{
-		console.log('product', product)
 		let item = {
 			product_id: product.id,
 			quantity: 1

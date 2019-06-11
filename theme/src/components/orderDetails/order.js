@@ -21,7 +21,6 @@ export default class Order extends React.Component {
 	render() {
 		const data = this.props.data;
 		const settings = this.props.settings;
-		console.log( data );
 
 		let transaction = data.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
 		let transaction_type = transaction.order_type.toLowerCase()

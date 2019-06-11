@@ -66,7 +66,6 @@ const Item = ({
 		return ( product_pack )
 	}else{
 
-	console.log( 'prod', product )
 	return (
 
 		<div

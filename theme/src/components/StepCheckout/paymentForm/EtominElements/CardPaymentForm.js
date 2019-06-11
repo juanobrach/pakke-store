@@ -7,11 +7,6 @@ import CvcComponent from '../../CvcComponent.js';
 import {Button} from 'antd';
 import moment from 'moment';
 
-
-import { Number, Cvc, Expiration } from "react-credit-card-primitives";
-import { YearPicker, MonthPicker, DayPicker } from 'react-dropdown-date';
-
-
 class CardPaymentForm extends React.Component {
 
   constructor(props) {
@@ -28,7 +23,6 @@ class CardPaymentForm extends React.Component {
 
 
   handleCardNumerChange = (event) =>{
-    console.log( event )
     if( event.value.length <= 16 ){
       this.props.dispatch( change('CardPaymentForm', 'card_number', event.value ));
       this.setState({ creditCardType: event.type })

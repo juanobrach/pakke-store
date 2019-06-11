@@ -3,7 +3,6 @@ import { Number } from "react-credit-card-primitives";
 
 
 const NumberComponent = field => {
-	console.log('field', field)
 
 	let error = false
 	if( field.meta.error ){
@@ -24,7 +23,6 @@ const NumberComponent = field => {
 		 onChange={field.handleChange}
 		 render={ ({ value, valid, type, getInputProps }) => {
 		  let props = getInputProps();
-		  console.log( 'props on change', props );
 		  let error = false
 		  
 		  if( !valid ){
@@ -36,11 +34,6 @@ const NumberComponent = field => {
 		  }
 		  return(
 		  	<React.Fragment> 
-     	  <div className="separator">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <input  className="card-input" {...getInputProps() } placeholder="" />
        {
          type == 'Visa' ? <img src="/assets/images/payment/visa.svg" alt="" /> : ''

@@ -87,9 +87,7 @@ const CategoryContainer = props => {
 		}
 	} = props;
 	
-	console.log('props', props )
 	const changeLayout = ( layoutType )=>{
-		console.log( 'layoutType', layoutType );
 		props.setCurrentView( layoutType )
 
 	}

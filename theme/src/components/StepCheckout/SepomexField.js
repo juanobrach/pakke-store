@@ -21,7 +21,6 @@ export default class SepomexField extends React.Component{
 		const { data  } = this.props;		
 	
 
-		console.log( this.props );
 
     let error = false
     if( meta.error ){

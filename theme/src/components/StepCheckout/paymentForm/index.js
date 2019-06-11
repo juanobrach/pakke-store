@@ -33,7 +33,6 @@ export default class PaymentForm extends React.Component {
 					formSettings: null,
 					loading: false
 				});
-				console.log(e);
 			});
 	};
 

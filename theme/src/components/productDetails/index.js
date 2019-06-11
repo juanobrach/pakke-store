@@ -112,7 +112,6 @@ export default class ProductDetails extends React.Component {
 						? selectedVariant.stock_quantity
 						: product.stock_quantity;
 		const shareUrl = `${settings.domain}${product.path}`;
-		console.log(product)
 		if (product) {
 			return (
 				<Fragment>

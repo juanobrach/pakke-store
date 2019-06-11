@@ -12,7 +12,6 @@ import { ToastContainer,toast } from 'react-toastify';
 export default class EtominElements extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(props)
 		this.state = { 
 			etomin: null,
 			selectedMethod: 'card',
@@ -31,13 +30,11 @@ export default class EtominElements extends React.Component {
 	}
 
 	handleCardPaymentSumbit( value ){
-		console.log( value )
 		if( this.state.etomin != null ){
 			this.setState({
 	      inProgress: true
 	    });
 			axios.post( `${api.ajaxBaseUrl}/tokenCard`, value).then( (res )=>{
-				console.log(res)
 				if( res.data.error == 0 ){
 					this.props.updateCart({
 						payment_method_type : 'card',
@@ -46,7 +43,6 @@ export default class EtominElements extends React.Component {
 					})
 					this.props.onSubmit()
 				}else{
-					console.log(res.data)
 					this.setState({
 			      inProgress: false
 			    });
