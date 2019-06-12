@@ -153,7 +153,7 @@ class CardPaymentForm extends React.Component {
         </div>
         <div className="columns is-marginless is-vcentered" style={{position:'absolute', left:'0', right:'0', width:'100%'}}>
           <div className="column">
-            <button onClick={handleBack} className="back-button">Cancelar</button>  
+            <button onClick={handleBack} className="back-button">Atrás</button>  
           </div>
           <div className="column">
             <Button

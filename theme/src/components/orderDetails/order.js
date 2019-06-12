@@ -24,6 +24,7 @@ export default class Order extends React.Component {
 
 		let transaction = data.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
 		let transaction_type = transaction.order_type.toLowerCase()
+		let shipping = data.shipping_address;
 		return (
 			<React.Fragment>
 					<nav className="breadcrumb is-small" aria-label="breadcrumbs" style={{marginTop:'17px'}}>
@@ -157,11 +158,8 @@ export default class Order extends React.Component {
 									</div>
 								</li>
 								<li className="shipping">
-									<p className="status">Entregado</p>
-									<p>Llegó el:  <strong>07 Marzo 2019</strong></p>
-									<p>En: Av. Constituyentes 908, Piso 1, Next Cloud, Lomas Altas, Ciudad de México, Ciudad de México 11950 </p>
-									<p>Recibe:  Se entregó directamente a un recepcionista ó alguien de la recepción.</p>
-									<p>Nº de guía: <strong>TBM018081738009</strong></p>
+									<p className="status">Dirección de envío</p>
+									<p>{ shipping.address1 } {shipping.address_num_ext}, {shipping.address_num_int}, {shipping.state}, {shipping.city} {shipping.postal_code}</p>
 								</li>
 							</ul>
 						</div>

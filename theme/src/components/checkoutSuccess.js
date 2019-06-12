@@ -117,43 +117,52 @@ const CheckoutSuccess = ({
 	redirectToAdmin();
 	// Search a transaction completed
 	let transaction = order.transactions.find( transaction => { if( transaction.status.length > 0 ){ return transaction }  })
+	let iconStatus = ( transaction.order_type !== 'OXXO' && transaction.order_type !== 'SPEI' ? '/assets/images/card_success.svg' : '/assets/images/icons/pending.svg'  );
+	let status = ( transaction.order_type === 'OXXO' || transaction.order_type === 'SPEI'  ? 'pending' : 'completed' );
+	
 	if (order && order.items && order.items.length > 0) {
 		return (
 			<div className="checkout-success-details">
 				<h1 className="checkout-success-title">
-					<img src="/assets/images/card_success.svg" alt="" />
+					<img src={iconStatus} alt="" />
 					<br />
 					Gracias por tu compra
 				</h1>
 
 				<div className="columns is-centered" style={{ marginBottom: '3rem' }}>
-					<div className="column is-6 checkout-success-order-detail has-text-centered">
-						{ transaction.order_type != 'OXXO' && 
+					<div className="column is-12 checkout-success-order-detail">
+						{ status != 'pending' && 
 							<p>El cargo por <span>{helper.formatCurrency(order.grand_total, settings)}</span> se realizó con éxito,</p>
 						}
+						{
+							status === 'pending' &&
+							<p>Tu pedido se encuentra pendiente de pago, para finalizarlo deberas seguir las siguientes instrucciones:</p>
+						}
 						{ transaction.order_type == 'OXXO' && 
-							<p>
-								Recuerda imprimir o presentar el ticket de pago en el OXXO para completar tu pedido por un total de <span> { helper.formatCurrency(order.grand_total, settings)  }</span>,
-								<a style={{display:'block'}} href={transaction.urlPrint}>Imprime tu ticket aqui</a>  
-							</p>
+						<React.Fragment>
+
+							<ul style={{listStyleType:'none'}}>
+							  <li>1.- Acude a cualquier tienda afiliada</li>
+							  <li>2.- Entrega al cajero el código de barras y menciona que realizarás un pago de servicio Venders®</li>
+							  <li>3.- Realiza el pago en efectivo por la cantidad de: <p style={{display:'inline'}}><span>{helper.formatCurrency(order.grand_total, settings)}</span></p></li>
+							</ul>
+							<div style={{textAlign:'center'}}><a className="print-btn" target="_blank" href={transaction.urlPrint}>Imprimir</a> </div>
+						</React.Fragment>
 						}
 						{ transaction.order_type == 'SPEI' && 
 							<React.Fragment>
-							<p>
-								Recuerda que para finalizar el pago deberas depositar a la cuenta <span><strong>{transaction.deposit_account}</strong></span> un total de  <span>{ helper.formatCurrency(order.grand_total, settings)  }</span>
-							</p>
-							<ul>
-							  <li>1.- Registra la cuenta a 18 digítos en tu cuenta de banco</li>
+							<ul style={{listStyleType:'none'}}>
+							  <li>1.- Registra la cuenta <p style={{display:'inline'}}><span>{transaction.deposit_account}</span></p> en tu cuenta de banco</li>
 
-							  <li>2.- Transfiere la cantidad exacta de tu pedido</li>
+							  <li>2.- Transfiere la cantidad exacta de <p style={{display:'inline'}}><span>{helper.formatCurrency(order.grand_total, settings)}</span></p> tu pedido</li>
 
 							  <li>3.- Listo, espera a que el Pakke libere tu pedido</li>
 							</ul>
+							<p>
+								Folio del pedido: <span> {order.number} </span>
+							</p>
 							</React.Fragment>
 						}
-						<p>
-							el núm. de folio de la compra es: <span> {order.number} </span>
-						</p>
 					</div>
 				</div>
 				<div className="columns is-centered">

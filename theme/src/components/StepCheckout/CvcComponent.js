@@ -20,8 +20,9 @@ const CvcComponent = field => {
 		</label>
 		<Cvc
 			{...field.input}
-		 onChange={field.handleChange}
-		 cardType={field.cardType}
+			onChange={field.handleChange}
+			cardType={field.cardType}
+			masked={true} 
 		 render={ ({ value, valid, type, getInputProps }) => {
 		  let props = getInputProps();
 		  let error = false
@@ -35,7 +36,7 @@ const CvcComponent = field => {
 		  }
 		  return(
 		    <React.Fragment> 
-          <input  {...getInputProps() } placeholder="" />
+          <input  {...getInputProps() } masked={true} placeholder="" />
         </React.Fragment>
       )
 		 }}/>

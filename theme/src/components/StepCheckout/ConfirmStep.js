@@ -19,9 +19,15 @@ const SummaryItem = ({ settings, item }) => {
     if( !thumbnail ){
       thumbnail = 'http://via.placeholder.com/100x100';
     }
+    let sku = item.sku;
+    
+    let product_name = item.name;
+    if( item.variant_name != '' ){
+      product_name = item.variant_name;
+    }
 
     return (
-        <tr>
+        <tr title={product_name}>
             <td className="td-product-name">
               <div className="image">
                   <NavLink to={item.path}>
@@ -32,9 +38,11 @@ const SummaryItem = ({ settings, item }) => {
                       />
                   </NavLink>
               </div>
-              <NavLink to={item.path}>{item.name}</NavLink>
-              {item.variant_name}
             </td>
+            <td>
+              <NavLink to={item.path}>{sku}</NavLink>
+            </td>
+            <td>{product_name}</td>
             <td>
               {item.quantity}
             </td>
@@ -110,6 +118,8 @@ export default class ConfirmStep extends React.Component {
                                 <table className="table is-fullwidth">
                                     <thead>
                                         <tr>
+                                          <th></th>
+                                          <th>SKU</th>
                                           <th>Artículo</th>
                                           <th>Cantidad</th>
                                           <th>Importe</th>
@@ -193,7 +203,7 @@ export default class ConfirmStep extends React.Component {
                         </div>
                         <div className="colums">
                           <div className="column">
-                            <button onClick={handleBack} disabled={ this.state.terms} className="back-button">Cancelar</button>  
+                            <button onClick={handleBack} disabled={ this.state.terms} className="back-button">Atrás</button>  
                           </div>
                         </div>
                     </section>

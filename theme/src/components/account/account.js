@@ -322,14 +322,20 @@ class Account extends React.Component {
 			}
 			const orders = [];
 			keyCounter = 0;
-			// TODO numer de guia y fecha de entrega de pakke
 			for(var i in orderHistory) {
 				let orderCreatedAt = formateDate( orderHistory[i].date_created, settings );
 				let grandTotal = orderHistory[i].grand_total;
 				let orderNumber = orderHistory[i].number;
 				let sendTo = orderHistory[i].shipping_address.full_name;
+				
+				// TODO numer de guia y fecha de entrega de pakke
 				let guideNumber = "TBM018081738009";
-				let sendedOn = "07 Marzo 2019"
+				let sendedOn = "07 Marzo 2019";
+				
+				let transaction = orderHistory[i].transactions[ orderHistory[i].transactions.length -1 ];
+				let transactionNumber = transaction.transaction_id;
+
+
 				orders.push( 
 					<li key={i}>
 						<div className="columns">
@@ -342,10 +348,9 @@ class Account extends React.Component {
 								<strong>{ formatCurrency(grandTotal, settings) }</strong>	
 							</div>
 						</div>
-						<p>Pedido Nº  <span>{orderNumber}</span></p>
+						<p>Estado: <span>{ transaction.status === 'PENDING' ? 'PENDIENTE' : 'APROBADO' }</span></p>
+						<p>Pedido Nº  <span>{transactionNumber}</span></p>
 						<p>Enviado a: <span>{ sendTo}</span></p>
-						<p>Nº de guía:  <span>{guideNumber}</span></p>
-						<p>Entregado el<span> {sendedOn}</span></p>
 						<div className="options">
 							<Link to={`/customer-account/order/${orderNumber}`}>Ver detalles del pedido</Link>
 						</div>
