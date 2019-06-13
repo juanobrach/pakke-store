@@ -87,6 +87,39 @@ const CategoryContainer = props => {
 		}
 	} = props;
 	
+
+	const filteredProducts = [];
+
+		products.forEach( ( product, productIndex ) =>{
+						
+			let regular_price = product.regular_price;
+			let off_price  = product.price;
+
+			let price = ( regular_price > off_price && off_price > 0 ? off_price : regular_price );
+			let bestPrice = price;
+
+			let variantId,
+				variantOptions;
+
+			if( product.variants ){
+				console.log('tiene variante')
+				product.variants.forEach( (variant, variantIndex) =>{
+					console.log('variant', variant );
+					console.log('acumulator', bestPrice )
+					if( variant.price < bestPrice  ){
+						bestPrice = variant.price;
+						variantId = variant.id;
+						variantOptions = variant.options;
+						products[productIndex].variantSeledted = variantId;
+						products[productIndex].variantOptions = variantOptions;
+					}
+				})
+			}
+			products[productIndex].price = bestPrice;
+			filteredProducts.push(products[productIndex]);
+		})
+
+
 	const changeLayout = ( layoutType )=>{
 		props.setCurrentView( layoutType )
 
@@ -127,7 +160,7 @@ const CategoryContainer = props => {
 						</div>
 						<div className="column is-9 category">
 							<ProductList
-								products={products}
+								products={filteredProducts}
 								addCartItem={addCartItem}
 								settings={settings}
 								loadMoreProducts={loadMoreProducts}

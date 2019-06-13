@@ -85,6 +85,7 @@ export default class CustomProducts extends React.Component {
 		attributes,
 		price_from,
 		price_to,
+		variants,
 		on_sale
 	}) => {
 		const filter = {
@@ -117,8 +118,10 @@ export default class CustomProducts extends React.Component {
 			.list(filter)
 			.then(({ json }) => {
 				if (!this.isCancelled) {
+					let data = json.data;
+					
 					this.setState({
-						products: json.data
+						products: data
 					});
 				}
 			})
@@ -142,9 +145,37 @@ export default class CustomProducts extends React.Component {
 
 		const { products } = this.state;
 
+		const filteredProducts = [];
+
+		products.forEach( ( product, productIndex ) =>{
+						
+			let regular_price = product.regular_price;
+			let off_price  = product.price;
+
+			let price = ( regular_price > off_price && off_price > 0 ? off_price : regular_price );
+			let bestPrice = price;
+
+			let variantId,
+				variantOptions;
+
+			if( product.variants ){
+				product.variants.forEach( (variant, variantIndex) =>{
+					if( variant.price < bestPrice  ){
+						bestPrice = variant.price;
+						variantId = variant.id;
+						variantOptions = variant.options;
+						products[productIndex].variantSeledted = variantId;
+						products[productIndex].variantOptions = variantOptions;
+					}
+				})
+			}
+			products[productIndex].price = bestPrice;
+			filteredProducts.push(products[productIndex]);
+		})
+
 		return (
 			<ProductList
-				products={products}
+				products={filteredProducts}
 				addCartItem={addCartItem}
 				settings={settings}
 				loadMoreProducts={null}

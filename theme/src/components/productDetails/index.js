@@ -39,11 +39,11 @@ export default class ProductDetails extends React.Component {
 		);
 		this.addToCart = this.addToCart.bind(this);
 		this.checkSelectedOptions = this.checkSelectedOptions.bind(this);
+
 	}
 
 	onOptionChange(optionId, valueId ) {
 		let { selectedOptions } = this.state;
-
 		if (valueId === '') {
 			delete selectedOptions[optionId];
 		} else {
@@ -100,9 +100,47 @@ export default class ProductDetails extends React.Component {
 		this.setState({ isAllOptionsSelected: allOptionsSelected });
 	}
 
+	componentDidMount(){
+		let regular_price = this.props.product.regular_price;
+		let off_price  = this.props.product.price;
+
+		let price = ( regular_price > off_price && off_price > 0 ? off_price : regular_price );
+		let bestPrice = price;
+
+		let variantId,
+		variantOptions,
+		id,
+		value;
+
+		let preSelectVariant = {};
+		let variantObj = {};
+		if( this.props.product.variants ){
+			this.props.product.variants.forEach( (variant, variantIndex) =>{
+				if( variant.price < bestPrice  ){
+					bestPrice = variant.price;
+					variantId = variant.id;
+					variant.options.forEach( (_variant, _index )=>{
+						id    = _variant.option_id;
+						value = _variant.value_id;
+						variantObj[id] = value;
+						preSelectVariant = variantObj;
+						this.onOptionChange(id, value )
+					})
+					
+					
+				}
+			})
+			
+		}
+	}
+
 	render() {
 		const { product, settings, categories } = this.props;
 		const { selectedVariant, isAllOptionsSelected, selectedOptions } = this.state;
+
+
+		
+
 
 		const maxQuantity =
 			product.stock_status === 'discontinued'
