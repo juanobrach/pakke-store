@@ -103,6 +103,7 @@ export default class ProductDetails extends React.Component {
 	render() {
 		const { product, settings, categories } = this.props;
 		const { selectedVariant, isAllOptionsSelected, selectedOptions } = this.state;
+
 		const maxQuantity =
 			product.stock_status === 'discontinued'
 				? 0
@@ -133,7 +134,8 @@ export default class ProductDetails extends React.Component {
 									<div className="content">
 										<Tags tags={product.tags} />
 										<h1 className="title is-4 product-name">{product.name}</h1>
-										<p className="product-sku">SKU: {product.sku}</p>
+										
+										<p className="product-sku">SKU: { ( product.variable && selectedVariant && selectedVariant.sku.length > 0  ? selectedVariant.sku  : product.sku ) }</p>
 										<Price
 											product={product}
 											variant={selectedVariant}
