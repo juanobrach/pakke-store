@@ -147,6 +147,12 @@ class StepCheckout extends React.Component {
     });
   };
 
+  handleStepButton = ( step ) =>{
+    this.setState({
+      activeStep: step,
+    });
+  }
+
 
 
   componentDidMount() {
@@ -337,14 +343,14 @@ class StepCheckout extends React.Component {
               <Step key="Envío" className={activeStep}>
                 <StepButton
                    icon={<StepIcon label="Envío" activeStep={this.state.activeStep} />}
-                   onClick={() => console.log('Clicked') }
+                   onClick={() => this.handleStepButton(0) }
                    className={classes.MuiStepButton}
                 />
               </Step>
               <Step key="Pago">
                 <StepButton
                    icon={<StepIcon label="Pago" activeStep={this.state.activeStep} textColor={ (activeStep == 0 ? 'gray' : '#ff5959') } />}
-                   onClick={() => console.log('Clicked') }
+                   onClick={() => this.handleStepButton(1) }
                    className={classes.MuiStepButton}
 
                 />
@@ -355,7 +361,7 @@ class StepCheckout extends React.Component {
                                    activeStep={this.state.activeStep} 
                                    textColor={ (activeStep == 0 || activeStep == 1   ? 'gray' : '#ff5959') }
                                    />}
-                   onClick={() => console.log('Clicked') }
+                   onClick={() => this.handleStepButton(2)}
                    className={classes.MuiStepButton}
 
                 />
