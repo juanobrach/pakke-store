@@ -65,6 +65,7 @@ class Account extends React.Component {
 			cartLayer: false,
 			modalOpen: false,
 			modalContent: '',
+			filter:''
 		}
 
 		this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -246,6 +247,10 @@ class Account extends React.Component {
 		})
 	}
 
+	setFilter( filter ){
+		this.setState({filter: filter })
+	}
+
 	render() {
 		const { handleSubmit,
 				customerProperties,
@@ -322,18 +327,36 @@ class Account extends React.Component {
 			}
 			const orders = [];
 			keyCounter = 0;
+			console.log( orderHistory  );
+
+			let all = 0;
+			let pagados = 0;
+			let pendientes = 0;
+
 			for(var i in orderHistory) {
+				all+=1;
 				let orderCreatedAt = formateDate( orderHistory[i].date_created, settings );
 				let grandTotal = orderHistory[i].grand_total;
 				let orderNumber = orderHistory[i].number;
 				let sendTo = orderHistory[i].shipping_address.full_name;
 				
 				// TODO numer de guia y fecha de entrega de pakke
-				let guideNumber = "TBM018081738009";
-				let sendedOn = "07 Marzo 2019";
 				
 				let transaction = orderHistory[i].transactions[ orderHistory[i].transactions.length -1 ];
 				let transactionNumber = transaction.transaction_id;
+				if( transaction.status === 'PENDING' ){
+					pendientes += 1;
+				}
+				if( transaction.status !== 'PENDING' ){
+					pagados += 1;
+				}
+				if( this.state.filter == 'pagados' && transaction.status === 'PENDING'  ){
+					continue;		
+				}
+
+				if( this.state.filter == 'pendientes' && transaction.status !== 'PENDING'  ){
+					continue;		
+				}
 
 
 				orders.push( 
@@ -360,6 +383,7 @@ class Account extends React.Component {
 			if( orders.length <= 0 ){
 				orders.push(<li>Aun no tienes pedidos</li>)
 			}
+
 
 			const addresses_container = [];
 			for (var i in addresses ) {
@@ -392,6 +416,7 @@ class Account extends React.Component {
 			tableStyle = {
 				align: 'center'
 			};
+		
 
 			return (
 				<React.Fragment>
@@ -404,8 +429,15 @@ class Account extends React.Component {
 						<div className="columns">
 							<div className="column is-4">
 								<h4>Mis pedidos</h4>
+								<div className="options" style={{marginBottom:'1em'}}>
+									<a onClick={ ()=>{ this.setFilter('')} } >Todos ({all}) </a>
+									 | 									
+									<a onClick={ ()=>{ this.setFilter('pagados')}}>Pagados ({pagados}) </a>
+									 | 									
+									<a onClick={ ()=>{ this.setFilter('pendientes')}}>Pendientes ({pendientes})</a>
+								</div>
 								<ul className="orders_history_list">
-									{orders}
+									{orders.reverse()}
 								</ul>
 							</div>
 							<div className="column is-4">
