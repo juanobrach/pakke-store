@@ -30,6 +30,7 @@ export default class ProductDetails extends React.Component {
 			selectedOptions: {},
 			selectedVariant: null,
 			isAllOptionsSelected: false,
+			isBestOnOptions:false,
 			quantity: 1
 		};
 
@@ -101,12 +102,13 @@ export default class ProductDetails extends React.Component {
 	}
 
 	componentDidMount(){
+
+		// Obtengo el mejor precio de un producto. Sera necesario mostrar siempre el mejor producto y seleccionarlo.
 		let regular_price = this.props.product.regular_price;
 		let off_price  = this.props.product.price;
 
 		let price = ( regular_price > off_price && off_price > 0 ? off_price : regular_price );
 		let bestPrice = price;
-
 		let variantId,
 		variantOptions,
 		id,
@@ -117,6 +119,7 @@ export default class ProductDetails extends React.Component {
 		if( this.props.product.variants ){
 			this.props.product.variants.forEach( (variant, variantIndex) =>{
 				if( variant.price < bestPrice  ){
+					this.setState({isBestOnOptions:true})
 					bestPrice = variant.price;
 					variantId = variant.id;
 					variant.options.forEach( (_variant, _index )=>{
@@ -202,6 +205,7 @@ export default class ProductDetails extends React.Component {
 													variant={selectedVariant}
 													addCartItem={this.addToCart}
 													isAllOptionsSelected={isAllOptionsSelected}
+													isBestOnOptions={this.state.isBestOnOptions}
 												/>
 											</div>
 										</section>

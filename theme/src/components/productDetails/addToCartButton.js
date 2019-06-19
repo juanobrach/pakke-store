@@ -6,7 +6,8 @@ const AddToCartButton = ({
 	product,
 	variant,
 	addCartItem,
-	isAllOptionsSelected
+	isAllOptionsSelected,
+	isBestOnOptions
 }) => {
 	let buttonStyle = {};
 	if (
@@ -40,23 +41,26 @@ const AddToCartButton = ({
 		isDisabled  = false;
 		buttonClass = "is-success";
 		messageText = "";
-	} else if (product.variable && !isAllOptionsSelected) {
+	} else if (product.variable && !isAllOptionsSelected && isBestOnOptions ) {
 		isDisabled  = true;
 		buttonClass = "is-success";
 		messageText = text.optionsRequired;
-	} else if (product.variable && !product.stock_backorder) {
-		isDisabled  = true;
-		buttonClass = "is-success";
-		messageText = text.outOfStock;
 	} else if (product.stock_status === 'available') {
 		isDisabled  = false;
 		buttonClass = "is-success";
 		messageText = "";
-	} else if (product.stock_status === 'out_of_stock') {
+	} else if ( product.stock_status === 'out_of_stock') {
 		isDisabled  = true;
 		buttonClass = "is-success";
 		messageText = text.outOfStock;
-	}
+	}else if( isBestOnOptions ){
+		isDisabled  = false;
+		buttonClass = "is-success";
+	}else if (product.variable && !product.stock_backorder && product.stock_status === 'out_of_stock') {
+		isDisabled  = true;
+		buttonClass = "is-success";
+		messageText = "no ofrece backorders";
+	} 
 
 	return (
 		<React.Fragment>
@@ -69,6 +73,7 @@ const AddToCartButton = ({
 			<span className="shoping-cart-icon"></span>				
 			{addToCartText}
 		</button>
+		{messageText}
 		</React.Fragment>
 	);
 };
