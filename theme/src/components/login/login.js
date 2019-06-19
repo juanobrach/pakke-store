@@ -189,14 +189,16 @@ class Login extends React.Component {
 						<span className="checkmark"></span>
 					</label>
 						<div className="login-button-wrap">
-							<Button
+							<button
 								onClick={handleSubmit}
+								onKeyDown={handleSubmit}
 								className={loginButtonClass}
 								disabled={isLoginSubmitting}
 								loading={isLoginSubmitting}
+								type={'submit'}
 							>
 								Entrar
-							</Button>
+							</button>
 						</div>
 						<div className="login-link-wrap forgot-password has-text-centered">
 							<Link to="/forgot-password">No recuerdo mi contraseña</Link>

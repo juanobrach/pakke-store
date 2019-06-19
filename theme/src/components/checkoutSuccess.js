@@ -173,7 +173,7 @@ const CheckoutSuccess = ({
 				<div className="columns is-centered">
 					<div className="column is-12">
 						<p className="redirect-message">
-							En breve serás redireccionado al inicio de la tienda
+							<Link to="/">Seguir comprando</Link>
 						</p>
 					</div>
 				</div>
