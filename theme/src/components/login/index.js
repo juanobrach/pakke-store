@@ -57,10 +57,6 @@ export default class LoginForm extends React.Component {
 
 		const paymentMethods = [
 			{
-				img:'/assets/images/payment/meses_sin_interes.png',
-				alt: '3, 6, 9 Y 12 meses sin interes en todas las tarjetas'
-			},
-			{
 				img:'/assets/images/payment/mastercard.png',
 				alt: 'Mastercard'
 			},
@@ -79,14 +75,6 @@ export default class LoginForm extends React.Component {
 			{
 				img:'/assets/images/payment/oxxo.png',
 				alt: 'OXXO'
-			},
-			{
-				img:'/assets/images/payment/BBVA_bancomer.png',
-				alt: 'BBVA Bancomer'
-			},
-			{
-				img:'/assets/images/payment/paypal.png',
-				alt: 'Paypal'
 			}
 		]
 
