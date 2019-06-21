@@ -368,7 +368,7 @@ export default class Footer extends React.PureComponent {
 					</div>
 					<div style={{bottom: '100px', height: '64px', position: 'fixed', right: '18px', width: '64px', zIndex: 21}}>
 						<a href="https://api.whatsapp.com/send?phone=525526299848&text=Hola,%20quisiera%20saber%20más%20acerca%20de%20Pakke"  target="_blank">
-							<img src="./img/whatsapp.png" alt="whatsapp" style={{height: '63px', width: '63px'}} />
+							<img src="/assets/images/icons/whatsapp.png" alt="whatsapp" style={{height: '63px', width: '63px'}} />
 						</a>
 					</div>
 				</footer>
