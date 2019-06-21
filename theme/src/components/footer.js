@@ -345,19 +345,18 @@ export default class Footer extends React.PureComponent {
 											<small>Conoce las soluciones que tenemos para ti</small>
 										</p>
 										<VendorsLinks />
+										<div style={{ display:'flex'}}> 
+											<p><NavLink to={"#"}>Aviso de privacidad</NavLink> </p> 
+											<span style={{margin:'0 .5em'}}>{"  |  "}</span>
+											<p><NavLink to={"#"}>Términos y Condiciones</NavLink> </p>
+										</div>
 									</div>
 								</div>
 								<div className="column is-6">
-									<div className="columns">
-											<FooterMenu
-												title={footerMenu.cuenta.title}
-												items={footerMenu.cuenta.items}
-											/>
-										</div>
+									<div className="columns"></div>
 								</div>
 							</div>
 						</div>
-						<hr />
 						<div className="level">
 							<div className="level-item has-text-centered">
 								<p>
