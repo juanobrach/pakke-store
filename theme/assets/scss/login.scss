@@ -41,7 +41,6 @@
             font-size:20px;
             font-family:'open_sansregular';
             color: $gray-super-light;
-            padding:0  50px 5px 50px;
             cursor:pointer;
             width: 40%;
             text-align: center;
@@ -52,6 +51,9 @@
                 font-family:'open_sansbold';
                 color:$red-cake;
                 border-bottom:2px solid $red-cake;
+                a{
+                    color:$red-cake;
+                }
             }
         }
     }
