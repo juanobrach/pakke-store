@@ -81,8 +81,7 @@ const IndexContainer = props => {
 						 		return <div className="column" key={key}>
 						 			<div>
 							 			<a href={ category.path } className="block" >
-								 				<img src={imagePath} />
-								 				<h3>{ category.name }</h3>
+								 				<img src={imagePath} style={{maxWidth:'90px'}} />
 							 			</a>
 						 			</div>
 						 		</div>
