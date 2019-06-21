@@ -75,18 +75,6 @@ const VendorsLinks = () =>{
 			columSize:"is-one-quarter"
 		},
 		{
-			imgSrc:"/assets/images/vendors/ikniu-logo.png",
-			alt: "Ikniu",
-			href: "#",
-			columSize:"is-2"
-		},
-		{
-			imgSrc:"/assets/images/vendors/anko-logo.png",
-			alt: "Anko",
-			href: "#",
-			columSize:"is-narrow"
-		},
-		{
 			imgSrc:"/assets/images/vendors/etomin-logo.png",
 			alt: "Etomin",
 			href: "#",
@@ -123,10 +111,6 @@ export default class Footer extends React.PureComponent {
 				: settings.logo;
 		const paymentMethods = [
 			{
-				img:'/assets/images/payment/meses_sin_interes.png',
-				alt: '3, 6, 9 Y 12 meses sin interes en todas las tarjetas'
-			},
-			{
 				img:'/assets/images/payment/mastercard.png',
 				alt: 'Mastercard'
 			},
@@ -145,14 +129,6 @@ export default class Footer extends React.PureComponent {
 			{
 				img:'/assets/images/payment/oxxo.png',
 				alt: 'OXXO'
-			},
-			{
-				img:'/assets/images/payment/BBVA_bancomer.png',
-				alt: 'BBVA Bancomer'
-			},
-			{
-				img:'/assets/images/payment/paypal.png',
-				alt: 'Paypal'
 			}
 		]
 
@@ -298,39 +274,47 @@ export default class Footer extends React.PureComponent {
 							<div className="block" style={{height:'40px'}}></div>
 							<div className="columns level customer-help-contact-with-icons">
 								<div className="column level-item has-text-centered">
-									<div className="block help-icon">
-										<img src="/assets/images/icons/phone-70-70.png"/>
-									</div>
-									<p>
-										Llámanos desde todo México al:
-										<br />
-										<strong>01 (55) 2629 9848</strong>
-										<br />
-										De lunes a viernes de 9 a 19 hrs.	
-									</p>
+									<a href="tel:01552629 9848">
+										<div className="block help-icon">
+											<img src="/assets/images/icons/phone-70-70.png"/>
+										</div>
+										<p>
+											Llámanos desde todo México al:
+											<br />
+											<strong>01 (55) 2629 9848</strong>
+											<br />
+											De lunes a viernes de 9 a 19 hrs.	
+										</p>
+									</a>
 								</div>
 								<div className="column level-item has-text-centered">
-									<div className="block help-icon">
-										<img src="/assets/images/icons/email-71-51.png"/>
-									</div>
-									<p>
-										<strong>soporte@pakke.mx</strong>
+									<a href="mailto:soporte@pakke.mx">
+
+										<div className="block help-icon">
+											<img src="/assets/images/icons/email-71-51.png"/>
+										</div>
+										<p>
+											<strong>soporte@pakke.mx</strong>
+											<br/>
+											Escríbenos para brindarte la
+											ayuda que necesitas.
+										</p>
+									</a>
+								</div>
+								<div className="column level-item has-text-centered">
+									<a href="http://help.pakke.mx">
+										<div className="block help-icon">
+											<img src="/assets/images/icons/chat-83-70.png"/>
+										</div>
+										<p>
+										<strong>Chatea con nosotros</strong>
 										<br/>
-										Escríbenos para brindarte la
-										ayuda que necesitas.
-									</p>
-								</div>
-								<div className="column level-item has-text-centered">
-									<div className="block help-icon">
-										<img src="/assets/images/icons/chat-83-70.png"/>
-									</div>
-									<p>
-									<strong>Chatea con nosotros</strong>
-									<br/>
-									Hacemos todo lo posible por
-									solucionarte tus dudas en el
-									momento.
-									</p>
+										Hacemos todo lo posible por
+										solucionarte tus dudas en el
+										momento.
+										</p>
+									</a>
+
 								</div>
 								<div className="column level-item has-text-centered">
 									<div className="block help-icon">
@@ -352,7 +336,7 @@ export default class Footer extends React.PureComponent {
 					<div className="container is-widescreen">
 						<div className="content">
 							<div className="columns">
-								<div className="column is-4">
+								<div className="column is-6">
 									<div className="mobile-padding">
 										<div className="footer-logo">
 											<img src='/assets/images/logo-pakke-bco.png' alt="Pakke" />
@@ -361,24 +345,10 @@ export default class Footer extends React.PureComponent {
 											<small>Conoce las soluciones que tenemos para ti</small>
 										</p>
 										<VendorsLinks />
-										<p style={{fontSize:"13px"}}>Av. Constituyentes 908, Lomas Altas C.P. 11950 CDMX</p>
 									</div>
 								</div>
-								<div className="column is-8">
+								<div className="column is-6">
 									<div className="columns">
-											<FooterMenu
-												title={footerMenu.catalogo.title}
-												items={footerMenu.catalogo.items}
-											/>
-											<FooterMenu
-												title={footerMenu.nosotros.title}
-												items={footerMenu.nosotros.items}
-											/>
-											<FooterMenu
-												title={footerMenu.ayuda.title}
-												items={footerMenu.ayuda.items}
-
-											/>
 											<FooterMenu
 												title={footerMenu.cuenta.title}
 												items={footerMenu.cuenta.items}
@@ -395,6 +365,11 @@ export default class Footer extends React.PureComponent {
 								</p>
 							</div>
 						</div>
+					</div>
+					<div style={{bottom: '100px', height: '64px', position: 'fixed', right: '18px', width: '64px', zIndex: 21}}>
+						<a href="https://api.whatsapp.com/send?phone=525526299848&text=Hola,%20quisiera%20saber%20más%20acerca%20de%20Pakke"  target="_blank">
+							<img src="./img/whatsapp.png" alt="whatsapp" style={{height: '63px', width: '63px'}} />
+						</a>
 					</div>
 				</footer>
 			</section>
