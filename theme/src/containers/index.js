@@ -73,11 +73,15 @@ const IndexContainer = props => {
 						<div className="columns has-text-centered  categories-links is-gapless">
 						 {
 						 	categories.map( (category, key )=>{
+								 console.log( category );
+
+								let imagePath = ( !!category.image ?  category.image : "/assets/images/icons/category-icon.png" )
+
 						 		if( category.parent_id != null ) return false;
 						 		return <div className="column" key={key}>
 						 			<div>
 							 			<a href={ category.path } className="block" >
-								 				<img src="/assets/images/icons/category-icon.png" />
+								 				<img src={imagePath} />
 								 				<h3>{ category.name }</h3>
 							 			</a>
 						 			</div>
