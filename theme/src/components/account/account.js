@@ -429,7 +429,7 @@ class Account extends React.Component {
 						<div className="columns">
 							<div className="column is-4">
 								<h4>Mis pedidos</h4>
-								<div className="options" style={{marginBottom:'1em'}}>
+								<div className="options" style={{marginLeft:'1em', display:'inline'}}>
 									<a onClick={ ()=>{ this.setFilter('')} } >Todos ({all}) </a>
 									 | 									
 									<a onClick={ ()=>{ this.setFilter('pagados')}}>Pagados ({pagados}) </a>
