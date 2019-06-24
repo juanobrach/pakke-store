@@ -14,27 +14,19 @@ const IndexContainer = props => {
 
 	const slider_pictures = [
 		{
-			image: '/assets/images/slider/slider_1.png',
+			image: '/assets/images/slider/slider_1.jpg',
 			title: '',
 			description: '',
-			path: '/assets/images/slider/slider_1.png',
+			path: '/assets/images/slider/slider_1.jpg',
 			button: ''
 		},
 		{
-			image: '/assets/images/slider/slider_1.png',
+			image: '/assets/images/slider/slider_2.jpg',
 			title: '',
 			description: '',
-			path: '/assets/images/slider/slider_1.png',
-			button: ''
-		},
-		{
-			image: '/assets/images/slider/slider_1.png',
-			title: '',
-			description: '',
-			path: '/assets/images/slider/slider_1.png',
+			path: '/assets/images/slider/slider_2.jpg',
 			button: ''
 		}
-
 	]; 
 
 	return (
