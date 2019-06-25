@@ -21,7 +21,21 @@
     }
   }
 }
-
+div.social-footer-icons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  ul{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 15%;
+    margin-bottom: .5em;
+    li{
+      margin: 0 1% 0;
+    }
+  }
+}
 .content ul.footer-menu li {
   list-style: none;
   margin-bottom:14px;

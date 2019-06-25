@@ -357,6 +357,30 @@ export default class Footer extends React.PureComponent {
 								</div>
 							</div>
 						</div>
+						<div  className="social-footer-icons">
+							<ul>
+								<li>
+									<a href="https://www.facebook.com/pakke.mx" target="_blank" title="Síguenos en Facebook">
+										<img src="/assets/images/icons/pakke-facebook-footer.svg" alt="Facebook Pakke" />
+									</a>
+								</li>
+								<li>
+									<a href="https://twitter.com/pakke_mx" target="_blank" title="Síguenos en Twitter">
+										<img src="/assets/images/icons/pakke-twitter-footer.svg" alt="Twitter Pakke" />
+									</a>
+								</li>
+								<li>
+									<a href="https://instagram.com/pakkemx" target="_blank" title="Síguenos en Instagram">
+										<img src="/assets/images/icons/pakke-instagram-footer.svg" alt="Instagram Pakke" />
+									</a>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/company/pakke-mx/" target="_blank" title="Síguenos en Linkedin">
+										<img src="/assets/images/icons/pakke-linkedin-footer.svg" alt="Linkedin Pakke" />
+									</a>
+								</li>
+							</ul>
+						</div>
 						<div className="level">
 							<div className="level-item has-text-centered">
 								<p>
