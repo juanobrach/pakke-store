@@ -10,6 +10,14 @@ export default class AccountForm extends React.Component {
 		super(props);
 	}
 
+
+	componentDidMount(){
+		console.log('montando account')
+		this.props.customerData({
+			token: Lscache.get('auth_data')
+		});
+	}
+
 	handlecustomerProperties = () => {
     	this.props.customerData({
 			token: Lscache.get('auth_data')
