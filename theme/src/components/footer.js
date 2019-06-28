@@ -302,7 +302,7 @@ export default class Footer extends React.PureComponent {
 									</a>
 								</div>
 								<div className="column level-item has-text-centered">
-									<a href="http://help.pakke.mx">
+									<a target="_blank" href="https://api.whatsapp.com/send?phone=525526299848&text=Hola,%20quisiera%20saber%20más%20acerca%20de%20Pakke">
 										<div className="block help-icon">
 											<img src="/assets/images/icons/chat-83-70.png"/>
 										</div>
@@ -317,16 +317,18 @@ export default class Footer extends React.PureComponent {
 
 								</div>
 								<div className="column level-item has-text-centered">
-									<div className="block help-icon">
-										<img src="/assets/images/icons/question-71-71.png"/>
-									</div>
-									<p>
-									<strong>¿Tienes dudas?</strong>
-									<br/>
-									En nuestro Centro de ayuda,
-									podrás encontrar la respuesta a
-									todos tus problemas.
-									</p>
+									<a href="http://help.pakke.mx">
+										<div className="block help-icon">
+											<img src="/assets/images/icons/question-71-71.png"/>
+										</div>
+										<p>
+										<strong>¿Tienes dudas?</strong>
+										<br/>
+										En nuestro Centro de ayuda,
+										podrás encontrar la respuesta a
+										todos tus problemas.
+										</p>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -346,9 +348,9 @@ export default class Footer extends React.PureComponent {
 										</p>
 										<VendorsLinks />
 										<div style={{ display:'flex'}}> 
-											<p><NavLink to={"#"}>Aviso de privacidad</NavLink> </p> 
+											<p><a  target="_blank" href="http://help.pakke.mx/aviso-de-privacidad/">Aviso de privacidad</a> </p> 
 											<span style={{margin:'0 .5em'}}>{"  |  "}</span>
-											<p><NavLink to={"#"}>Términos y Condiciones</NavLink> </p>
+											<p><a   target="_blank" href="http://help.pakke.mx/terminos-y-condiciones/">Términos y Condiciones</a> </p>
 										</div>
 									</div>
 								</div>
