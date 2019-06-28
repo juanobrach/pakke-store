@@ -33,7 +33,7 @@ export default class Gallery extends React.Component {
 		const { images, selectedOptions, product } = this.props;
 		const { lightboxIsOpen, lightboxPhotoIndex } = this.state;
 
-		if( !!selectedOptions ){
+		if( !!selectedOptions && !!this.galleryRef && !!this.galleryRef.current ){
 			this.galleryRef.current.slideToIndex( selectedOptions )
 		}
 
