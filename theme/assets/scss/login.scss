@@ -40,12 +40,14 @@
             margin:0;
             font-size:20px;
             font-family:'open_sansregular';
-            color: $gray-super-light;
             cursor:pointer;
             width: 40%;
             text-align: center;
             @media screen and (max-width: 769px) {
                 padding:0;
+            }
+            a{
+                color: $gray-super-light;
             }
             &.is-active{
                 font-family:'open_sansbold';

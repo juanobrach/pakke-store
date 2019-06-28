@@ -54,10 +54,6 @@ export default class RegisterForm extends React.Component {
 
 		const paymentMethods = [
 			{
-				img:'/assets/images/payment/meses_sin_interes.png',
-				alt: '3, 6, 9 Y 12 meses sin interes en todas las tarjetas'
-			},
-			{
 				img:'/assets/images/payment/mastercard.png',
 				alt: 'Mastercard'
 			},
@@ -76,40 +72,35 @@ export default class RegisterForm extends React.Component {
 			{
 				img:'/assets/images/payment/oxxo.png',
 				alt: 'OXXO'
-			},
-			{
-				img:'/assets/images/payment/BBVA_bancomer.png',
-				alt: 'BBVA Bancomer'
-			},
-			{
-				img:'/assets/images/payment/paypal.png',
-				alt: 'Paypal'
 			}
 		]
+
 
 		return (
 			<React.Fragment>
 				<div className="columns login-register-page">
-					<div className="column is-5" style={{padding:'100px 36px 160px 36px'}}>
-						<ul className="login-register-selector">
-							<li><Link to="/login">Ingresar</Link></li>
-							<li className="is-active">
-								<Link to="/register">
-									Registro
-								</Link>
-							</li>
-						</ul>
-								<Register
-									inputClassName={checkoutInputClass}
-									buttonClassName={checkoutButtonClass}
-									editButtonClassName={checkoutEditButtonClass}				
-									settings={settings}
-									registerProperties={registerProperties}			
-									onSubmit={this.handleContactsSubmit}
-									submiting={registerFormSubmiting}
-								/>
+					<div className="column is-paddingless is-5-widescreen is-12-mobile is-10-tablet">
+						<div style={{padding:'80px'}}>
+							<ul className="login-register-selector">
+								<li><Link to="/login">Ingresar</Link></li>
+								<li className="is-active">
+									<Link to="/register">
+										Registro
+									</Link>
+								</li>
+							</ul>
+							<Register
+								inputClassName={checkoutInputClass}
+								buttonClassName={checkoutButtonClass}
+								editButtonClassName={checkoutEditButtonClass}				
+								settings={settings}
+								registerProperties={registerProperties}			
+								onSubmit={this.handleContactsSubmit}
+								submiting={registerFormSubmiting}
+							/>
+						</div>
 					</div>
-					<div className="column is-7">
+					<div className="column is-7 is-hidden-mobile">
 						<div className="columns background-pakke">
 							<div className="column has-text-centered" style={{ marginTop:'100px', position:'relative'}}>
 								<img src="/assets/images/logo-pakke-bco-2.png" alt="" />
