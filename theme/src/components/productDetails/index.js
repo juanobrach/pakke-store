@@ -34,6 +34,9 @@ export default class ProductDetails extends React.Component {
 			quantity: 1
 		};
 
+		this.galleryRef = React.createRef();
+
+
 		this.onOptionChange = this.onOptionChange.bind(this);
 		this.findVariantBySelectedOptions = this.findVariantBySelectedOptions.bind(
 			this
@@ -50,6 +53,8 @@ export default class ProductDetails extends React.Component {
 		} else {
 			selectedOptions[optionId] = valueId;
 		}
+
+
 
 		this.setState({ selectedOptions: selectedOptions });
 		this.findVariantBySelectedOptions();
@@ -141,7 +146,30 @@ export default class ProductDetails extends React.Component {
 		const { product, settings, categories } = this.props;
 		const { selectedVariant, isAllOptionsSelected, selectedOptions } = this.state;
 
+		let selectedProductSku = false;
+		let selectedIndex = 0;
+		if( !!product.variants && product.variants.length > 0 ){
+			product.variants.forEach( variant  => {
+				variant.options.forEach( option => {
+					if( option.value_id == Object.values( selectedOptions )[0]  ){
+						selectedIndex = Object.values( selectedOptions )[0];
+						selectedProductSku = variant.sku;
+					}
+				});
+			});
+		}
 
+
+		let imageIndex = 1;
+		let preSelectedImage = 0;
+		if( !!product.images && product.images.length > 0 ){
+			product.images.forEach(image => {
+				if( image.alt === selectedProductSku ){
+					preSelectedImage = imageIndex;	
+				}
+				imageIndex += 1
+			});
+		}
 		
 
 
@@ -169,7 +197,7 @@ export default class ProductDetails extends React.Component {
 							</div>
 							<div className="columns">
 								<div className="column is-6">
-									<Gallery images={product.images} />
+									<Gallery images={product.images} selectedOptions={ preSelectedImage || selectedIndex } product={this.props.product} ref={this.galleryRef} />
 								</div>
 								<div className="column is-6">
 									<div className="content">

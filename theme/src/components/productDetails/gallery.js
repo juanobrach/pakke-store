@@ -10,9 +10,12 @@ export default class Gallery extends React.Component {
 		super(props);
 		this.state = {
 			lightboxIsOpen: false,
-			lightboxPhotoIndex: 0
+			lightboxPhotoIndex: 0,
+			startIndex: props.selectedOptions
 		};
+		this.galleryRef = React.createRef();
 	}
+
 
 	openLightbox = () => {
 		this.setState({ lightboxIsOpen: true });
@@ -27,26 +30,34 @@ export default class Gallery extends React.Component {
 	};
 
 	render() {
-		const { images } = this.props;
+		const { images, selectedOptions, product } = this.props;
 		const { lightboxIsOpen, lightboxPhotoIndex } = this.state;
 
+		if( !!selectedOptions ){
+			this.galleryRef.current.slideToIndex( selectedOptions )
+		}
+
+		let imageIndex = 0;
 		if (images && images.length > 0) {
-			const imagesArray = images.map(image => ({
-				original: helper.getThumbnailUrl(
-					image.url,
-					themeSettings.bigThumbnailWidth
-				),
-				thumbnail: helper.getThumbnailUrl(
-					image.url,
-					themeSettings.previewThumbnailWidth
-				),
-				originalAlt: image.alt,
-				thumbnailAlt: image.alt
-			}));
+
+			const imagesArray = images.map(image => {
+				imageIndex += 1
+				return ({
+					original: helper.getThumbnailUrl(
+						image.url,
+						themeSettings.bigThumbnailWidth
+					),
+					thumbnail: helper.getThumbnailUrl(
+						image.url,
+						themeSettings.previewThumbnailWidth
+					),
+					originalAlt: image.alt,
+					thumbnailAlt: image.alt
+				})
+			});
 
 			const originalImages = images.map(image => image.url);
 			const showThumbnails = images.length > 1;
-
 			return (
 				<Fragment>
 					<ImageGallery
@@ -54,7 +65,7 @@ export default class Gallery extends React.Component {
 						showThumbnails={showThumbnails}
 						onClick={this.openLightbox}
 						lazyLoad={true}
-						slideInterval={2000}
+						slideInterval={100}
 						showNav={themeSettings.product_gallery_shownav === true}
 						showBullets={showThumbnails}
 						showPlayButton={false}
@@ -62,6 +73,8 @@ export default class Gallery extends React.Component {
 						slideOnThumbnailHover={true}
 						thumbnailPosition={themeSettings.product_thumbnail_position}
 						onSlide={this.setPhotoIndex}
+						startIndex={selectedOptions}
+						ref={this.galleryRef}
 					/>
 					{lightboxIsOpen && (
 						<Lightbox
